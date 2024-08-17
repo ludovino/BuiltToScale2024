@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqqmnp4s4efji"]
+[gd_scene load_steps=8 format=3 uid="uid://cqqmnp4s4efji"]
 
 [ext_resource type="Script" path="res://spirit_align/spirit_align_minigame.gd" id="1_ll5ol"]
 [ext_resource type="Texture2D" uid="uid://b4vihmbrc3rnl" path="res://battle/demon_pellet_64x64.png" id="2_dcwm2"]
+[ext_resource type="Texture2D" uid="uid://b1cyvipr53bek" path="res://hell_gates/textures/progress_bar_empty_big (1).png" id="3_uhv2x"]
+[ext_resource type="Texture2D" uid="uid://72aluedr6b8o" path="res://hell_gates/textures/progress_bar_full_big.png" id="4_uyd1w"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_i1ket"]
 seed = 20
@@ -13,7 +15,7 @@ fractal_lacunarity = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mq2xc"]
 
-[node name="SpiritAlignScene3d" type="Node3D" node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area")]
+[node name="SpiritAlignScene3d" type="Node3D" node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area", "progress_line")]
 script = ExtResource("1_ll5ol")
 demon_spirit_point_a = Vector2(213, 156)
 demon_spirit_point_b = Vector2(900, 491)
@@ -22,6 +24,9 @@ player_spirit_area = NodePath("PlayerSpiritArea")
 demon_spirit_speed = 30.0
 input_sensitivity = 6.0
 noise = SubResource("FastNoiseLite_i1ket")
+goal_time = 10.0
+time_limit = 30.0
+progress_line = NodePath("TextureProgressBar")
 
 [node name="DemonSpiritArea" type="Area2D" parent="."]
 position = Vector2(213, 315)
@@ -31,7 +36,7 @@ scale = Vector2(14.045, 14.045)
 shape = SubResource("CircleShape2D_djd2j")
 
 [node name="Sprite2D" type="Sprite2D" parent="DemonSpiritArea"]
-scale = Vector2(0.39, 0.39)
+scale = Vector2(0.325, 0.325)
 texture = ExtResource("2_dcwm2")
 
 [node name="PlayerSpiritArea" type="Area2D" parent="."]
@@ -44,3 +49,16 @@ shape = SubResource("CircleShape2D_mq2xc")
 [node name="Sprite2D" type="Sprite2D" parent="PlayerSpiritArea"]
 scale = Vector2(0.31, 0.31)
 texture = ExtResource("2_dcwm2")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 1.0
+offset_right = 649.0
+offset_bottom = 52.0
+max_value = 10.0
+step = 0.05
+value = 1.2
+texture_under = ExtResource("3_uhv2x")
+texture_progress = ExtResource("4_uyd1w")
+
+[connection signal="area_entered" from="DemonSpiritArea" to="." method="_on_demon_spirit_area_area_entered"]
+[connection signal="area_exited" from="DemonSpiritArea" to="." method="_on_demon_spirit_area_area_exited"]
