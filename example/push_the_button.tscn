@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://dndy3wxgd4f41"]
+
+[ext_resource type="Script" path="res://example/example_minigame.gd" id="1_fx5eu"]
+[ext_resource type="Script" path="res://example/display_time.gd" id="2_rboy2"]
+
+[node name="PushTheButton" type="Node3D" node_paths=PackedStringArray("timer")]
+script = ExtResource("1_fx5eu")
+time_limit = 5.0
+timer = NodePath("Timer")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -15.0
+offset_right = -72.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "button
+"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Label" type="Label" parent="." node_paths=PackedStringArray("timer")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+script = ExtResource("2_rboy2")
+timer = NodePath("../Timer")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
