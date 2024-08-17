@@ -1,0 +1,77 @@
+[gd_scene load_steps=15 format=3 uid="uid://yavtuvbed3fv"]
+
+[ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
+[ext_resource type="PackedScene" uid="uid://dndy3wxgd4f41" path="res://example/push_the_button.tscn" id="2_rpkcf"]
+[ext_resource type="Texture2D" uid="uid://ymeav3v4k8rf" path="res://battle/textures/grasstemp.png" id="3_6htwh"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cpqc4"]
+noise_type = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j3uis"]
+noise = SubResource("FastNoiseLite_cpqc4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3b78"]
+albedo_texture = SubResource("NoiseTexture2D_j3uis")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_n7jla"]
+material = SubResource("StandardMaterial3D_n3b78")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yejbq"]
+noise_type = 4
+frequency = 0.22
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k266c"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 0.606
+noise = SubResource("FastNoiseLite_yejbq")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kuvt1"]
+sky_top_color = Color(0.5612, 0.78246, 0.92, 1)
+sky_horizon_color = Color(0.237162, 0.24361, 0.25379, 1)
+sky_curve = 0.0284197
+sky_cover = SubResource("NoiseTexture2D_k266c")
+sky_cover_modulate = Color(1, 1, 1, 0.368627)
+ground_bottom_color = Color(0.290196, 0.333333, 0.184314, 1)
+ground_horizon_color = Color(0.328157, 0.34, 0.3026, 1)
+ground_curve = 0.113137
+sun_angle_max = 24.15
+sun_curve = 0.0861525
+use_debanding = false
+
+[sub_resource type="Sky" id="Sky_txaos"]
+sky_material = SubResource("ProceduralSkyMaterial_kuvt1")
+radiance_size = 2
+
+[sub_resource type="Environment" id="Environment_wxkck"]
+background_mode = 2
+sky = SubResource("Sky_txaos")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iel6c"]
+albedo_texture = ExtResource("3_6htwh")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tk1tq"]
+material = SubResource("StandardMaterial3D_iel6c")
+size = Vector2(300, 300)
+
+[node name="Battle" type="Node3D"]
+script = ExtResource("1_gisox")
+minigame_scenes = Array[PackedScene]([ExtResource("2_rpkcf")])
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_n7jla")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.934067, 0.357097, 0, -0.357097, 0.934067, 0, 4.37181, 7.43862)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wxkck")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.280951, 0.959722, 0, -0.959722, 0.280951, 0, 3.21532, 3.35144)
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_tk1tq")
