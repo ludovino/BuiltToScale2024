@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Rune" load_steps=3 format=3 uid="uid://dnll1dncrly5h"]
+
+[ext_resource type="Script" path="res://rune_book/rune.gd" id="1_lx0j4"]
+[ext_resource type="Texture2D" uid="uid://d133oq0e7688x" path="res://rune_book/textures/bident.png" id="2_dbg6v"]
+
+[resource]
+script = ExtResource("1_lx0j4")
+texture = ExtResource("2_dbg6v")
+id = 0

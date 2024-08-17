@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Rune" load_steps=3 format=3 uid="uid://cnu032exj670a"]
+
+[ext_resource type="Script" path="res://rune_book/rune.gd" id="1_w4jfm"]
+[ext_resource type="Texture2D" uid="uid://bc82bki187fvg" path="res://rune_book/textures/fire.png" id="2_q3bo8"]
+
+[resource]
+script = ExtResource("1_w4jfm")
+texture = ExtResource("2_q3bo8")
+id = 4

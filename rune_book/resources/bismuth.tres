@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Rune" load_steps=3 format=3 uid="uid://c6c13x3h2ilon"]
+
+[ext_resource type="Script" path="res://rune_book/rune.gd" id="1_uarmf"]
+[ext_resource type="Texture2D" uid="uid://btyv46vceehsa" path="res://rune_book/textures/bismuth.png" id="2_2p0ii"]
+
+[resource]
+script = ExtResource("1_uarmf")
+texture = ExtResource("2_2p0ii")
+id = 1
