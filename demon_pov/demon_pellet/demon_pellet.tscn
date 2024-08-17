@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://df20tgche8l83"]
+
+[ext_resource type="Texture2D" uid="uid://b4vihmbrc3rnl" path="res://battle/demon_pellet_64x64.png" id="1_dqujy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yxl8l"]
+
+[node name="DemonPellet" type="Sprite3D"]
+texture = ExtResource("1_dqujy")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_yxl8l")

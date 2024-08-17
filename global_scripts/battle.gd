@@ -5,6 +5,8 @@ var minigames: Array[Minigame] = []
 var index := 0
 var current: Minigame
 
+@export var battle_ui : CanvasItem
+
 func _ready() -> void:
 	for scene in minigame_scenes:
 		minigames.append(scene.instantiate())
@@ -14,6 +16,7 @@ func start() -> void:
 	current = minigames[index]
 	current.succeeded.connect(next)
 	current.failed.connect(game_over)
+	battle_ui.visible = !minigames[index].battle_ui_disabled
 	add_child(current)
 
 func _teardown_current() -> void:

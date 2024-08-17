@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://n1ikks0vo2ff"]
+[gd_scene load_steps=7 format=3 uid="uid://n1ikks0vo2ff"]
 
 [ext_resource type="Script" path="res://demon_pov/demon_pov_minigame.gd" id="1_6ig5x"]
 [ext_resource type="Script" path="res://demon_pov/demon_pov_camera.gd" id="2_b2wtg"]
+[ext_resource type="PackedScene" uid="uid://df20tgche8l83" path="res://demon_pov/demon_pellet/demon_pellet.tscn" id="2_xlor4"]
 [ext_resource type="Texture2D" uid="uid://40c5p110fc3c" path="res://battle/textures/pixil-frame-0 (1) (2).png" id="3_gul5b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qfvpl"]
@@ -16,6 +17,7 @@ party_member_area_1 = NodePath("PartyMemberArea")
 party_member_area_2 = NodePath("PartyMemberArea2")
 party_member_area_3 = NodePath("PartyMemberArea3")
 cow_enemy_area = NodePath("CowEnemyArea")
+battle_ui_disabled = true
 
 [node name="PartyMemberArea" type="Area3D" parent="." groups=["party"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.648, 1, 4.208)
@@ -50,7 +52,7 @@ fov = 35.1
 script = ExtResource("2_b2wtg")
 joystickSensitivity = 0.75
 horizontalBounds = 25.0
-verticalBounds = 10.0
+verticalBounds = 25.0
 
 [node name="RayCast3D" type="RayCast3D" parent="DemonPOVCamera"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 2.98023e-08, 0, 0, 1, 0, 0, 0)
@@ -65,7 +67,7 @@ position = Vector2(0, 5)
 scale = Vector2(1.025, 1.025)
 texture = ExtResource("3_gul5b")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="DemonPellet" parent="." instance=ExtResource("2_xlor4")]
 
 [connection signal="input_event" from="PartyMemberArea" to="." method="_on_party_member_area_input_event"]
 [connection signal="input_event" from="PartyMemberArea2" to="." method="_on_party_member_area_2_input_event"]
