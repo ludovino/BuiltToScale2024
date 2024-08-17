@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://yavtuvbed3fv"]
+[gd_scene load_steps=13 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
-[ext_resource type="PackedScene" uid="uid://dndy3wxgd4f41" path="res://example/push_the_button.tscn" id="2_rpkcf"]
 [ext_resource type="Texture2D" uid="uid://ymeav3v4k8rf" path="res://battle/textures/grasstemp.png" id="3_6htwh"]
 [ext_resource type="PackedScene" uid="uid://n1ikks0vo2ff" path="res://demon_pov/demon_pov.tscn" id="3_4727t"]
 
@@ -51,7 +50,7 @@ size = Vector2(300, 300)
 
 [node name="Battle" type="Node3D"]
 script = ExtResource("1_gisox")
-minigame_scenes = Array[PackedScene]([ExtResource("3_4727t"), ExtResource("2_rpkcf")])
+minigame_scenes = Array[PackedScene]([ExtResource("3_4727t")])
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.934067, 0.357097, 0, -0.357097, 0.934067, 0, 4.37181, 7.43862)
