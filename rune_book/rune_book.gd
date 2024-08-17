@@ -1,0 +1,104 @@
+class_name RuneBook
+extends Minigame
+
+@export var runes: Array[Rune]
+@export var page_scene: PackedScene
+@export var desired_ui: Array[TextureRect]
+@export var deactivated_color: Color
+@export var activated_color: Color
+@onready var page_parent := $Book/BackCover
+@export var can_play = false
+
+var pages: Array[Page] = []
+var desired: Array[int] = []
+var current_page = 0
+var desired_index = 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	current_page = 0
+	pages.clear()
+	desired.clear()
+	desired_index = 0
+	runes.shuffle()
+	for rune in runes:
+		var page = page_scene.instantiate() as Page
+		pages.append(page)
+		page_parent.add_child(page)
+		page.set_rune(rune)
+		page.visible = false
+	pages[0].visible = true
+	
+	for i in range(5):
+		var rand_idx = randi_range(0, runes.size() - 1)
+		desired.append(rand_idx)
+		desired_ui[i].texture = runes[rand_idx].texture
+	
+	reset_desired()
+		
+func _process(delta: float) -> void:
+	if not can_play:
+		return
+	if Input.is_action_just_pressed("ui_left"):
+		prev_page()
+	if Input.is_action_just_pressed("ui_right"):
+		next_page()
+	if Input.is_action_just_pressed("ui_accept"):
+		activate()
+		
+func next_page() -> void:
+	if current_page >= runes.size() - 1:
+		return
+	var tween = get_tree().create_tween()
+	var current = pages[current_page]
+	
+	tween.tween_property(current, "rotation:z", deg_to_rad(-150.0), 0.3)
+	var prev: Page
+	
+	if current_page >= 1: 
+		prev = pages[current_page - 1]
+		tween.parallel()
+		tween.tween_interval(0.29)
+		tween.tween_callback(_hide_page.bind(prev))
+		
+	current_page += 1
+	pages[current_page].visible = true
+	print(current_page)
+	
+func prev_page() -> void:
+	if current_page <= 0:
+		return
+	var next = pages[current_page]
+	var current = pages[current_page - 1]
+	var prev: Page
+	if current_page > 1:
+		prev = pages[current_page - 2]
+		prev.visible = true
+	var tween = get_tree().create_tween()
+	tween.tween_property(current, "rotation:z", 0.0, 0.3)
+	
+	var hideTween = get_tree().create_tween()
+	hideTween.tween_interval(0.29)
+	hideTween.tween_callback(_hide_page.bind(next))
+	
+	current_page -= 1
+	print(current_page)
+	
+func activate() -> void:
+	print(current_page)
+	if current_page != desired[desired_index]:
+		reset_desired()
+		desired_index = 0
+		return
+	if current_page == desired[desired_index]:
+		desired_ui[desired_index].modulate = activated_color
+	if desired_index == desired.size() - 1:
+		succeeded.emit()
+	desired_index += 1
+
+func reset_desired():
+	for rect in desired_ui:
+		rect.modulate = deactivated_color
+
+func _hide_page(page: Page) -> void:
+	page.visible = false
