@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://soc1hdsdd18s"]
+
+[ext_resource type="Script" path="res://rune_book/page.gd" id="1_pfngr"]
+[ext_resource type="Material" uid="uid://ccmioh5nfsc2n" path="res://rune_book/materials/page_material.tres" id="2_vye4o"]
+[ext_resource type="Texture2D" uid="uid://cg5fp1hxvcs2" path="res://rune_book/textures/brimstone.png" id="3_wohiu"]
+[ext_resource type="Texture2D" uid="uid://c1bnjg3fo2s75" path="res://rune_book/textures/scribbles.png" id="4_fyjb8"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_2ox7u"]
+material = ExtResource("2_vye4o")
+size = Vector2(0.9, 1.2)
+subdivide_width = 2
+subdivide_depth = 2
+orientation = 1
+
+[node name="Page" type="Node3D"]
+transform = Transform3D(0.998064, 0.0621983, 0, -0.0621983, 0.998064, 0, 0, 0, 1, 0.448229, 0.134736, 0)
+script = ExtResource("1_pfngr")
+
+[node name="PageMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.448229, 0, 0)
+mesh = SubResource("QuadMesh_2ox7u")
+skeleton = NodePath("../..")
+
+[node name="Rune" type="Sprite3D" parent="PageMesh"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.00127277, 0)
+flip_v = true
+modulate = Color(0.171039, 0.171039, 0.171039, 1)
+axis = 1
+texture = ExtResource("3_wohiu")
+
+[node name="PageBack" type="Sprite3D" parent="PageMesh"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.7, 0, -0.00474873, 0)
+flip_v = true
+modulate = Color(0.17, 0.17, 0.17, 0.498039)
+axis = 1
+texture = ExtResource("4_fyjb8")

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Rune" load_steps=3 format=3 uid="uid://wmex7uw4sa1k"]
+
+[ext_resource type="Script" path="res://rune_book/rune.gd" id="1_rca24"]
+[ext_resource type="Texture2D" uid="uid://cg5fp1hxvcs2" path="res://rune_book/textures/brimstone.png" id="2_f4q8u"]
+
+[resource]
+script = ExtResource("1_rca24")
+texture = ExtResource("2_f4q8u")
+id = 2

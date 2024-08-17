@@ -1,0 +1,36 @@
+[gd_resource type="Shader" format=3 uid="uid://c2d0sajhsiy0r"]
+
+[resource]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_burley, specular_schlick_ggx;
+
+uniform vec4 albedo : source_color;
+
+uniform sampler2D texture_gradient: source_color, filter_linear_mipmap, repeat_enable;
+uniform sampler2D texture_noise : source_color, filter_linear_mipmap, repeat_enable;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+uniform float time_scale : hint_range(0.1, 1.0, 0.1);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV + TIME * time_scale;
+	float noise_tex = texture(texture_noise, base_uv).r;
+	float grad_tex = texture(texture_gradient, UV).r;
+	ALBEDO = albedo.rgb;
+	ALPHA = noise_tex * grad_tex * albedo.a;
+	METALLIC = 0.0;
+	SPECULAR = 0.0;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	ROUGHNESS = 1.0;
+}
+"
