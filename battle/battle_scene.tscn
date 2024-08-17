@@ -1,10 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://yavtuvbed3fv"]
+[gd_scene load_steps=18 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
 [ext_resource type="PackedScene" uid="uid://dndy3wxgd4f41" path="res://example/push_the_button.tscn" id="2_rpkcf"]
 [ext_resource type="Texture2D" uid="uid://ymeav3v4k8rf" path="res://battle/textures/grasstemp.png" id="3_6htwh"]
 [ext_resource type="PackedScene" uid="uid://c4d183i5t76i2" path="res://rune_book/scenes/rune_book.tscn" id="4_gm582"]
-[ext_resource type="Theme" uid="uid://c7islvxpjqnki" path="res://retro_theme.tres" id="5_rss0e"]
+[ext_resource type="PackedScene" uid="uid://dtvrdtgfjjltm" path="res://ui/battle_ui.tscn" id="5_4u33l"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_cpqc4"]
 noise_type = 5
@@ -60,6 +60,8 @@ distance_fade_max_distance = 11.45
 material = SubResource("StandardMaterial3D_iel6c")
 size = Vector2(300, 300)
 
+[sub_resource type="AnimationRootNode" id="AnimationRootNode_bx7qt"]
+
 [node name="Battle" type="Node3D"]
 script = ExtResource("1_gisox")
 minigame_scenes = Array[PackedScene]([ExtResource("2_rpkcf"), ExtResource("4_gm582")])
@@ -80,53 +82,9 @@ transform = Transform3D(1, 0, 0, 0, 0.280951, 0.959722, 0, -0.959722, 0.280951, 
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_tk1tq")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("5_rss0e")
+[node name="BattleUi" parent="." instance=ExtResource("5_4u33l")]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-alignment = 1
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationRootNode_bx7qt")
 
-[node name="Panel" type="Panel" parent="Control/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Button" type="Button" parent="Control/HBoxContainer/Panel/VBoxContainer"]
-layout_mode = 2
-text = "summon
-"
-
-[node name="Button2" type="Button" parent="Control/HBoxContainer/Panel/VBoxContainer"]
-layout_mode = 2
-text = "wht magic"
-
-[node name="Button3" type="Button" parent="Control/HBoxContainer/Panel/VBoxContainer"]
-layout_mode = 2
-text = "flee
-"
-
-[node name="Panel2" type="Panel" parent="Control/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
+[connection signal="summoner_died" from="BattleUi" to="." method="game_over"]

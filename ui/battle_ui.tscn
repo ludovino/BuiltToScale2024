@@ -1,0 +1,338 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtvrdtgfjjltm"]
+
+[ext_resource type="Theme" uid="uid://c7islvxpjqnki" path="res://ui/retro_theme.tres" id="1_1ed7y"]
+[ext_resource type="Script" path="res://battle/battle_menu.gd" id="2_c3ii8"]
+[ext_resource type="Script" path="res://battle/mp_bar.gd" id="3_83q0m"]
+
+[node name="BattleUi" type="Control" node_paths=PackedStringArray("white_magic_menu", "wm_menu_focus", "initial_focus", "summoner_focus", "health_bars", "summoner_health_bar", "summoner_mana_bar", "cure_button", "cure_all_button")]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1ed7y")
+script = ExtResource("2_c3ii8")
+white_magic_menu = NodePath("HBoxContainer/WhiteMagicList/ScrollContainer")
+wm_menu_focus = NodePath("HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer/Summon")
+initial_focus = NodePath("HBoxContainer/Panel/CenterContainer/VBoxContainer/Summon")
+summoner_focus = NodePath("HBoxContainer/Panel2/VBoxContainer/Button")
+damage_amount = 10.0
+heal_amount = 21.0
+heal_all_amount = 15.0
+damage_interval = 5.0
+health_bars = [NodePath("HBoxContainer/Panel2/VBoxContainer/Button/Mina/HpBar/ProgressBar"), NodePath("HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins/HpBar/ProgressBar"), NodePath("HBoxContainer/Panel2/VBoxContainer/Button3/Grob/HpBar/ProgressBar")]
+summoner_health_bar = NodePath("HBoxContainer/Panel2/VBoxContainer/Button/Mina/HpBar/ProgressBar")
+summoner_mana_bar = NodePath("HBoxContainer/Panel2/VBoxContainer/Button/Mina/MpBar2/ProgressBar")
+cure_button = NodePath("HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer/Cure")
+cure_all_button = NodePath("HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer/CureAll")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Panel/CenterContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Summon" type="Button" parent="HBoxContainer/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "summon
+"
+alignment = 2
+
+[node name="WhtMg" type="Button" parent="HBoxContainer/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "wht magic"
+alignment = 2
+
+[node name="Flee" type="Button" parent="HBoxContainer/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "flee
+"
+alignment = 2
+
+[node name="WhiteMagicList" type="Panel" parent="HBoxContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/WhiteMagicList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../../Panel/CenterContainer/VBoxContainer/Summon")
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/WhiteMagicList/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Summon" type="Button" parent="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = " "
+
+[node name="Summon2" type="Button" parent="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = " "
+
+[node name="Summon3" type="Button" parent="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = " "
+
+[node name="Summon4" type="Button" parent="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = " "
+
+[node name="Summon5" type="Button" parent="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = " "
+
+[node name="Summon6" type="Button" parent="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = " "
+
+[node name="Cure" type="Button" parent="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "cure - 7
+"
+
+[node name="Summon7" type="Button" parent="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = " "
+
+[node name="Summon8" type="Button" parent="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = " "
+
+[node name="Summon9" type="Button" parent="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = " "
+
+[node name="CureAll" type="Button" parent="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "cure all - 18
+"
+
+[node name="Summon10" type="Button" parent="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = " "
+
+[node name="Panel2" type="Panel" parent="HBoxContainer"]
+z_index = -1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 8.0
+offset_right = -23.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../../Panel/CenterContainer/VBoxContainer/Summon")
+
+[node name="Button" type="Button" parent="HBoxContainer/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Mina" type="HBoxContainer" parent="HBoxContainer/Panel2/VBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="Name" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.7
+text = "Mina"
+
+[node name="HpBar" type="HBoxContainer" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina/HpBar"]
+layout_mode = 2
+text = "Hp
+"
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina/HpBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+
+[node name="MpBar2" type="HBoxContainer" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina/MpBar2"]
+layout_mode = 2
+text = "Mp
+"
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina/MpBar2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"MpBar"
+value = 100.0
+script = ExtResource("3_83q0m")
+
+[node name="Button2" type="Button" parent="HBoxContainer/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Wilkins" type="HBoxContainer" parent="HBoxContainer/Panel2/VBoxContainer/Button2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="Name" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.7
+text = "Wilkins"
+
+[node name="HpBar" type="HBoxContainer" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins/HpBar"]
+layout_mode = 2
+text = "Hp
+"
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins/HpBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+script = ExtResource("3_83q0m")
+
+[node name="MpBar2" type="HBoxContainer" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins/MpBar2"]
+layout_mode = 2
+text = "Mp
+"
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins/MpBar2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"MpBar"
+step = 1.0
+value = 1.0
+
+[node name="Button3" type="Button" parent="HBoxContainer/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Grob" type="HBoxContainer" parent="HBoxContainer/Panel2/VBoxContainer/Button3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="Name" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.7
+text = "Grob
+"
+
+[node name="HpBar" type="HBoxContainer" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob/HpBar"]
+layout_mode = 2
+text = "Hp
+"
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob/HpBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+step = 1.0
+value = 100.0
+
+[node name="MpBar2" type="HBoxContainer" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob/MpBar2"]
+layout_mode = 2
+text = "Mp
+"
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob/MpBar2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"MpBar"
+value = 4.0
+script = ExtResource("3_83q0m")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="button_up" from="HBoxContainer/Panel/CenterContainer/VBoxContainer/WhtMg" to="." method="_on_wht_mg_button_up"]
+[connection signal="button_up" from="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer/Cure" to="." method="_on_cure_button_up"]
+[connection signal="button_up" from="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer/CureAll" to="." method="_on_cure_all_button_up"]
+[connection signal="button_up" from="HBoxContainer/Panel2/VBoxContainer/Button" to="." method="click_health_bar" binds= [0]]
+[connection signal="button_up" from="HBoxContainer/Panel2/VBoxContainer/Button2" to="." method="click_health_bar" binds= [1]]
+[connection signal="button_up" from="HBoxContainer/Panel2/VBoxContainer/Button3" to="." method="click_health_bar" binds= [2]]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
