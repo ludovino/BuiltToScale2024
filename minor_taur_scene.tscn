@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://c03ty4tjxddb6"]
+
+[ext_resource type="PackedScene" uid="uid://sls1n8fk1ubu" path="res://battle/models/minor_taur.glb" id="1_g476m"]
+[ext_resource type="AnimationLibrary" uid="uid://cbt8we7x5yqxg" path="res://minotaur_anims.res" id="2_cn7d3"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wclbo"]
+animation = &"LeftShackleIdle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i6ra6"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_4ms8e"]
+filters = ["Armature/Skeleton3D:Clav.R", "Armature/Skeleton3D:Elbow.R", "Armature/Skeleton3D:Hand.R", "Armature/Skeleton3D:Head", "Armature/Skeleton3D:Neck", "Armature/Skeleton3D:Shoulder.R", "Armature/Skeleton3D:Spine.001", "Armature/Skeleton3D:Spine.002", "Armature/Skeleton3D:Spine.003"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qmdpr"]
+animation = &"RightShackleIdle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_37cq0"]
+resource_local_to_scene = true
+graph_offset = Vector2(-694.736, 13.287)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_i6ra6")
+nodes/Animation/position = Vector2(-140, 80)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_wclbo")
+"nodes/Animation 2/position" = Vector2(-160, 320)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_4ms8e")
+nodes/Blend2/position = Vector2(180, 120)
+"nodes/Right Shackle/node" = SubResource("AnimationNodeAnimation_qmdpr")
+"nodes/Right Shackle/position" = Vector2(-360, 220)
+nodes/output/position = Vector2(600, 140)
+node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Right Shackle", &"output", 0, &"Blend2"]
+
+[node name="minor_taur" instance=ExtResource("1_g476m")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/position = Vector3(0.000660644, 7.71059, -4.25566)
+bones/1/rotation = Quaternion(0.694554, -1.56985e-16, -1.56985e-16, 0.71944)
+bones/2/rotation = Quaternion(-0.581155, 0.0198177, -0.00820538, 0.81351)
+bones/3/rotation = Quaternion(0.186595, -0.0183155, -0.00615528, 0.982247)
+bones/4/rotation = Quaternion(0.227297, -0.00905604, 0.00915534, 0.97374)
+bones/5/rotation = Quaternion(0.117257, 0.0184655, 0.0628052, 0.990942)
+bones/6/rotation = Quaternion(0.41244, -0.0144601, 0.0940366, 0.906003)
+bones/7/rotation = Quaternion(-0.312151, -0.098187, 0.825891, -0.459157)
+bones/8/rotation = Quaternion(0.136063, -0.0358992, 0.237175, 0.961221)
+bones/9/rotation = Quaternion(0.0735488, 0.124973, 0.0946691, 0.984891)
+bones/10/rotation = Quaternion(0.0227828, -0.179996, -0.121242, 0.975901)
+bones/11/rotation = Quaternion(0.295507, -0.100263, 0.820815, 0.47842)
+bones/12/rotation = Quaternion(0.135739, 0.035278, -0.240081, 0.960569)
+bones/13/rotation = Quaternion(0.0688445, -0.122563, -0.10116, 0.984888)
+bones/14/rotation = Quaternion(0.0397553, 0.180672, 0.124966, 0.974762)
+bones/15/rotation = Quaternion(0.582938, 0.00592048, 0.00999121, 0.812434)
+bones/16/rotation = Quaternion(0.0998946, 0.00478896, -0.123289, 0.987319)
+bones/17/rotation = Quaternion(0.699759, 0.0482015, 0.0619651, 0.710052)
+bones/18/rotation = Quaternion(-0.640343, 0.00104118, 0.0621366, 0.765571)
+bones/19/rotation = Quaternion(0.0504263, -0.00895687, 0.120833, 0.991351)
+bones/20/rotation = Quaternion(0.698328, -0.0495698, -0.0384231, 0.713025)
+bones/21/rotation = Quaternion(-0.639326, 0.00104118, -0.071847, 0.765571)
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": ExtResource("2_cn7d3")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_37cq0")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Blend2/blend_amount = 0.5

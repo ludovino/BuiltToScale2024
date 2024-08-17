@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://yavtuvbed3fv"]
+[gd_scene load_steps=19 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
 [ext_resource type="PackedScene" uid="uid://dndy3wxgd4f41" path="res://example/push_the_button.tscn" id="2_rpkcf"]
 [ext_resource type="Texture2D" uid="uid://ymeav3v4k8rf" path="res://battle/textures/grasstemp.png" id="3_6htwh"]
 [ext_resource type="PackedScene" uid="uid://n1ikks0vo2ff" path="res://demon_pov/demon_pov.tscn" id="3_ohcvm"]
 [ext_resource type="Theme" uid="uid://bnkkaqan68p1r" path="res://retro_theme.tres" id="5_rss0e"]
+[ext_resource type="PackedScene" uid="uid://c03ty4tjxddb6" path="res://minor_taur_scene.tscn" id="6_52d44"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_cpqc4"]
 noise_type = 5
@@ -149,3 +150,5 @@ mesh = SubResource("CapsuleMesh_e1qd3")
 [node name="CowEnemy" type="MeshInstance3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.387, 3.85156, -8.366)
 mesh = SubResource("CapsuleMesh_e1qd3")
+
+[node name="minor_taur" parent="." instance=ExtResource("6_52d44")]
