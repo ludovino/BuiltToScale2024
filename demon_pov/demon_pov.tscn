@@ -16,6 +16,7 @@ party_member_area_1 = NodePath("PartyMemberArea")
 party_member_area_2 = NodePath("PartyMemberArea2")
 party_member_area_3 = NodePath("PartyMemberArea3")
 cow_enemy_area = NodePath("CowEnemyArea")
+battle_ui_disabled = true
 
 [node name="PartyMemberArea" type="Area3D" parent="." groups=["party"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.648, 1, 4.208)

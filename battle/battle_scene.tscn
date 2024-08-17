@@ -62,9 +62,10 @@ size = Vector2(300, 300)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_e1qd3"]
 
-[node name="Battle" type="Node3D"]
+[node name="Battle" type="Node3D" node_paths=PackedStringArray("battle_ui")]
 script = ExtResource("1_gisox")
 minigame_scenes = Array[PackedScene]([ExtResource("3_ohcvm"), ExtResource("2_rpkcf")])
+battle_ui = NodePath("Control")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
