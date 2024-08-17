@@ -13,8 +13,6 @@ func _ready() -> void:
 	if(!initialised):
 		originalRotation = rotation;
 		initialised = true;
-		print("HELLO original rotation: " + str(originalRotation))
-
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,7 +20,7 @@ func _process(delta: float) -> void:
 	_updateInput(delta)
 	
 func _updateInput(delta : float) -> void:
-	var velocity = Input.get_vector("minigame_input_left", "minigame_input_right", "minigame_input_up", "minigame_input_down")
+	var velocity = Input.get_vector("minigame_left", "minigame_right", "minigame_up", "minigame_down")
 	rotate_y(deg_to_rad(-velocity.x * joystickSensitivity))
 	rotation.y = clamp(rotation.y, originalRotation.y - deg_to_rad(verticalBounds), originalRotation.y + deg_to_rad(verticalBounds))
 	
