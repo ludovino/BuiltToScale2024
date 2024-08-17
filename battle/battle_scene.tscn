@@ -1,10 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://yavtuvbed3fv"]
+[gd_scene load_steps=18 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
 [ext_resource type="PackedScene" uid="uid://dndy3wxgd4f41" path="res://example/push_the_button.tscn" id="2_rpkcf"]
 [ext_resource type="Texture2D" uid="uid://ymeav3v4k8rf" path="res://battle/textures/grasstemp.png" id="3_6htwh"]
-[ext_resource type="PackedScene" uid="uid://c4d183i5t76i2" path="res://rune_book/scenes/rune_book.tscn" id="4_gm582"]
-[ext_resource type="Theme" uid="uid://c7islvxpjqnki" path="res://retro_theme.tres" id="5_rss0e"]
+[ext_resource type="PackedScene" uid="uid://n1ikks0vo2ff" path="res://demon_pov/demon_pov.tscn" id="3_ohcvm"]
+[ext_resource type="Theme" uid="uid://bnkkaqan68p1r" path="res://retro_theme.tres" id="5_rss0e"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_cpqc4"]
 noise_type = 5
@@ -60,9 +60,11 @@ distance_fade_max_distance = 11.45
 material = SubResource("StandardMaterial3D_iel6c")
 size = Vector2(300, 300)
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_e1qd3"]
+
 [node name="Battle" type="Node3D"]
 script = ExtResource("1_gisox")
-minigame_scenes = Array[PackedScene]([ExtResource("2_rpkcf"), ExtResource("4_gm582")])
+minigame_scenes = Array[PackedScene]([ExtResource("3_ohcvm"), ExtResource("2_rpkcf")])
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -130,3 +132,19 @@ text = "flee
 [node name="Panel2" type="Panel" parent="Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="PartyMember1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.648, 1, 4.208)
+mesh = SubResource("CapsuleMesh_e1qd3")
+
+[node name="PartyMember2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41729, 1, 4.0943)
+mesh = SubResource("CapsuleMesh_e1qd3")
+
+[node name="PartyMember3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4789, 1, 4.14506)
+mesh = SubResource("CapsuleMesh_e1qd3")
+
+[node name="CowEnemy" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.387, 3.85156, -8.366)
+mesh = SubResource("CapsuleMesh_e1qd3")
