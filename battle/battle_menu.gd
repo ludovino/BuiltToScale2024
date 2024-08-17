@@ -48,6 +48,7 @@ func damage() -> void:
 		hb.modulate = Color.RED
 		return
 	flash(hb, Color.RED)
+	$Damage.play()
 
 func check_mana() -> void:
 	if summoner_mana_bar.value < 7.0:
@@ -72,6 +73,7 @@ func cure(idx: int, amount: float) -> void:
 		return
 	hb.value += amount
 	flash(hb, Color.GREEN)
+	$Heal.play()
 
 func flash(bar: ProgressBar, color: Color) -> void:
 	var tween = get_tree().create_tween()
@@ -79,11 +81,16 @@ func flash(bar: ProgressBar, color: Color) -> void:
 	tween.tween_property(bar, "modulate", Color.WHITE, 0.3)
 
 func cure_all() -> void:
+	summoner_mana_bar.value -= 21.0
+	var healed = false
 	for hb in health_bars:
 		if is_zero_approx(hb.value):
-			return
+			continue
+		healed = true
 		hb.value += heal_all_amount
 		flash(hb, Color.GREEN)
+	if healed:
+		$HealAll.play()
 
 func _on_timer_timeout() -> void:
 	damage()
