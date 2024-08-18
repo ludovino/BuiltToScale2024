@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://n1ikks0vo2ff"]
+[gd_scene load_steps=6 format=3 uid="uid://n1ikks0vo2ff"]
 
 [ext_resource type="Script" path="res://demon_pov/demon_pov_minigame.gd" id="1_6ig5x"]
 [ext_resource type="Script" path="res://demon_pov/demon_pov_camera.gd" id="2_b2wtg"]
-[ext_resource type="PackedScene" uid="uid://df20tgche8l83" path="res://demon_pov/demon_pellet/demon_pellet.tscn" id="2_xlor4"]
-[ext_resource type="Texture2D" uid="uid://40c5p110fc3c" path="res://battle/textures/pixil-frame-0 (1) (2).png" id="3_gul5b"]
+[ext_resource type="Texture2D" uid="uid://eeohhk1v51rk" path="res://focus.png" id="3_s1sqb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qfvpl"]
 
@@ -65,9 +64,7 @@ position = Vector2(576, 322)
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
 position = Vector2(0, 5)
 scale = Vector2(1.025, 1.025)
-texture = ExtResource("3_gul5b")
-
-[node name="DemonPellet" parent="." instance=ExtResource("2_xlor4")]
+texture = ExtResource("3_s1sqb")
 
 [connection signal="input_event" from="PartyMemberArea" to="." method="_on_party_member_area_input_event"]
 [connection signal="input_event" from="PartyMemberArea2" to="." method="_on_party_member_area_2_input_event"]

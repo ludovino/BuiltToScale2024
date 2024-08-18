@@ -3,20 +3,20 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dkk6dlb0dunmn"
-path="res://.godot/imported/summner.glb-609d946532a25014270af90d64ff9385.scn"
+uid="uid://baxb2prbrivw6"
+path="res://.godot/imported/insect.glb-c4b177f219022883ddb899fa8038434e.scn"
 
 [deps]
 
-source_file="res://battle/models/summoner/summner.glb"
-dest_files=["res://.godot/imported/summner.glb-609d946532a25014270af90d64ff9385.scn"]
+source_file="res://battle/models/insect/insect.glb"
+dest_files=["res://.godot/imported/insect.glb-c4b177f219022883ddb899fa8038434e.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
-nodes/root_scale=1.0
+nodes/root_scale=0.7
 nodes/import_as_skeleton_bones=false
 meshes/ensure_tangents=true
 meshes/generate_lods=true
@@ -33,7 +33,7 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "animations": {
-"Idle": {
+"ArmatureAction": {
 "save_to_file/enabled": false,
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "",
@@ -1834,13 +1834,9 @@ _subresources={
 }
 },
 "materials": {
-"summner color": {
+"Material": {
 "use_external/enabled": true,
-"use_external/path": "res://battle/models/summoner/summoner_mat.tres"
-},
-"summner face": {
-"use_external/enabled": true,
-"use_external/path": "res://battle/models/summoner/sum_face_mat.tres"
+"use_external/path": "res://battle/models/insect/insect_mat.tres"
 }
 }
 }

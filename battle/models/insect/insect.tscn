@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://dab2lfghhbjlc"]
+
+[ext_resource type="PackedScene" uid="uid://baxb2prbrivw6" path="res://battle/models/insect/insect.glb" id="1_2b5q6"]
+[ext_resource type="Texture2D" uid="uid://df75wjwnrpuig" path="res://battle/models/shadow.png" id="2_scxju"]
+
+[node name="insect" instance=ExtResource("1_2b5q6")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/3/rotation = Quaternion(-0.0899649, 1.08444e-06, -1.52138e-07, 0.995945)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(-0.284613, -0.110871, 0.383672, 0.871492)
+bones/5/rotation = Quaternion(-0.284612, 0.110868, -0.383673, 0.871492)
+bones/6/rotation = Quaternion(-0.490985, -0.0281236, 0.205336, 0.846156)
+bones/7/rotation = Quaternion(0.329076, -0.0352947, -0.124372, 0.935412)
+bones/9/rotation = Quaternion(-0.577522, 0.000743864, 0.279055, 0.7672)
+bones/10/rotation = Quaternion(0.373235, -0.0588167, -0.181841, 0.907838)
+bones/11/rotation = Quaternion(-0.37362, 0.124938, 0.124919, 0.910601)
+bones/13/rotation = Quaternion(0.332795, -0.0485533, -0.227478, 0.913862)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/rotation = Quaternion(-0.353225, 0.120545, 0.174438, 0.911193)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/rotation = Quaternion(0.741692, 0.0913713, 0.4905, 0.448279)
+bones/15/scale = Vector3(1, 1, 1)
+bones/16/scale = Vector3(1, 1, 1)
+bones/17/rotation = Quaternion(-0.490985, 0.0281231, -0.205336, 0.846156)
+bones/18/rotation = Quaternion(0.329076, 0.0352947, 0.124372, 0.935412)
+bones/19/rotation = Quaternion(-0.376034, -0.105507, -0.107732, 0.914254)
+bones/19/scale = Vector3(1, 1, 1)
+bones/20/rotation = Quaternion(-0.577522, -0.000744378, -0.279055, 0.7672)
+bones/20/scale = Vector3(1, 1, 1)
+bones/21/rotation = Quaternion(0.373235, 0.0588166, 0.181841, 0.907838)
+bones/22/rotation = Quaternion(-0.37362, -0.124938, -0.124919, 0.910601)
+bones/23/rotation = Quaternion(0.741692, -0.0913715, -0.4905, 0.448279)
+bones/23/scale = Vector3(1, 1, 1)
+bones/24/rotation = Quaternion(0.783563, 0.0742931, -0.570196, 0.235341)
+bones/24/scale = Vector3(1, 1, 1)
+bones/25/rotation = Quaternion(-0.680872, -0.0197342, -0.346534, 0.644932)
+bones/26/rotation = Quaternion(0.332795, 0.0485533, 0.227478, 0.913862)
+bones/26/scale = Vector3(1, 1, 1)
+bones/27/rotation = Quaternion(-0.353225, -0.120545, -0.174438, 0.911193)
+bones/27/scale = Vector3(1, 1, 1)
+bones/28/rotation = Quaternion(0.497748, 0.502242, -0.497748, 0.502242)
+bones/28/scale = Vector3(1, 1, 1)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "ArmatureAction"
+
+[node name="Shadow" type="Sprite3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4037, 0)
+modulate = Color(1, 1, 1, 0.215686)
+pixel_size = 0.05
+axis = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_scxju")
