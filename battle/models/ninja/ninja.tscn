@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://drhm5pk7b518o"]
+[gd_scene load_steps=3 format=3 uid="uid://drhm5pk7b518o"]
 
 [ext_resource type="PackedScene" uid="uid://clytebctc2qnk" path="res://battle/models/ninja/ninja.glb" id="1_qqgu6"]
+[ext_resource type="Texture2D" uid="uid://df75wjwnrpuig" path="res://battle/models/shadow.png" id="2_d688k"]
 
 [node name="ninja" instance=ExtResource("1_qqgu6")]
 
@@ -28,5 +29,13 @@ bones/22/rotation = Quaternion(-0.0523889, 0.776283, -0.618132, -0.11204)
 bones/23/rotation = Quaternion(-0.572303, 0.061033, -0.102078, 0.811372)
 bones/24/rotation = Quaternion(0.659497, -0.0526866, 0.0325954, 0.74915)
 
-[node name="AnimationPlayer" parent="." index="1"]
+[node name="Shadow" type="Sprite3D" parent="." index="1"]
+modulate = Color(1, 1, 1, 0.215686)
+pixel_size = 0.2
+axis = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_d688k")
+
+[node name="AnimationPlayer" parent="." index="2"]
 autoplay = "Idle"
