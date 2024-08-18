@@ -1,24 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://yavtuvbed3fv"]
+[gd_scene load_steps=14 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
 [ext_resource type="PackedScene" uid="uid://cqqmnp4s4efji" path="res://spirit_align/spirit_align_scene_3d.tscn" id="2_fw8uy"]
 [ext_resource type="PackedScene" uid="uid://dndy3wxgd4f41" path="res://example/push_the_button.tscn" id="2_rpkcf"]
-[ext_resource type="Texture2D" uid="uid://ymeav3v4k8rf" path="res://battle/textures/grasstemp.png" id="3_6htwh"]
-[ext_resource type="PackedScene" uid="uid://n1ikks0vo2ff" path="res://demon_pov/demon_pov.tscn" id="3_ohcvm"]
-[ext_resource type="Theme" uid="uid://bnkkaqan68p1r" path="res://retro_theme.tres" id="5_rss0e"]
-[ext_resource type="PackedScene" uid="uid://bjladx7ipnkeo" path="res://hell_gates/hell_gates_scene.tscn" id="6_flynk"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_cpqc4"]
-noise_type = 5
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j3uis"]
-noise = SubResource("FastNoiseLite_cpqc4")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3b78"]
-albedo_texture = SubResource("NoiseTexture2D_j3uis")
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_n7jla"]
-material = SubResource("StandardMaterial3D_n3b78")
+[ext_resource type="PackedScene" uid="uid://c4d183i5t76i2" path="res://rune_book/scenes/rune_book.tscn" id="4_gm582"]
+[ext_resource type="PackedScene" uid="uid://dvohcnxdcckn3" path="res://battle/models/field/field.tscn" id="4_nwrxv"]
+[ext_resource type="PackedScene" uid="uid://dtvrdtgfjjltm" path="res://ui/battle_ui.tscn" id="5_4u33l"]
+[ext_resource type="PackedScene" uid="uid://drhm5pk7b518o" path="res://battle/models/ninja/ninja.tscn" id="6_7k3qa"]
+[ext_resource type="PackedScene" uid="uid://64ehif3kvq8v" path="res://battle/models/summoner/summner.tscn" id="8_cbrtx"]
+[ext_resource type="PackedScene" uid="uid://djt7so8dirf7e" path="res://battle/models/clod/clod.tscn" id="8_jlyle"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_yejbq"]
 noise_type = 4
@@ -38,9 +28,9 @@ sky_horizon_color = Color(0.237162, 0.24361, 0.25379, 1)
 sky_curve = 0.0284197
 sky_cover = SubResource("NoiseTexture2D_k266c")
 sky_cover_modulate = Color(1, 1, 1, 0.368627)
-ground_bottom_color = Color(0.290196, 0.333333, 0.184314, 1)
-ground_horizon_color = Color(0.328157, 0.34, 0.3026, 1)
-ground_curve = 0.113137
+ground_bottom_color = Color(0.83, 0.7636, 0.4316, 1)
+ground_horizon_color = Color(0.0573885, 0.347508, 0.561755, 1)
+ground_curve = 0.101965
 sun_angle_max = 24.15
 sun_curve = 0.0861525
 use_debanding = false
@@ -51,29 +41,18 @@ radiance_size = 2
 
 [sub_resource type="Environment" id="Environment_wxkck"]
 background_mode = 2
+background_color = Color(1, 1, 1, 1)
 sky = SubResource("Sky_txaos")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iel6c"]
-albedo_texture = ExtResource("3_6htwh")
-metallic_specular = 0.0
-distance_fade_max_distance = 11.45
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_tk1tq"]
-material = SubResource("StandardMaterial3D_iel6c")
-size = Vector2(300, 300)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_e1qd3"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_c60ml"]
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="Battle" type="Node3D" node_paths=PackedStringArray("battle_ui")]
 script = ExtResource("1_gisox")
-minigame_scenes = Array[PackedScene]([ExtResource("2_fw8uy"), ExtResource("6_flynk"), ExtResource("3_ohcvm"), ExtResource("2_rpkcf")])
-battle_ui = NodePath("Control")
+minigame_scenes = Array[PackedScene]([ExtResource("2_rpkcf"), ExtResource("4_gm582")])
+battle_ui = NodePath("BattleUi")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_n7jla")
+[node name="field" parent="." instance=ExtResource("4_nwrxv")]
+transform = Transform3D(-100, 0, -8.74228e-06, 0, 100, 0, 8.74228e-06, 0, -100, 0, -0.711262, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.934067, 0.357097, 0, -0.357097, 0.934067, 0, 4.37181, 7.43862)
@@ -81,79 +60,20 @@ transform = Transform3D(1, 0, 0, 0, 0.934067, 0.357097, 0, -0.357097, 0.934067, 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wxkck")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.280951, 0.959722, 0, -0.959722, 0.280951, 0, 3.21532, 3.35144)
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.428682, -0.599441, 0.675946, -0.103969, 0.710476, 0.695999, -0.897453, -0.368639, 0.242245, 0, 3.21532, 3.35144)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_cull_mask = 4293918720
 
-[node name="Floor" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_tk1tq")
+[node name="BattleUi" parent="." instance=ExtResource("5_4u33l")]
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("5_rss0e")
+[node name="ninja" parent="." instance=ExtResource("6_7k3qa")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 5, 0, 0)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-alignment = 1
+[node name="summner" parent="." instance=ExtResource("8_cbrtx")]
 
-[node name="Panel" type="Panel" parent="Control/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
+[node name="clod" parent="." instance=ExtResource("8_jlyle")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -5, 0.13463, 0)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Button" type="Button" parent="Control/HBoxContainer/Panel/VBoxContainer"]
-layout_mode = 2
-text = "summon
-"
-
-[node name="Button2" type="Button" parent="Control/HBoxContainer/Panel/VBoxContainer"]
-layout_mode = 2
-text = "wht magic"
-
-[node name="Button3" type="Button" parent="Control/HBoxContainer/Panel/VBoxContainer"]
-layout_mode = 2
-text = "flee
-"
-
-[node name="Panel2" type="Panel" parent="Control/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="PartyMember1" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.648, 1, 4.208)
-mesh = SubResource("CapsuleMesh_e1qd3")
-
-[node name="PartyMember2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41729, 1, 4.0943)
-mesh = SubResource("CapsuleMesh_e1qd3")
-
-[node name="PartyMember3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4789, 1, 4.14506)
-mesh = SubResource("CapsuleMesh_e1qd3")
-
-[node name="CowEnemy" type="MeshInstance3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.387, 3.85156, -8.366)
-mesh = SubResource("CapsuleMesh_e1qd3")
-
-[node name="Player" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 13.007)
-mesh = SubResource("CapsuleMesh_c60ml")
+[connection signal="summoner_died" from="BattleUi" to="." method="game_over"]
