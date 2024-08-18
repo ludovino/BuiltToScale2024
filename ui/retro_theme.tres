@@ -1241,6 +1241,7 @@ expand_margin_bottom = 1.0
 Button/styles/disabled = SubResource("StyleBoxEmpty_21t2i")
 Button/styles/focus = ExtResource("1_8ovcp")
 Button/styles/normal = SubResource("StyleBoxEmpty_ey5dg")
+HeaderLarge/font_sizes/font_size = 28
 Label/fonts/font = SubResource("FontVariation_pinqv")
 MpBar/base_type = &"ProgressBar"
 MpBar/styles/fill = SubResource("StyleBoxFlat_eg5lj")
