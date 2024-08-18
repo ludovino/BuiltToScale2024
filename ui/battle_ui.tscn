@@ -45,15 +45,17 @@ alignment = 1
 [node name="Panel" type="Panel" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 7.0
 offset_right = -7.0
-offset_bottom = -1.0
+offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -81,7 +83,7 @@ alignment = 2
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.6
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/WhiteMagicList"]
 visible = false
@@ -89,9 +91,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 3.0
-offset_right = -3.0
-offset_bottom = -3.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = -10.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../../Panel/VBoxContainer/Summon")
