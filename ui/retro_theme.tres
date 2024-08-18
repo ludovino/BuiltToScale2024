@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=14 format=4 uid="uid://c7islvxpjqnki"]
+[gd_resource type="Theme" load_steps=16 format=4 uid="uid://c7islvxpjqnki"]
 
 [ext_resource type="StyleBox" uid="uid://c5tu08sfktfmq" path="res://ui/button_focus.tres" id="1_8ovcp"]
 [ext_resource type="Texture2D" uid="uid://bfn6vnhel2wic" path="res://panel.png" id="2_vavab"]
@@ -10,6 +10,16 @@ content_margin_right = 1.0
 content_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ey5dg"]
+
+[sub_resource type="FontFile" id="FontFile_s1xum"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="FontVariation" id="FontVariation_pinqv"]
+base_font = SubResource("FontFile_s1xum")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eg5lj"]
 bg_color = Color(0, 0.569289, 0.989958, 1)
@@ -1231,6 +1241,7 @@ expand_margin_bottom = 1.0
 Button/styles/disabled = SubResource("StyleBoxEmpty_21t2i")
 Button/styles/focus = ExtResource("1_8ovcp")
 Button/styles/normal = SubResource("StyleBoxEmpty_ey5dg")
+Label/fonts/font = SubResource("FontVariation_pinqv")
 MpBar/base_type = &"ProgressBar"
 MpBar/styles/fill = SubResource("StyleBoxFlat_eg5lj")
 Panel/styles/panel = SubResource("StyleBoxTexture_p0ga3")

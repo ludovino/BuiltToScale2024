@@ -19,7 +19,7 @@ theme = ExtResource("1_1ed7y")
 script = ExtResource("2_c3ii8")
 white_magic_menu = NodePath("HBoxContainer/WhiteMagicList/ScrollContainer")
 wm_menu_focus = NodePath("HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer/Summon")
-initial_focus = NodePath("HBoxContainer/Panel/CenterContainer/VBoxContainer/Summon")
+initial_focus = NodePath("HBoxContainer/Panel/VBoxContainer/Summon")
 summoner_focus = NodePath("HBoxContainer/Panel2/VBoxContainer/Button")
 damage_amount = 10.0
 heal_amount = 21.0
@@ -47,33 +47,28 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 57.0
-offset_right = -4.0
+offset_right = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Panel/CenterContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-
-[node name="Summon" type="Button" parent="HBoxContainer/Panel/CenterContainer/VBoxContainer"]
+[node name="Summon" type="Button" parent="HBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 disabled = true
 text = "summon
 "
 alignment = 2
 
-[node name="WhtMg" type="Button" parent="HBoxContainer/Panel/CenterContainer/VBoxContainer"]
+[node name="WhtMg" type="Button" parent="HBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 text = "wht magic"
 alignment = 2
 
-[node name="Flee" type="Button" parent="HBoxContainer/Panel/CenterContainer/VBoxContainer"]
+[node name="Flee" type="Button" parent="HBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 disabled = true
 text = "flee
@@ -96,7 +91,7 @@ offset_right = -3.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_neighbor_left = NodePath("../../Panel/CenterContainer/VBoxContainer/Summon")
+focus_neighbor_left = NodePath("../../Panel/VBoxContainer/Summon")
 follow_focus = true
 horizontal_scroll_mode = 0
 
@@ -172,7 +167,7 @@ offset_right = -23.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_neighbor_left = NodePath("../../Panel/CenterContainer/VBoxContainer/Summon")
+focus_neighbor_left = NodePath("../../Panel/VBoxContainer/Summon")
 
 [node name="Button" type="Button" parent="HBoxContainer/Panel2/VBoxContainer"]
 layout_mode = 2
@@ -342,7 +337,7 @@ stream = ExtResource("5_kbkgl")
 [node name="HealAll" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_somok")
 
-[connection signal="button_up" from="HBoxContainer/Panel/CenterContainer/VBoxContainer/WhtMg" to="." method="_on_wht_mg_button_up"]
+[connection signal="button_up" from="HBoxContainer/Panel/VBoxContainer/WhtMg" to="." method="_on_wht_mg_button_up"]
 [connection signal="button_up" from="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer/Cure" to="." method="_on_cure_button_up"]
 [connection signal="button_up" from="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer/CureAll" to="." method="_on_cure_all_button_up"]
 [connection signal="button_up" from="HBoxContainer/Panel2/VBoxContainer/Button" to="." method="click_health_bar" binds= [0]]

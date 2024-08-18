@@ -21,6 +21,8 @@ gdscript/warnings/untyped_declaration=1
 
 [display]
 
+window/size/viewport_width=460
+window/size/viewport_height=270
 window/stretch/mode="viewport"
 
 [rendering]

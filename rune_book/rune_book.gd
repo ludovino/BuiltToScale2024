@@ -89,9 +89,19 @@ func activate() -> void:
 	if current_page != desired[desired_index]:
 		reset_desired()
 		desired_index = 0
+		$RuneSelect.pitch_scale = 0.9
+		$RuneSelect.play()
 		return
 	if current_page == desired[desired_index]:
-		desired_ui[desired_index].modulate = activated_color
+		var tween = get_tree().create_tween()
+		var ui_el = desired_ui[desired_index]
+		ui_el.modulate = Color.WHITE
+		ui_el.scale = Vector2.ONE * 1.2
+		tween.tween_property(ui_el, "modulate", activated_color, 0.1)
+		tween.parallel()
+		tween.tween_property(ui_el, "scale", Vector2.ONE, 0.1)
+		$RuneSelect.pitch_scale = 1 + desired_index * 0.2
+		$RuneSelect.play()
 	if desired_index == desired.size() - 1:
 		succeeded.emit()
 	desired_index += 1

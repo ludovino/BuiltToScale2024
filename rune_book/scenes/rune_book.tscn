@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c4d183i5t76i2"]
+[gd_scene load_steps=35 format=3 uid="uid://c4d183i5t76i2"]
 
 [ext_resource type="Script" path="res://rune_book/rune_book.gd" id="1_vep1a"]
 [ext_resource type="Script" path="res://rune_book/rune.gd" id="2_1k8ss"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://y42gd68y7nds" path="res://rune_book/textures/phlogiston.png" id="14_6xija"]
 [ext_resource type="Material" uid="uid://ccmioh5nfsc2n" path="res://rune_book/materials/page_material.tres" id="15_kyniu"]
 [ext_resource type="Shader" uid="uid://c2d0sajhsiy0r" path="res://rune_book/resources/flame_shader.tres" id="17_6idph"]
+[ext_resource type="AudioStream" uid="uid://be86m1quddh8s" path="res://rune_book/RuneSelect.wav" id="18_3k48n"]
 
 [sub_resource type="Gradient" id="Gradient_yask8"]
 offsets = PackedFloat32Array(0.107143, 0.761905, 1)
@@ -239,9 +240,39 @@ tracks/5/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_vio6m"]
+resource_name = "idle"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5.03333, 9.93333),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(0.44524, 1.69461, 4.85705), Vector3(0.411247, 1.82262, 4.70814), Vector3(0.44524, 1.69461, 4.85705)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.03333, 9.93333),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(-1.0716, 3.12673, 0), Vector3(-0.963422, 3.24631, 0), Vector3(-1.0716, 3.12673, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ix4c3"]
 _data = {
 "RESET": SubResource("Animation_0l1dq"),
+"idle": SubResource("Animation_vio6m"),
 "intro": SubResource("Animation_ag706")
 }
 
@@ -337,3 +368,7 @@ libraries = {
 "": SubResource("AnimationLibrary_ix4c3")
 }
 autoplay = "intro"
+next/intro = &"idle"
+
+[node name="RuneSelect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_3k48n")
