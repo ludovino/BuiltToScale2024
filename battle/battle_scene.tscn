@@ -1,7 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
-[ext_resource type="PackedScene" uid="uid://cqqmnp4s4efji" path="res://spirit_align/spirit_align_scene_3d.tscn" id="2_fw8uy"]
 [ext_resource type="PackedScene" uid="uid://dndy3wxgd4f41" path="res://example/push_the_button.tscn" id="2_rpkcf"]
 [ext_resource type="PackedScene" uid="uid://c4d183i5t76i2" path="res://rune_book/scenes/rune_book.tscn" id="4_gm582"]
 [ext_resource type="PackedScene" uid="uid://dvohcnxdcckn3" path="res://battle/models/field/field.tscn" id="4_nwrxv"]
