@@ -105,11 +105,11 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Panel4"]
 layout_mode = 0
-offset_left = 120.0
+offset_left = 144.0
 offset_top = 4.0
-offset_right = 346.0
+offset_right = 370.0
 offset_bottom = 44.0
-text = "Clod: Just Happy To Be Here"
+text = "Clod: +5% Hair Spikes"
 
 [node name="Panel5" type="Panel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(23.72, 35)
