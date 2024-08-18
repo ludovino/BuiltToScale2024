@@ -36,3 +36,4 @@ func next() -> void:
 func game_over() -> void:
 	_teardown_current()
 	print("GAME OVER")
+	get_tree().change_scene_to_file("res://ui/game_over_ui/game_over_ui.tscn")

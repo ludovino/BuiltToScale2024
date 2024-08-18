@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds6n05claw7lt"]
+
+[ext_resource type="Theme" uid="uid://c7islvxpjqnki" path="res://ui/retro_theme.tres" id="1_85vt4"]
+[ext_resource type="Script" path="res://ui/game_over_ui/game_over_ui.gd" id="2_ceet1"]
+[ext_resource type="Texture2D" uid="uid://cnpxvuavorat0" path="res://ui/game_over_ui/textures/minotaur_render.png" id="3_boweh"]
+
+[node name="GameOverUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_85vt4")
+script = ExtResource("2_ceet1")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 460.0
+offset_bottom = 270.0
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_boweh")
+
+[node name="GameOverLabel" type="Label" parent="Panel/TextureRect"]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 73.0
+offset_right = 293.0
+offset_bottom = 106.0
+theme = ExtResource("1_85vt4")
+theme_type_variation = &"HeaderMedium"
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="ContinueLabel" type="Label" parent="Panel/TextureRect"]
+offset_left = 142.0
+offset_top = 102.0
+offset_right = 318.0
+offset_bottom = 161.0
+theme = ExtResource("1_85vt4")
+theme_type_variation = &"HeaderSmall"
+text = "Press A To Retry
+Press B To Quit"
+horizontal_alignment = 1
