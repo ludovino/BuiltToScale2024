@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://n1ikks0vo2ff"]
+
+[ext_resource type="Script" path="res://demon_pov/demon_pov_minigame.gd" id="1_6ig5x"]
+[ext_resource type="Script" path="res://demon_pov/demon_pov_camera.gd" id="2_b2wtg"]
+[ext_resource type="PackedScene" uid="uid://df20tgche8l83" path="res://demon_pov/demon_pellet/demon_pellet.tscn" id="2_xlor4"]
+[ext_resource type="Texture2D" uid="uid://40c5p110fc3c" path="res://battle/textures/pixil-frame-0 (1) (2).png" id="3_gul5b"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qfvpl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ke3rd"]
+
+[node name="DemonPOV" type="Node3D" node_paths=PackedStringArray("demon_pov_camera", "camera_raycast", "party_member_area_1", "party_member_area_2", "party_member_area_3", "cow_enemy_area")]
+script = ExtResource("1_6ig5x")
+demon_pov_camera = NodePath("DemonPOVCamera")
+camera_raycast = NodePath("DemonPOVCamera/RayCast3D")
+party_member_area_1 = NodePath("PartyMemberArea")
+party_member_area_2 = NodePath("PartyMemberArea2")
+party_member_area_3 = NodePath("PartyMemberArea3")
+cow_enemy_area = NodePath("CowEnemyArea")
+battle_ui_disabled = true
+
+[node name="PartyMemberArea" type="Area3D" parent="." groups=["party"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.648, 1, 4.208)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PartyMemberArea" groups=["party"]]
+shape = SubResource("CapsuleShape3D_qfvpl")
+
+[node name="PartyMemberArea2" type="Area3D" parent="." groups=["party"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41729, 1, 4.0943)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PartyMemberArea2" groups=["party"]]
+shape = SubResource("CapsuleShape3D_qfvpl")
+
+[node name="PartyMemberArea3" type="Area3D" parent="." groups=["party"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4789, 1, 4.14506)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PartyMemberArea3" groups=["party"]]
+shape = SubResource("CapsuleShape3D_qfvpl")
+
+[node name="CowEnemyArea" type="Area3D" parent="." groups=["enemy"]]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.387, 3.85156, -8.366)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CowEnemyArea" groups=["enemy"]]
+shape = SubResource("CapsuleShape3D_ke3rd")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="DemonPOVCamera" type="Camera3D" parent="."]
+transform = Transform3D(0.914254, -0.278881, 0.293879, 0, 0.725374, 0.688355, -0.405142, -0.629331, 0.663176, 8.067, 22.91, 18.299)
+current = true
+fov = 35.1
+script = ExtResource("2_b2wtg")
+joystickSensitivity = 0.75
+horizontalBounds = 25.0
+verticalBounds = 25.0
+
+[node name="RayCast3D" type="RayCast3D" parent="DemonPOVCamera"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 2.98023e-08, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collide_with_areas = true
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(576, 322)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, 5)
+scale = Vector2(1.025, 1.025)
+texture = ExtResource("3_gul5b")
+
+[node name="DemonPellet" parent="." instance=ExtResource("2_xlor4")]
+
+[connection signal="input_event" from="PartyMemberArea" to="." method="_on_party_member_area_input_event"]
+[connection signal="input_event" from="PartyMemberArea2" to="." method="_on_party_member_area_2_input_event"]
+[connection signal="input_event" from="PartyMemberArea3" to="." method="_on_party_member_area_3_input_event"]
+[connection signal="input_event" from="CowEnemyArea" to="." method="_on_cow_enemy_area_input_event"]
