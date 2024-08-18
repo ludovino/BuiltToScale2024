@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://djt7so8dirf7e"]
+
+[ext_resource type="PackedScene" uid="uid://cqx4cs42yf20" path="res://battle/models/clod/clod.glb" id="1_qbt7t"]
+
+[node name="clod" instance=ExtResource("1_qbt7t")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/position = Vector3(-0.00646958, 2.43614, 0.0863386)
+bones/1/rotation = Quaternion(-0.655733, 0.0759587, 0.0854449, 0.746287)
+bones/2/rotation = Quaternion(-0.0417843, 0.637028, 0.769074, 0.0312284)
+bones/3/rotation = Quaternion(0.0776912, 0.048372, 0.072173, 0.993185)
+bones/4/rotation = Quaternion(-0.268725, 0.0337288, -0.070427, 0.960046)
+bones/5/rotation = Quaternion(0.337694, -0.194482, 0.00732815, 0.920916)
+bones/6/rotation = Quaternion(0.801218, -0.594166, -0.033514, -0.0624062)
+bones/7/position = Vector3(-0.031252, 0.844449, -0.0516884)
+bones/7/rotation = Quaternion(0.692414, 0.609131, 0.384645, -0.0396366)
+bones/8/rotation = Quaternion(-0.115346, -0.0185326, 0.0187881, 0.992975)
+bones/10/position = Vector3(0.0312519, 0.844449, -0.0516885)
+bones/10/rotation = Quaternion(-0.585802, 0.481266, 0.650863, -0.0399518)
+bones/11/rotation = Quaternion(-0.210477, 0.302411, 0.0617509, 0.927596)
+bones/13/position = Vector3(0.268467, 0.308196, 0.0216915)
+bones/13/rotation = Quaternion(0.201461, 0.96143, 0.0036239, 0.187223)
+bones/14/rotation = Quaternion(-0.36826, 0.105971, -0.184466, 0.905056)
+bones/15/rotation = Quaternion(0.814051, -0.297702, 0.133472, 0.4805)
+bones/16/position = Vector3(-0.268467, 0.308196, 0.0216916)
+bones/16/rotation = Quaternion(-0.197133, 0.838596, -0.501614, 0.0792404)
+bones/17/rotation = Quaternion(-0.554754, 0.0716128, 0.20092, 0.804208)
+bones/18/rotation = Quaternion(0.665366, 0.178598, -0.227636, 0.688166)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "Idle"

@@ -25,9 +25,9 @@ damage_amount = 10.0
 heal_amount = 21.0
 heal_all_amount = 15.0
 damage_interval = 5.0
-health_bars = [NodePath("HBoxContainer/Panel2/VBoxContainer/Button/Mina/HpBar/ProgressBar"), NodePath("HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins/HpBar/ProgressBar"), NodePath("HBoxContainer/Panel2/VBoxContainer/Button3/Grob/HpBar/ProgressBar")]
-summoner_health_bar = NodePath("HBoxContainer/Panel2/VBoxContainer/Button/Mina/HpBar/ProgressBar")
-summoner_mana_bar = NodePath("HBoxContainer/Panel2/VBoxContainer/Button/Mina/MpBar2/ProgressBar")
+health_bars = [NodePath("HBoxContainer/Panel2/VBoxContainer/Button/Mina/ProgressBar"), NodePath("HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins/ProgressBar"), NodePath("HBoxContainer/Panel2/VBoxContainer/Button3/Grob/ProgressBar2")]
+summoner_health_bar = NodePath("HBoxContainer/Panel2/VBoxContainer/Button/Mina/ProgressBar")
+summoner_mana_bar = NodePath("HBoxContainer/Panel2/VBoxContainer/Button/Mina/ProgressBar2")
 cure_button = NodePath("HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer/Cure")
 cure_all_button = NodePath("HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer/CureAll")
 
@@ -55,6 +55,7 @@ anchor_bottom = 1.0
 offset_right = -7.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
 [node name="Summon" type="Button" parent="HBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
@@ -82,6 +83,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/WhiteMagicList"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -161,9 +163,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 19.0
-offset_top = 8.0
-offset_right = -23.0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = -7.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -188,32 +190,12 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.7
 text = "Mina"
 
-[node name="HpBar" type="HBoxContainer" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina/HpBar"]
-layout_mode = 2
-text = "Hp
-"
-
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina/HpBar"]
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina"]
 layout_mode = 2
 size_flags_horizontal = 3
 value = 100.0
 
-[node name="MpBar2" type="HBoxContainer" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina/MpBar2"]
-layout_mode = 2
-text = "Mp
-"
-
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina/MpBar2"]
+[node name="ProgressBar2" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"MpBar"
@@ -237,35 +219,15 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.7
-text = "Wilkins"
+text = "Xinx"
 
-[node name="HpBar" type="HBoxContainer" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins/HpBar"]
-layout_mode = 2
-text = "Hp
-"
-
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins/HpBar"]
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins"]
 layout_mode = 2
 size_flags_horizontal = 3
 value = 100.0
 script = ExtResource("3_83q0m")
 
-[node name="MpBar2" type="HBoxContainer" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins/MpBar2"]
-layout_mode = 2
-text = "Mp
-"
-
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins/MpBar2"]
+[node name="ProgressBar2" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"MpBar"
@@ -289,36 +251,15 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.7
-text = "Grob
-"
+text = "Clod"
 
-[node name="HpBar" type="HBoxContainer" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob/HpBar"]
-layout_mode = 2
-text = "Hp
-"
-
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob/HpBar"]
+[node name="ProgressBar2" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob"]
 layout_mode = 2
 size_flags_horizontal = 3
 step = 1.0
 value = 100.0
 
-[node name="MpBar2" type="HBoxContainer" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob/MpBar2"]
-layout_mode = 2
-text = "Mp
-"
-
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob/MpBar2"]
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"MpBar"

@@ -108,6 +108,11 @@ menu_button_2={
 ]
 }
 
+[layer_names]
+
+3d_render/layer_1="Characters"
+3d_render/layer_2="Environment"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
