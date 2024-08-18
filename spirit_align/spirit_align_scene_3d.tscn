@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqqmnp4s4efji"]
+[gd_scene load_steps=9 format=3 uid="uid://cqqmnp4s4efji"]
 
 [ext_resource type="Script" path="res://spirit_align/spirit_align_minigame.gd" id="1_ll5ol"]
-[ext_resource type="Texture2D" uid="uid://b4vihmbrc3rnl" path="res://battle/demon_pellet_64x64.png" id="2_dcwm2"]
+[ext_resource type="Texture2D" uid="uid://cyl6icwvdxrjd" path="res://spirit_align/textures/demon_spirit_circle_big.png" id="2_6c612"]
+[ext_resource type="Texture2D" uid="uid://bgfui672of06x" path="res://spirit_align/textures/player_spirit_circle_big.png" id="3_5ojf1"]
 [ext_resource type="Texture2D" uid="uid://b1cyvipr53bek" path="res://hell_gates/textures/progress_bar_empty_big (1).png" id="3_uhv2x"]
 [ext_resource type="Texture2D" uid="uid://72aluedr6b8o" path="res://hell_gates/textures/progress_bar_full_big.png" id="4_uyd1w"]
 
@@ -36,8 +37,8 @@ scale = Vector2(14.045, 14.045)
 shape = SubResource("CircleShape2D_djd2j")
 
 [node name="Sprite2D" type="Sprite2D" parent="DemonSpiritArea"]
-scale = Vector2(0.325, 0.325)
-texture = ExtResource("2_dcwm2")
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_6c612")
 
 [node name="PlayerSpiritArea" type="Area2D" parent="."]
 position = Vector2(213, 315)
@@ -47,8 +48,8 @@ scale = Vector2(5, 5)
 shape = SubResource("CircleShape2D_mq2xc")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerSpiritArea"]
-scale = Vector2(0.31, 0.31)
-texture = ExtResource("2_dcwm2")
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("3_5ojf1")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 offset_left = 1.0
