@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://drhm5pk7b518o"]
+
+[ext_resource type="PackedScene" uid="uid://clytebctc2qnk" path="res://battle/models/ninja/ninja.glb" id="1_qqgu6"]
+
+[node name="ninja" instance=ExtResource("1_qqgu6")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/position = Vector3(-1.07693e-16, 2.36344, -0.28851)
+bones/2/rotation = Quaternion(-0.160876, 0.494404, 0.840299, -0.153562)
+bones/3/rotation = Quaternion(-0.0567715, -0.00782498, -0.0273055, 0.997983)
+bones/4/rotation = Quaternion(0.0677387, -0.172306, 0.0183882, 0.98254)
+bones/5/rotation = Quaternion(0.116139, -0.0246443, -0.0381297, 0.992195)
+bones/6/rotation = Quaternion(-0.14711, 0.527669, 0.825184, 0.137826)
+bones/7/rotation = Quaternion(0.11881, -0.0790481, -0.0429509, 0.988833)
+bones/8/rotation = Quaternion(0.0346449, 0.76959, 0.635223, -0.0549714)
+bones/9/rotation = Quaternion(0.145357, -0.163197, 0.144589, 0.965056)
+bones/10/rotation = Quaternion(-1.71129e-06, 0.681737, 0.731598, 1.59588e-06)
+bones/11/rotation = Quaternion(0.270324, -0.336138, -0.00502865, 0.90217)
+bones/13/rotation = Quaternion(0.457368, 0.791512, 0.342291, 0.217162)
+bones/14/rotation = Quaternion(-0.332575, 0.350456, 0.118268, 0.867518)
+bones/16/rotation = Quaternion(-0.412239, 0.820896, 0.358284, -0.166798)
+bones/17/rotation = Quaternion(-0.736282, 0.0306023, 0.127152, 0.663916)
+bones/18/rotation = Quaternion(-0.620356, -9.34983e-08, 7.39522e-08, 0.784321)
+bones/19/rotation = Quaternion(0.141237, 0.981457, 0.00981949, 0.129217)
+bones/20/rotation = Quaternion(-0.319552, 0.130212, -0.197207, 0.917628)
+bones/21/rotation = Quaternion(0.777148, -0.417637, 0.253141, 0.396913)
+bones/22/rotation = Quaternion(-0.0523889, 0.776283, -0.618132, -0.11204)
+bones/23/rotation = Quaternion(-0.572303, 0.061033, -0.102078, 0.811372)
+bones/24/rotation = Quaternion(0.659497, -0.0526866, 0.0325954, 0.74915)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "Idle"
