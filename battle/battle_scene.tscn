@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://yavtuvbed3fv"]
+[gd_scene load_steps=68 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
 [ext_resource type="Script" path="res://rune_book/rune_book.gd" id="2_47ykl"]
@@ -33,8 +33,9 @@
 [ext_resource type="Script" path="res://demon_pov/demon_pov_minigame.gd" id="26_rxpxb"]
 [ext_resource type="Script" path="res://demon_pov/demon_pov_camera.gd" id="27_7euah"]
 [ext_resource type="Texture2D" uid="uid://eeohhk1v51rk" path="res://focus.png" id="28_3lxbx"]
-[ext_resource type="PackedScene" uid="uid://l2cnlhbg1b3b" path="res://battle/models/minotaur/minor_taur3.glb" id="28_nhint"]
 [ext_resource type="PackedScene" uid="uid://dab2lfghhbjlc" path="res://battle/models/insect/insect.tscn" id="29_nihqw"]
+[ext_resource type="Material" uid="uid://cmctcpd7e116r" path="res://fx/materials/tar.tres" id="34_qdphv"]
+[ext_resource type="PackedScene" uid="uid://p1tl4yfhc40a" path="res://battle/models/minotaur/minor_taur_3.tscn" id="35_nafy3"]
 
 [sub_resource type="Gradient" id="Gradient_wk4u6"]
 offsets = PackedFloat32Array(0.107143, 0.761905, 1)
@@ -105,34 +106,6 @@ size = Vector3(1, 0.1, 1.3)
 [sub_resource type="BoxMesh" id="BoxMesh_eor6s"]
 material = ExtResource("18_5jxuc")
 size = Vector3(0.9, 0.1, 1.2)
-
-[sub_resource type="Gradient" id="Gradient_j4pdd"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_spl21"]
-gradient = SubResource("Gradient_j4pdd")
-
-[sub_resource type="Gradient" id="Gradient_1fxgr"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_hxjyr"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xj14e"]
-color_ramp = SubResource("Gradient_1fxgr")
-noise = SubResource("FastNoiseLite_hxjyr")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_aao4l"]
-render_priority = 0
-shader = ExtResource("17_agrtu")
-shader_parameter/albedo = Color(0.513233, 0.513233, 0.513233, 1)
-shader_parameter/point_size = null
-shader_parameter/time_scale = 0.2
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = null
-shader_parameter/uv2_scale = null
-shader_parameter/uv2_offset = null
-shader_parameter/texture_gradient = SubResource("GradientTexture2D_spl21")
-shader_parameter/texture_noise = SubResource("NoiseTexture2D_xj14e")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_qb3a2"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_i1ket"]
 seed = 20
@@ -355,45 +328,53 @@ tracks/13/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_pvrf3"]
-resource_name = "start_game"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:fov")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("RuneBook/DesiredContainer:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [28.6, 75.0]
+"values": [Vector2(1.1, 1.1)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Hellmouth:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 9.8859, 16.8582), Vector3(18.0808, 9.8859, -0.362446)]
+"values": [Vector3(0, 0, 0)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Camera3D:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(2, 1),
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Hellmouth:rotation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.610865, 0, 0), Vector3(-0.46808, 1.9019, 0)]
+"values": [Vector3(0, -3.14159, 0)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Hellmouth:mesh:material:albedo_color")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.218445, 0.0333373, 0.0285276, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_man0e"]
@@ -496,48 +477,6 @@ tracks/7/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 0.31, 0.31, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_12edj"]
-resource_name = "start_cast"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.93333),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector3(0.0341605, 1.32902, 3.91501), Vector3(0.0860644, 3.34835, 9.86352)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.93333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.32725, 0.0087253, 0), Vector3(-0.32725, 0.0087253, 0)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("summner")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.0333333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"cast"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_bylat"]
 resource_name = "rune_game_intro"
 length = 2.0
@@ -620,9 +559,12 @@ tracks/6/path = NodePath("RuneBook")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.766667),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"start"
+}, {
 "args": [],
 "method": &"enable_input"
 }]
@@ -640,27 +582,235 @@ tracks/7/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_12edj"]
+resource_name = "start_cast"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.93333),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0.0341605, 1.32902, 3.91501), Vector3(0.0860644, 3.34835, 9.86352)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.93333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.32725, 0.0087253, 0), Vector3(-0.32725, 0.0087253, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("summner")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"cast"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_pvrf3"]
+resource_name = "start_game"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [28.6, 75.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 9.8859, 16.8582), Vector3(18.0808, 9.8859, -0.362446)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(-0.610865, 0, 0), Vector3(-0.46808, 1.9019, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n6voi"]
+resource_name = "rune_win"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RuneBook/DesiredContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RuneBook/DesiredContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.5545, 0.19, 0.682353), Color(1, 1, 1, 0.556863), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xyt78"]
+resource_name = "start_gates"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.73333, 6.2),
+"transitions": PackedFloat32Array(2, -2, -2),
+"update": 0,
+"values": [Vector3(4.9637, 1.53731, 19.6516), Vector3(6.13969, 8.73968, 0.686574), Vector3(4.40983, 8.63699, -0.568514)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.9, 6.33333),
+"transitions": PackedFloat32Array(2, -2, -2),
+"update": 0,
+"values": [Vector3(0.14399, 0.239982, 0), Vector3(-0.671951, 0.418878, 0), Vector3(0.087267, 0.305432, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hellmouth:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hellmouth:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 7.9),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hellmouth:mesh:material:albedo_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5.86667, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.218445, 0.0333373, 0.0285276, 1), Color(0.218445, 0.0333373, 0.0285276, 1), Color(0.22, 0.03498, 0.0286, 0)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("minor_taur3")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.266667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"climb"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Camera3D:fov")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.73333, 5.86667, 7.76667),
+"transitions": PackedFloat32Array(1, -2, -2, 1),
+"update": 0,
+"values": [28.6, 41.8, 35.2, 75.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6mbpe"]
 _data = {
 "RESET": SubResource("Animation_jns1g"),
 "darken": SubResource("Animation_man0e"),
 "rune_game_intro": SubResource("Animation_bylat"),
+"rune_win": SubResource("Animation_n6voi"),
 "start_cast": SubResource("Animation_12edj"),
-"start_game": SubResource("Animation_pvrf3")
+"start_game": SubResource("Animation_pvrf3"),
+"start_gates": SubResource("Animation_xyt78")
 }
+
+[sub_resource type="SphereMesh" id="SphereMesh_cissp"]
+material = ExtResource("34_qdphv")
+radius = 15.0
 
 [node name="Battle" type="Node3D" node_paths=PackedStringArray("minigames", "battle_ui")]
 script = ExtResource("1_gisox")
 minigames = [NodePath("RuneBook"), NodePath("HellGatesScene"), NodePath("SpiritAlignScene3d"), NodePath("DemonPOV")]
 battle_ui = NodePath("BattleUi")
 
-[node name="RuneBook" type="Node3D" parent="." node_paths=PackedStringArray("desired_ui")]
+[node name="RuneBook" type="Node3D" parent="." node_paths=PackedStringArray("desired_ui", "game_anim")]
+visible = false
 script = ExtResource("2_47ykl")
 runes = Array[ExtResource("3_54ti3")]([ExtResource("4_ve4mc"), ExtResource("5_mnj2b"), ExtResource("6_n04x0"), ExtResource("7_qtv0m"), ExtResource("8_2sbob"), ExtResource("9_opldf"), ExtResource("10_tso1e")])
 page_scene = ExtResource("11_wy318")
 desired_ui = [NodePath("DesiredContainer/TextureRect"), NodePath("DesiredContainer/TextureRect2"), NodePath("DesiredContainer/TextureRect3"), NodePath("DesiredContainer/TextureRect4"), NodePath("DesiredContainer/TextureRect5")]
 deactivated_color = Color(0.27, 0.0162, 0.0162, 1)
 activated_color = Color(0.76, 0.182527, 0.0228, 1)
+game_anim = NodePath("../AnimationPlayer")
 
 [node name="DesiredContainer" type="HBoxContainer" parent="RuneBook"]
 modulate = Color(1, 1, 1, 0)
@@ -669,6 +819,8 @@ anchor_right = 1.0
 offset_top = 66.0
 offset_bottom = 98.0
 grow_horizontal = 2
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(230, 16)
 size_flags_vertical = 3
 alignment = 1
 
@@ -747,11 +899,6 @@ time_limit = 30.0
 
 [node name="Camera3D" type="Camera3D" parent="HellGatesScene"]
 transform = Transform3D(-0.99872, -0.00908849, -0.0497537, 0, 0.983722, -0.179696, 0.0505769, -0.179466, -0.982463, -0.00352788, 1.29015, 4.92609)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="HellGatesScene"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.3984)
-material_override = SubResource("ShaderMaterial_aao4l")
-mesh = SubResource("CylinderMesh_qb3a2")
 
 [node name="SpiritAlignScene3d" type="Node3D" parent="." node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area", "progress_line")]
 visible = false
@@ -898,12 +1045,18 @@ fov = 28.6
 libraries = {
 "": SubResource("AnimationLibrary_6mbpe")
 }
-autoplay = "start_game"
+autoplay = "start_gates"
+next/darken = &"rune_game_intro"
+next/start_cast = &"darken"
 next/start_game = &"start_cast"
 
-[node name="minor_taur3" parent="." instance=ExtResource("28_nhint")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59406, 0, -12.6351)
-visible = false
+[node name="Hellmouth" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -16.642)
+mesh = SubResource("SphereMesh_cissp")
+skeleton = NodePath("../insect")
+
+[node name="minor_taur3" parent="." instance=ExtResource("35_nafy3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.6887)
 
 [node name="insect" parent="." instance=ExtResource("29_nihqw")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.92156, 15)

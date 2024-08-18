@@ -7,7 +7,8 @@ extends Minigame
 @export var deactivated_color: Color
 @export var activated_color: Color
 @onready var page_parent := $Book/BackCover
-@export var can_play = false
+
+@export var game_anim : AnimationPlayer
 
 var pages: Array[Page] = []
 var desired: Array[int] = []
@@ -42,7 +43,7 @@ func start() -> void:
 	visible = true
 
 func enable_input() -> void:
-	process_mode = PROCESS_MODE_PAUSABLE
+	process_mode = PROCESS_MODE_ALWAYS
 	
 
 func teardown() -> void:
@@ -50,8 +51,6 @@ func teardown() -> void:
 	visible = false
 
 func _process(delta: float) -> void:
-	if not can_play:
-		return
 	if Input.is_action_just_pressed("minigame_left"):
 		prev_page()
 	if Input.is_action_just_pressed("minigame_right"):
@@ -117,6 +116,8 @@ func activate() -> void:
 		$RuneSelect.play()
 	if desired_index == desired.size() - 1:
 		succeeded.emit()
+		game_anim.play("start_gates")
+		teardown()
 	desired_index += 1
 
 func reset_desired():
