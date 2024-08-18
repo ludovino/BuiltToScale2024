@@ -5,6 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://cnpxvuavorat0" path="res://ui/game_over_ui/textures/minotaur_render.png" id="3_boweh"]
 [ext_resource type="Texture2D" uid="uid://bjne21bcdk32m" path="res://ui/game_over_ui/textures/game_over_lowcol.png" id="3_cnykl"]
 
+[sub_resource type="Animation" id="Animation_1t6km"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/MinotaurRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_m6346"]
 resource_name = "game_over_fade"
 length = 4.0
@@ -33,21 +48,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"enable_controls"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_1t6km"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel/MinotaurRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x4a6w"]
@@ -91,6 +91,7 @@ text = "GAME OVER"
 horizontal_alignment = 1
 
 [node name="ContinueLabel" type="Label" parent="Panel/TextureRect"]
+layout_mode = 0
 offset_left = 142.0
 offset_top = 125.0
 offset_right = 318.0
