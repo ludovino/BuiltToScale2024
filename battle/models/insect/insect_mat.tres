@@ -1,11 +1,11 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b5lboo05rgks6"]
 
-[ext_resource type="Texture2D" uid="uid://cor8gox5wnqki" path="res://battle/models/clod/clod colors.png" id="1_mw0pa"]
+[ext_resource type="Texture2D" uid="uid://sxqpurldlb10" path="res://battle/models/insect/insect_bug colors.png" id="1_t50mo"]
 
 [resource]
 shading_mode = 2
 diffuse_mode = 3
 specular_mode = 2
-albedo_texture = ExtResource("1_mw0pa")
+albedo_texture = ExtResource("1_t50mo")
 metallic_specular = 0.0
 texture_repeat = false

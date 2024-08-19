@@ -788,6 +788,7 @@ minigames = [NodePath("RuneBook"), NodePath("HellGatesScene"), null, NodePath("D
 battle_ui = NodePath("BattleUi")
 
 [node name="RuneBook" type="Node3D" parent="." node_paths=PackedStringArray("desired_ui", "game_anim")]
+visible = false
 script = ExtResource("2_47ykl")
 runes = Array[ExtResource("3_54ti3")]([ExtResource("4_ve4mc"), ExtResource("5_mnj2b"), ExtResource("6_n04x0"), ExtResource("7_qtv0m"), ExtResource("8_2sbob"), ExtResource("9_opldf"), ExtResource("10_tso1e")])
 page_scene = ExtResource("11_wy318")
@@ -797,6 +798,7 @@ activated_color = Color(0.76, 0.182527, 0.0228, 1)
 game_anim = NodePath("../AnimationPlayer")
 
 [node name="DesiredContainer" type="HBoxContainer" parent="RuneBook"]
+visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 10
 anchor_right = 1.0
@@ -891,6 +893,7 @@ grow_vertical = 2
 text = "MASH X"
 
 [node name="DemonPOV" type="Node3D" parent="." node_paths=PackedStringArray("demon_pov_camera", "camera_raycast", "party_member_area_1", "party_member_area_2", "party_member_area_3", "cow_enemy_area")]
+visible = false
 script = ExtResource("26_rxpxb")
 demon_pov_camera = NodePath("DemonPOVCamera")
 camera_raycast = NodePath("DemonPOVCamera/RayCast3D")
@@ -940,6 +943,7 @@ target_position = Vector3(0, 0, -1000)
 collide_with_areas = true
 
 [node name="Node2D" type="Node2D" parent="DemonPOV"]
+visible = false
 position = Vector2(576, 322)
 
 [node name="Sprite2D" type="Sprite2D" parent="DemonPOV/Node2D"]
@@ -993,7 +997,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.6887)
 visible = false
 
 [node name="insect" parent="." instance=ExtResource("29_nihqw")]
-transform = Transform3D(0.5373, 0, 0.843391, 0, 1, 0, -0.843391, 0, 0.5373, 0, 1.92156, 15)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.92156, 15)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("32_flvxb")

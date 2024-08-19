@@ -41,14 +41,15 @@ func _ready() -> void:
 
 func start() -> void:
 	visible = true
+	$DesiredContainer.visible = true
 
 func enable_input() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
-	
 
 func teardown() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	visible = false
+	$DesiredContainer.visible = false
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("minigame_left"):
