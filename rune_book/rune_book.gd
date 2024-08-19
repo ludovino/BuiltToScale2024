@@ -7,7 +7,8 @@ extends Minigame
 @export var deactivated_color: Color
 @export var activated_color: Color
 @onready var page_parent := $Book/BackCover
-@export var can_play = false
+
+@export var game_anim : AnimationPlayer
 
 var pages: Array[Page] = []
 var desired: Array[int] = []
@@ -16,6 +17,8 @@ var desired_index = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	process_mode = ProcessMode.PROCESS_MODE_DISABLED
+	visible = false
 	current_page = 0
 	pages.clear()
 	desired.clear()
@@ -35,17 +38,27 @@ func _ready() -> void:
 		desired_ui[i].texture = runes[rand_idx].texture
 	
 	reset_desired()
-		
+
+func start() -> void:
+	visible = true
+	$DesiredContainer.visible = true
+
+func enable_input() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
+
+func teardown() -> void:
+	process_mode = ProcessMode.PROCESS_MODE_DISABLED
+	visible = false
+	$DesiredContainer.visible = false
+
 func _process(delta: float) -> void:
-	if not can_play:
-		return
-	if Input.is_action_just_pressed("ui_left"):
+	if Input.is_action_just_pressed("minigame_left"):
 		prev_page()
-	if Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed("minigame_right"):
 		next_page()
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("minigame_button_1"):
 		activate()
-		
+
 func next_page() -> void:
 	if current_page >= runes.size() - 1:
 		return
@@ -104,6 +117,8 @@ func activate() -> void:
 		$RuneSelect.play()
 	if desired_index == desired.size() - 1:
 		succeeded.emit()
+		game_anim.play("start_gates")
+		teardown()
 	desired_index += 1
 
 func reset_desired():

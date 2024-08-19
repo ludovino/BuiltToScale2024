@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://p1tl4yfhc40a"]
+
+[ext_resource type="PackedScene" uid="uid://l2cnlhbg1b3b" path="res://battle/models/minotaur/minor_taur3.glb" id="1_li7cp"]
+[ext_resource type="Script" path="res://battle/models/minotaur/minor_taur_3.gd" id="2_0xj2f"]
+[ext_resource type="PackedScene" uid="uid://dvs31f7ljy77i" path="res://fx/fire.tscn" id="3_xcdpf"]
+
+[node name="minor_taur3" instance=ExtResource("1_li7cp")]
+script = ExtResource("2_0xj2f")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/position = Vector3(-1.73777e-17, -14.0026, -4.25566)
+bones/1/rotation = Quaternion(0.694554, -1.56985e-16, -1.56985e-16, 0.719441)
+bones/3/rotation = Quaternion(0.0991399, -3.55258e-14, -2.36368e-08, 0.995073)
+bones/4/rotation = Quaternion(0.151627, -1.17831e-07, -5.42261e-08, 0.988438)
+bones/5/rotation = Quaternion(0.148058, -1.17895e-07, -8.82492e-08, 0.988979)
+bones/6/rotation = Quaternion(0.444529, -1.06784e-07, -3.70944e-07, 0.895764)
+bones/7/rotation = Quaternion(-0.230956, -0.229596, 0.817714, -0.474647)
+bones/8/rotation = Quaternion(-0.0135974, 0.0439039, 0.304896, 0.951276)
+bones/9/rotation = Quaternion(0.207167, -0.162416, 0.727089, 0.63407)
+bones/10/rotation = Quaternion(-0.0626341, 0.0544225, 0.138585, 0.986868)
+bones/11/rotation = Quaternion(0.146395, -0.271834, 0.787283, 0.533723)
+bones/12/rotation = Quaternion(0.504566, 0.164538, -0.362233, 0.766242)
+bones/13/rotation = Quaternion(0.376434, -0.0690464, -0.478171, 0.790495)
+bones/14/rotation = Quaternion(-0.0739169, -0.00346706, -0.153321, 0.985402)
+bones/15/rotation = Quaternion(0.704856, -8.45611e-08, -8.40254e-08, 0.70935)
+bones/16/rotation = Quaternion(0.00697325, 0.000230112, -0.121977, 0.992508)
+bones/17/rotation = Quaternion(0.389424, -5.6229e-08, 0.0920514, 0.916447)
+bones/18/rotation = Quaternion(-0.513959, -9.30484e-10, 0.0538124, 0.856125)
+bones/19/rotation = Quaternion(0.00697328, -0.000229876, 0.121977, 0.992508)
+bones/20/rotation = Quaternion(0.389424, 5.6229e-08, -0.0920514, 0.916447)
+bones/21/rotation = Quaternion(-0.513959, 9.30484e-10, -0.0538124, 0.856125)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, -7.10543e-15, -4.76837e-07, -3.00963e-07, 0.775648, -0.631165, 3.69858e-07, 0.631165, 0.775648, -5.76359e-14, -6.94485, 0.683192)
+bone_name = "Spine.003"
+bone_idx = 4
+
+[node name="Fire" parent="Armature/Skeleton3D/BoneAttachment3D" index="0" instance=ExtResource("3_xcdpf")]
+transform = Transform3D(1, -4.70086e-07, -7.99576e-08, 0, -0.167683, 0.985841, -4.76837e-07, -0.985841, -0.167683, -0.154839, -0.468837, -3.77011)
+emission_ring_inner_radius = 5.0
+scale_amount_min = 10.0
+scale_amount_max = 15.0

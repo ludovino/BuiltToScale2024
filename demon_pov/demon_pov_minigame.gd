@@ -11,12 +11,23 @@ extends Minigame
 
 var initialised : bool
 
-
 func _ready() -> void:
+	process_mode = ProcessMode.PROCESS_MODE_DISABLED
+	visible = false
+	$Node2D.visible = false
+
+func start() -> void:
 	if !initialised:
 		initialised = true
-	pass
-	
+	visible = true
+	$Node2D.visible = true
+	process_mode = PROCESS_MODE_PAUSABLE
+
+func teardown():
+	process_mode = ProcessMode.PROCESS_MODE_DISABLED
+	visible = false
+	$Node2D.visible = false
+
 func _process(delta):
 	_update_input(delta)
 	
@@ -28,15 +39,6 @@ func _update_input(delta) -> void:
 		else :
 			if object_hit and object_hit.is_in_group(("party")):
 				_on_teammate_clicked()
-
-func _enter_tree() -> void:
-	pass
-
-func _exit_tree() -> void:
-	pass
-
-func _on_button_pressed() -> void:
-	pass #succeeded.emit()
 
 func _on_teammate_clicked() -> void:
 	failed.emit()

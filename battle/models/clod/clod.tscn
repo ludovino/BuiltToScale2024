@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://djt7so8dirf7e"]
+[gd_scene load_steps=3 format=3 uid="uid://djt7so8dirf7e"]
 
 [ext_resource type="PackedScene" uid="uid://cqx4cs42yf20" path="res://battle/models/clod/clod.glb" id="1_qbt7t"]
+[ext_resource type="Texture2D" uid="uid://df75wjwnrpuig" path="res://battle/models/shadow.png" id="2_a0fxt"]
 
 [node name="clod" instance=ExtResource("1_qbt7t")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
@@ -30,3 +31,11 @@ bones/18/rotation = Quaternion(0.665366, 0.178598, -0.227636, 0.688166)
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "Idle"
+
+[node name="Shadow" type="Sprite3D" parent="." index="2"]
+modulate = Color(1, 1, 1, 0.215686)
+pixel_size = 0.2
+axis = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_a0fxt")

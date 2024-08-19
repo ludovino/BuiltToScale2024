@@ -40,7 +40,6 @@ time_limit = 30.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.99872, -0.00908849, -0.0497537, 0, 0.983722, -0.179696, 0.0505769, -0.179466, -0.982463, -0.00352788, 1.29015, 4.92609)
-current = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.3984)

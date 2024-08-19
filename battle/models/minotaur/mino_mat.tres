@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b1pdca1jcpfod"]
+
+[ext_resource type="Texture2D" uid="uid://cuvgl7xvogwk2" path="res://battle/models/minotaur/minor_taur3_taur colors.png" id="1_61ola"]
+
+[resource]
+shading_mode = 2
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("1_61ola")
+metallic_specular = 0.0
+texture_repeat = false

@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://07bu00cuhht0"]
+
+[ext_resource type="Material" uid="uid://4ms3vw4h60fq" path="res://fx/materials/cast_mat.tres" id="1_caky2"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_drxef"]
+material = ExtResource("1_caky2")
+top_radius = 2.0
+bottom_radius = 1.0
+height = 4.0
+radial_segments = 12
+
+[sub_resource type="Curve" id="Curve_ky2qq"]
+max_value = 3.0
+_data = [Vector2(0, 0.820588), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_j0ikl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_t3slu"]
+offsets = PackedFloat32Array(0, 0.17619, 0.57381, 0.8)
+colors = PackedColorArray(1, 1, 1, 0.047619, 1, 1, 1, 1, 1, 1, 1, 0.958015, 1, 1, 1, 0)
+
+[node name="CastGlow" type="CPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886929, 0)
+amount = 3
+lifetime = 1.55
+mesh = SubResource("CylinderMesh_drxef")
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+orbit_velocity_curve = null
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+split_scale = true
+scale_curve_x = SubResource("Curve_ky2qq")
+scale_curve_y = SubResource("Curve_j0ikl")
+scale_curve_z = SubResource("Curve_ky2qq")
+color_ramp = SubResource("Gradient_t3slu")
+hue_variation_min = -0.15
+hue_variation_max = 0.08

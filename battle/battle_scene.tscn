@@ -1,14 +1,128 @@
-[gd_scene load_steps=15 format=3 uid="uid://yavtuvbed3fv"]
+[gd_scene load_steps=62 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
-[ext_resource type="PackedScene" uid="uid://dndy3wxgd4f41" path="res://example/push_the_button.tscn" id="2_rpkcf"]
-[ext_resource type="PackedScene" uid="uid://c4d183i5t76i2" path="res://rune_book/scenes/rune_book.tscn" id="4_gm582"]
+[ext_resource type="Script" path="res://rune_book/rune_book.gd" id="2_47ykl"]
+[ext_resource type="Script" path="res://rune_book/rune.gd" id="3_54ti3"]
 [ext_resource type="PackedScene" uid="uid://dvohcnxdcckn3" path="res://battle/models/field/field.tscn" id="4_nwrxv"]
+[ext_resource type="Resource" uid="uid://dnll1dncrly5h" path="res://rune_book/resources/bident.tres" id="4_ve4mc"]
 [ext_resource type="PackedScene" uid="uid://dtvrdtgfjjltm" path="res://ui/battle_ui.tscn" id="5_4u33l"]
+[ext_resource type="Resource" uid="uid://c6c13x3h2ilon" path="res://rune_book/resources/bismuth.tres" id="5_mnj2b"]
 [ext_resource type="PackedScene" uid="uid://drhm5pk7b518o" path="res://battle/models/ninja/ninja.tscn" id="6_7k3qa"]
+[ext_resource type="Resource" uid="uid://wmex7uw4sa1k" path="res://rune_book/resources/brimstone.tres" id="6_n04x0"]
+[ext_resource type="Resource" uid="uid://c5q8la20qtwnl" path="res://rune_book/resources/crucible.tres" id="7_qtv0m"]
+[ext_resource type="Resource" uid="uid://cnu032exj670a" path="res://rune_book/resources/fire.tres" id="8_2sbob"]
 [ext_resource type="PackedScene" uid="uid://64ehif3kvq8v" path="res://battle/models/summoner/summner.tscn" id="8_cbrtx"]
 [ext_resource type="PackedScene" uid="uid://djt7so8dirf7e" path="res://battle/models/clod/clod.tscn" id="8_jlyle"]
-[ext_resource type="AudioStream" uid="uid://c0dn5hk8thoa0" path="res://battle/battleThemeA.mp3" id="9_b207g"]
+[ext_resource type="Resource" uid="uid://dh6tl0b303n1u" path="res://rune_book/resources/phlogiston.tres" id="9_opldf"]
+[ext_resource type="Resource" uid="uid://uiurst1rs53i" path="res://rune_book/resources/silver.tres" id="10_tso1e"]
+[ext_resource type="PackedScene" uid="uid://soc1hdsdd18s" path="res://rune_book/scenes/page.tscn" id="11_wy318"]
+[ext_resource type="Texture2D" uid="uid://d133oq0e7688x" path="res://rune_book/textures/bident.png" id="12_kldem"]
+[ext_resource type="Texture2D" uid="uid://cg5fp1hxvcs2" path="res://rune_book/textures/brimstone.png" id="13_5sbo1"]
+[ext_resource type="Texture2D" uid="uid://bdto7q7gjmnka" path="res://rune_book/textures/crucible.png" id="14_sxn06"]
+[ext_resource type="Texture2D" uid="uid://bc82bki187fvg" path="res://rune_book/textures/fire.png" id="15_8ey5g"]
+[ext_resource type="Texture2D" uid="uid://y42gd68y7nds" path="res://rune_book/textures/phlogiston.png" id="16_0ih7o"]
+[ext_resource type="Shader" uid="uid://c2d0sajhsiy0r" path="res://rune_book/resources/flame_shader.tres" id="17_agrtu"]
+[ext_resource type="Material" uid="uid://ccmioh5nfsc2n" path="res://rune_book/materials/page_material.tres" id="18_5jxuc"]
+[ext_resource type="AudioStream" uid="uid://be86m1quddh8s" path="res://rune_book/RuneSelect.wav" id="19_e5jm4"]
+[ext_resource type="Script" path="res://hell_gates/hell_gates_minigame.gd" id="20_8xhay"]
+[ext_resource type="Script" path="res://spirit_align/spirit_align_minigame.gd" id="24_lfg1a"]
+[ext_resource type="Texture2D" uid="uid://cyl6icwvdxrjd" path="res://spirit_align/textures/demon_spirit_circle_big.png" id="25_4vxb4"]
+[ext_resource type="Texture2D" uid="uid://bgfui672of06x" path="res://spirit_align/textures/player_spirit_circle_big.png" id="26_jkld7"]
+[ext_resource type="Script" path="res://demon_pov/demon_pov_minigame.gd" id="26_rxpxb"]
+[ext_resource type="Script" path="res://demon_pov/demon_pov_camera.gd" id="27_7euah"]
+[ext_resource type="Texture2D" uid="uid://eeohhk1v51rk" path="res://focus.png" id="28_3lxbx"]
+[ext_resource type="PackedScene" uid="uid://dab2lfghhbjlc" path="res://battle/models/insect/insect.tscn" id="29_nihqw"]
+[ext_resource type="PackedScene" uid="uid://07bu00cuhht0" path="res://fx/cast_glow.tscn" id="32_calca"]
+[ext_resource type="AudioStream" uid="uid://cv2wecxunpjit" path="res://battleThemeA.mp3" id="32_flvxb"]
+[ext_resource type="AnimationLibrary" uid="uid://d4gpv172kw3g" path="res://battle/animations/battle_anims.res" id="32_nqc5j"]
+[ext_resource type="Material" uid="uid://cmctcpd7e116r" path="res://fx/materials/tar.tres" id="34_qdphv"]
+[ext_resource type="PackedScene" uid="uid://p1tl4yfhc40a" path="res://battle/models/minotaur/minor_taur_3.tscn" id="35_nafy3"]
+[ext_resource type="PackedScene" uid="uid://dl4puk15m30hq" path="res://fx/cast_particles.tscn" id="37_mxjci"]
+
+[sub_resource type="Gradient" id="Gradient_wk4u6"]
+offsets = PackedFloat32Array(0.107143, 0.761905, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5gcde"]
+gradient = SubResource("Gradient_wk4u6")
+fill_to = Vector2(0, 0.489474)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8jjip"]
+noise_type = 0
+frequency = 0.0271
+fractal_octaves = 3
+fractal_lacunarity = 5.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_swkv3"]
+width = 128
+height = 32
+generate_mipmaps = false
+seamless = true
+noise = SubResource("FastNoiseLite_8jjip")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5rw0q"]
+render_priority = 0
+shader = ExtResource("17_agrtu")
+shader_parameter/albedo = Color(0.4, 0, 0.0666668, 0)
+shader_parameter/point_size = 1.0
+shader_parameter/time_scale = 0.1
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_gradient = SubResource("GradientTexture2D_5gcde")
+shader_parameter/texture_noise = SubResource("NoiseTexture2D_swkv3")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qg6dg"]
+material = SubResource("ShaderMaterial_5rw0q")
+top_radius = 3.0
+bottom_radius = 1.0
+height = 1.0
+radial_segments = 16
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="Gradient" id="Gradient_ol145"]
+offsets = PackedFloat32Array(0, 0.595238, 1)
+colors = PackedColorArray(0.592157, 0.345098, 0.207843, 1, 0.31, 0.20956, 0.1426, 1, 0.27, 0.18576, 0.1404, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l1jhr"]
+frequency = 0.0447
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s1pyt"]
+width = 32
+height = 32
+seamless = true
+color_ramp = SubResource("Gradient_ol145")
+noise = SubResource("FastNoiseLite_l1jhr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44dbe"]
+albedo_texture = SubResource("NoiseTexture2D_s1pyt")
+metallic_specular = 0.0
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_hkhim"]
+material = SubResource("StandardMaterial3D_44dbe")
+size = Vector3(1, 0.1, 1.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eor6s"]
+material = ExtResource("18_5jxuc")
+size = Vector3(0.9, 0.1, 1.2)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i1ket"]
+seed = 20
+frequency = 0.022
+fractal_octaves = 2
+fractal_lacunarity = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_djd2j"]
+radius = 5.13873
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mq2xc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qfvpl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ke3rd"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_yejbq"]
 noise_type = 4
@@ -42,20 +156,219 @@ radiance_size = 2
 [sub_resource type="Environment" id="Environment_wxkck"]
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 0.0
 sky = SubResource("Sky_txaos")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.55
+ambient_light_energy = 0.76
+
+[sub_resource type="SphereMesh" id="SphereMesh_cissp"]
+material = ExtResource("34_qdphv")
+radius = 15.0
 
 [node name="Battle" type="Node3D" node_paths=PackedStringArray("battle_ui")]
 script = ExtResource("1_gisox")
-minigame_scenes = Array[PackedScene]([ExtResource("2_rpkcf"), ExtResource("4_gm582")])
 battle_ui = NodePath("BattleUi")
+
+[node name="RuneBook" type="Node3D" parent="." node_paths=PackedStringArray("desired_ui", "game_anim")]
+script = ExtResource("2_47ykl")
+runes = Array[ExtResource("3_54ti3")]([ExtResource("4_ve4mc"), ExtResource("5_mnj2b"), ExtResource("6_n04x0"), ExtResource("7_qtv0m"), ExtResource("8_2sbob"), ExtResource("9_opldf"), ExtResource("10_tso1e")])
+page_scene = ExtResource("11_wy318")
+desired_ui = [NodePath("DesiredContainer/TextureRect"), NodePath("DesiredContainer/TextureRect2"), NodePath("DesiredContainer/TextureRect3"), NodePath("DesiredContainer/TextureRect4"), NodePath("DesiredContainer/TextureRect5")]
+deactivated_color = Color(0.27, 0.0162, 0.0162, 1)
+activated_color = Color(0.76, 0.182527, 0.0228, 1)
+game_anim = NodePath("../AnimationPlayer")
+
+[node name="DesiredContainer" type="HBoxContainer" parent="RuneBook"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 66.0
+offset_bottom = 98.0
+grow_horizontal = 2
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(230, 16)
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="RuneBook/DesiredContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("12_kldem")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="RuneBook/DesiredContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("13_5sbo1")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="RuneBook/DesiredContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("14_sxn06")
+expand_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="RuneBook/DesiredContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("15_8ey5g")
+expand_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="RuneBook/DesiredContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("16_0ih7o")
+expand_mode = 2
+
+[node name="Glow" type="MeshInstance3D" parent="RuneBook"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.443444, 0.814446, 5.79807)
+mesh = SubResource("CylinderMesh_qg6dg")
+
+[node name="Book" type="Node3D" parent="RuneBook"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.28746)
+
+[node name="BackCover" type="MeshInstance3D" parent="RuneBook/Book"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0770763, 0.615156)
+mesh = SubResource("BoxMesh_hkhim")
+
+[node name="BackPages" type="MeshInstance3D" parent="RuneBook/Book/BackCover"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0759972, 0)
+mesh = SubResource("BoxMesh_eor6s")
+skeleton = NodePath("../..")
+
+[node name="FrontCoverPivot" type="Node3D" parent="RuneBook/Book/BackCover"]
+transform = Transform3D(0.997054, 0.076719, 0, -0.076719, 0.997054, 0, 0, 0, 1, 0.449915, 0.126124, 0.0515819)
+
+[node name="FrontCover" type="MeshInstance3D" parent="RuneBook/Book/BackCover/FrontCoverPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.448947, 0.138534, -0.0515819)
+mesh = SubResource("BoxMesh_hkhim")
+skeleton = NodePath("../../..")
+
+[node name="Pages" type="MeshInstance3D" parent="RuneBook/Book/BackCover/FrontCoverPivot/FrontCover"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0884067, 0)
+mesh = SubResource("BoxMesh_eor6s")
+skeleton = NodePath("../../../..")
+
+[node name="Page" parent="RuneBook/Book/BackCover/FrontCoverPivot/FrontCover/Pages" instance=ExtResource("11_wy318")]
+transform = Transform3D(0.999824, -0.0187441, 0, 0.0187441, 0.999824, 0, 0, 0, 1, 0.44776, -0.0588222, 0)
+
+[node name="RuneSelect" type="AudioStreamPlayer" parent="RuneBook"]
+stream = ExtResource("19_e5jm4")
+
+[node name="HellGates" type="Node3D" parent="."]
+script = ExtResource("20_8xhay")
+meter_deplete_per_second = 10.0
+button_press_increment = 3.0
+button_meter_goal = 50.0
+time_limit = 30.0
+
+[node name="Label" type="Label" parent="HellGates"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "MASH X"
+
+[node name="SpiritAlign" type="Node3D" parent="." node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area")]
+script = ExtResource("24_lfg1a")
+demon_spirit_point_a = Vector2(60, 60)
+demon_spirit_point_b = Vector2(460, 210)
+demon_spirit_area = NodePath("DemonSpiritArea")
+player_spirit_area = NodePath("PlayerSpiritArea")
+demon_spirit_speed = 30.0
+input_sensitivity = 6.0
+noise = SubResource("FastNoiseLite_i1ket")
+goal_time = 10.0
+time_limit = 30.0
+
+[node name="DemonSpiritArea" type="Area2D" parent="SpiritAlign"]
+position = Vector2(202, 160)
+scale = Vector2(14.045, 14.045)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiritAlign/DemonSpiritArea"]
+shape = SubResource("CircleShape2D_djd2j")
+
+[node name="Sprite2D" type="Sprite2D" parent="SpiritAlign/DemonSpiritArea"]
+scale = Vector2(0.0142213, 0.0142213)
+texture = ExtResource("25_4vxb4")
+
+[node name="PlayerSpiritArea" type="Area2D" parent="SpiritAlign"]
+position = Vector2(213, 315)
+scale = Vector2(5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiritAlign/PlayerSpiritArea"]
+shape = SubResource("CircleShape2D_mq2xc")
+
+[node name="Sprite2D" type="Sprite2D" parent="SpiritAlign/PlayerSpiritArea"]
+position = Vector2(24.8, -23.2)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("26_jkld7")
+
+[node name="DemonPOV" type="Node3D" parent="." node_paths=PackedStringArray("demon_pov_camera", "camera_raycast", "party_member_area_1", "party_member_area_2", "party_member_area_3", "cow_enemy_area")]
+script = ExtResource("26_rxpxb")
+demon_pov_camera = NodePath("DemonPOVCamera")
+camera_raycast = NodePath("DemonPOVCamera/RayCast3D")
+party_member_area_1 = NodePath("PartyMemberArea")
+party_member_area_2 = NodePath("PartyMemberArea2")
+party_member_area_3 = NodePath("PartyMemberArea3")
+cow_enemy_area = NodePath("CowEnemyArea")
+battle_ui_disabled = true
+
+[node name="PartyMemberArea" type="Area3D" parent="DemonPOV" groups=["party"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.648, 1, 4.208)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DemonPOV/PartyMemberArea" groups=["party"]]
+shape = SubResource("CapsuleShape3D_qfvpl")
+
+[node name="PartyMemberArea2" type="Area3D" parent="DemonPOV" groups=["party"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41729, 1, 4.0943)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DemonPOV/PartyMemberArea2" groups=["party"]]
+shape = SubResource("CapsuleShape3D_qfvpl")
+
+[node name="PartyMemberArea3" type="Area3D" parent="DemonPOV" groups=["party"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4789, 1, 4.14506)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DemonPOV/PartyMemberArea3" groups=["party"]]
+shape = SubResource("CapsuleShape3D_qfvpl")
+
+[node name="CowEnemyArea" type="Area3D" parent="DemonPOV" groups=["enemy"]]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.387, 3.85156, -8.366)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DemonPOV/CowEnemyArea" groups=["enemy"]]
+shape = SubResource("CapsuleShape3D_ke3rd")
+
+[node name="Timer" type="Timer" parent="DemonPOV"]
+
+[node name="DemonPOVCamera" type="Camera3D" parent="DemonPOV"]
+transform = Transform3D(0.914254, -0.278881, 0.293879, 0, 0.725374, 0.688355, -0.405142, -0.629331, 0.663176, 8.067, 22.91, 18.299)
+fov = 35.1
+script = ExtResource("27_7euah")
+joystickSensitivity = 0.75
+horizontalBounds = 25.0
+verticalBounds = 25.0
+
+[node name="RayCast3D" type="RayCast3D" parent="DemonPOV/DemonPOVCamera"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 2.98023e-08, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collide_with_areas = true
+
+[node name="Node2D" type="Node2D" parent="DemonPOV"]
+visible = false
+position = Vector2(576, 322)
+
+[node name="Sprite2D" type="Sprite2D" parent="DemonPOV/Node2D"]
+position = Vector2(0, 5)
+scale = Vector2(1.025, 1.025)
+texture = ExtResource("28_3lxbx")
 
 [node name="field" parent="." instance=ExtResource("4_nwrxv")]
 transform = Transform3D(-100, 0, -8.74228e-06, 0, 100, 0, 8.74228e-06, 0, -100, 0, -0.711262, 0)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.934067, 0.357097, 0, -0.357097, 0.934067, 0, 4.37181, 7.43862)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wxkck")
@@ -69,15 +382,62 @@ light_cull_mask = 4293918720
 [node name="BattleUi" parent="." instance=ExtResource("5_4u33l")]
 
 [node name="ninja" parent="." instance=ExtResource("6_7k3qa")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 5, 0, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 5, 0.0644214, 0)
 
 [node name="summner" parent="." instance=ExtResource("8_cbrtx")]
 
 [node name="clod" parent="." instance=ExtResource("8_jlyle")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -5, 0.13463, 0)
 
+[node name="CamPivot" type="Node3D" parent="."]
+transform = Transform3D(0.66262, 0.743687, 0.0886793, 0, 0.118404, -0.992965, -0.748956, 0.657959, 0.0784568, 5.1462, 9.78564, 4.71565)
+
+[node name="Camera3D" type="Camera3D" parent="CamPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.892436, 0.451174, 0, -0.451174, 0.892436, 0, 9.8859, 16.8582)
+current = true
+fov = 28.6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": ExtResource("32_nqc5j")
+}
+autoplay = "opening_shot"
+next/darken = &"rune_game_intro"
+
+[node name="Hellmouth" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -16.642)
+mesh = SubResource("SphereMesh_cissp")
+skeleton = NodePath("../insect")
+
+[node name="minor_taur3" parent="." instance=ExtResource("35_nafy3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.6887)
+visible = false
+
+[node name="insect" parent="." instance=ExtResource("29_nihqw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.92156, 15)
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_b207g")
+stream = ExtResource("32_flvxb")
 autoplay = true
 
+[node name="CastGlow" parent="." instance=ExtResource("32_calca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.154837, 0.886929, 0.0463009)
+emitting = false
+
+[node name="CastParticles" parent="CastGlow" instance=ExtResource("37_mxjci")]
+emitting = false
+
+[connection signal="failed" from="RuneBook" to="." method="game_over"]
+[connection signal="succeeded" from="RuneBook" to="." method="_on_rune_book_succeeded"]
+[connection signal="failed" from="HellGates" to="." method="game_over"]
+[connection signal="succeeded" from="HellGates" to="." method="_on_hell_gates_scene_succeeded"]
+[connection signal="failed" from="SpiritAlign" to="." method="game_over"]
+[connection signal="succeeded" from="SpiritAlign" to="." method="_on_spirit_align_succeeded"]
+[connection signal="area_entered" from="SpiritAlign/DemonSpiritArea" to="SpiritAlign" method="_on_demon_spirit_area_area_entered"]
+[connection signal="area_exited" from="SpiritAlign/DemonSpiritArea" to="SpiritAlign" method="_on_demon_spirit_area_area_exited"]
+[connection signal="succeeded" from="DemonPOV" to="." method="_on_demon_pov_succeeded"]
+[connection signal="input_event" from="DemonPOV/PartyMemberArea" to="DemonPOV" method="_on_party_member_area_input_event"]
+[connection signal="input_event" from="DemonPOV/PartyMemberArea2" to="DemonPOV" method="_on_party_member_area_2_input_event"]
+[connection signal="input_event" from="DemonPOV/PartyMemberArea3" to="DemonPOV" method="_on_party_member_area_3_input_event"]
+[connection signal="input_event" from="DemonPOV/CowEnemyArea" to="DemonPOV" method="_on_cow_enemy_area_input_event"]
 [connection signal="summoner_died" from="BattleUi" to="." method="game_over"]

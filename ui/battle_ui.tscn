@@ -32,12 +32,12 @@ cure_button = NodePath("HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContain
 cure_all_button = NodePath("HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer/CureAll")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -74.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
@@ -45,14 +45,17 @@ alignment = 1
 [node name="Panel" type="Panel" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 7.0
 offset_right = -7.0
+offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -80,7 +83,7 @@ alignment = 2
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.6
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/WhiteMagicList"]
 visible = false
@@ -88,9 +91,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 3.0
-offset_right = -3.0
-offset_bottom = -3.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = -10.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../../Panel/VBoxContainer/Summon")
@@ -183,6 +187,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
+alignment = 1
 
 [node name="Name" type="Label" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina"]
 layout_mode = 2
@@ -193,11 +198,13 @@ text = "Mina"
 [node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 value = 100.0
 
 [node name="ProgressBar2" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 theme_type_variation = &"MpBar"
 value = 100.0
 script = ExtResource("3_83q0m")
@@ -224,12 +231,14 @@ text = "Xinx"
 [node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 value = 100.0
 script = ExtResource("3_83q0m")
 
 [node name="ProgressBar2" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 theme_type_variation = &"MpBar"
 step = 1.0
 value = 1.0
@@ -256,12 +265,14 @@ text = "Clod"
 [node name="ProgressBar2" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 step = 1.0
 value = 100.0
 
 [node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 theme_type_variation = &"MpBar"
 value = 4.0
 script = ExtResource("3_83q0m")

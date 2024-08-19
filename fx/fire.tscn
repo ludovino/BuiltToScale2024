@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvs31f7ljy77i"]
+
+[ext_resource type="Texture2D" uid="uid://btfo87pcse2o3" path="res://fx/textures/fire_01.png" id="1_w6wns"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_al2t7"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_w6wns")
+texture_filter = 2
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_jikde"]
+material = SubResource("StandardMaterial3D_al2t7")
+
+[sub_resource type="Curve" id="Curve_w2q3w"]
+_data = [Vector2(0, 0), 0.0, 19.2941, 0, 0, Vector2(0.0647321, 0.868907), 0.0, 0.0, 0, 0, Vector2(1, 0.268067), -1.02619, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_j0csn"]
+offsets = PackedFloat32Array(0.00714286, 0.0404762, 0.52381, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0.68, 0.5134, 0.3944, 0.913725, 0.4, 0.197, 0.052, 0.294118)
+
+[sub_resource type="Gradient" id="Gradient_573as"]
+colors = PackedColorArray(1, 0.692, 0.12, 1, 1, 0.4, 0.1, 1)
+
+[node name="Fire" type="CPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.154837, 4.79372, 0.0463009)
+lifetime = 0.5
+fixed_fps = 30
+mesh = SubResource("QuadMesh_jikde")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 0.0
+emission_ring_inner_radius = 10.0
+direction = Vector3(0, 1, 0)
+spread = 18.07
+gravity = Vector3(0, 10, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+angle_max = 360.0
+scale_amount_min = 30.0
+scale_amount_max = 30.0
+scale_amount_curve = SubResource("Curve_w2q3w")
+color_ramp = SubResource("Gradient_j0csn")
+color_initial_ramp = SubResource("Gradient_573as")

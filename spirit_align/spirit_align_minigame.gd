@@ -26,8 +26,20 @@ var spirits_aligned : bool
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	progress_line.max_value = goal_time
-	pass # Replace with function body.
+	process_mode = ProcessMode.PROCESS_MODE_DISABLED
+	$DemonSpiritArea.visible = false
+	visible = false
 
+func teardown():
+	progress_line.max_value = goal_time
+	process_mode = ProcessMode.PROCESS_MODE_DISABLED
+	$DemonSpiritArea.visible = false
+	visible = false
+
+func start() -> void:
+	visible = true
+	$DemonSpiritArea.visible = true
+	process_mode = PROCESS_MODE_PAUSABLE
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -1,43 +1,34 @@
 extends Node3D
 
-@export var minigame_scenes: Array[PackedScene]
-var minigames: Array[Minigame] = []
-var index := 0
-var current: Minigame
-
 @export var battle_ui : CanvasItem
 
-func _ready() -> void:
-	for scene in minigame_scenes:
-		minigames.append(scene.instantiate())
-	start()
-	
-func start() -> void:
-	current = minigames[index]
-	current.succeeded.connect(next)
-	current.failed.connect(game_over)
-	battle_ui.visible = !minigames[index].battle_ui_disabled
-	add_child(current)
-
-func _teardown_current() -> void:
-	current.succeeded.disconnect(next)
-	current.failed.disconnect(game_over)
-	remove_child(current)
-	
-
-func next() -> void:
-	_teardown_current()
-	index += 1
-	if index >= minigames.size():
-		victory()
-		return
-	start()
-	
 func victory() -> void:
-	print("YOU WIN")
 	get_tree().change_scene_to_file("res://ui/victory_screen_ui/victory_screen_ui.tscn")
 
 func game_over() -> void:
-	_teardown_current()
-	print("GAME OVER")
 	get_tree().change_scene_to_file("res://ui/game_over_ui/game_over_ui.tscn")
+
+func start() -> void:
+	$AnimationPlayer.play("opening_shot")
+	$AnimationPlayer.queue("casting")
+	$AnimationPlayer.queue("rune_intro")
+	$AnimationPlayer.queue("rune_play")
+
+func _on_rune_book_succeeded() -> void:
+	$AnimationPlayer.play("rune_win")
+	$AnimationPlayer.queue("gates_intro")
+	$AnimationPlayer.queue("gates_play")
+
+func _on_hell_gates_scene_succeeded() -> void:
+	$AnimationPlayer.play("gates_win")
+	$AnimationPlayer.queue("spirit_intro")
+	$AnimationPlayer.queue("spirit_play")
+
+func _on_demon_pov_succeeded() -> void:
+	$AnimationPlayer.play("insect_kill")
+	$AnimationPlayer.animation_finished.connect(victory)
+
+func _on_spirit_align_succeeded() -> void:
+	$AnimationPlayer.play("spirit_win")
+	$AnimationPlayer.queue("demon_intro")
+	$AnimationPlayer.queue("demon_play")

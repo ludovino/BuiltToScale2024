@@ -13,13 +13,14 @@ fractal_octaves = 2
 fractal_lacunarity = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_djd2j"]
+radius = 5.13873
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mq2xc"]
 
 [node name="SpiritAlignScene3d" type="Node3D" node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area", "progress_line")]
 script = ExtResource("1_ll5ol")
-demon_spirit_point_a = Vector2(213, 156)
-demon_spirit_point_b = Vector2(900, 491)
+demon_spirit_point_a = Vector2(60, 60)
+demon_spirit_point_b = Vector2(460, 210)
 demon_spirit_area = NodePath("DemonSpiritArea")
 player_spirit_area = NodePath("PlayerSpiritArea")
 demon_spirit_speed = 30.0
@@ -29,18 +30,37 @@ goal_time = 10.0
 time_limit = 30.0
 progress_line = NodePath("TextureProgressBar")
 
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(0, 30)
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.341
+offset_left = -75.0
+offset_right = 1077.0
+offset_bottom = 92.0
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_value = 10.0
+step = 0.05
+value = 1.2
+texture_under = ExtResource("3_uhv2x")
+texture_progress = ExtResource("4_uyd1w")
+
 [node name="DemonSpiritArea" type="Area2D" parent="."]
-position = Vector2(213, 315)
+position = Vector2(202, 160)
 scale = Vector2(14.045, 14.045)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DemonSpiritArea"]
 shape = SubResource("CircleShape2D_djd2j")
 
 [node name="Sprite2D" type="Sprite2D" parent="DemonSpiritArea"]
-scale = Vector2(0.03, 0.03)
+scale = Vector2(0.0142213, 0.0142213)
 texture = ExtResource("2_6c612")
 
 [node name="PlayerSpiritArea" type="Area2D" parent="."]
+visible = false
 position = Vector2(213, 315)
 scale = Vector2(5, 5)
 
@@ -48,18 +68,9 @@ scale = Vector2(5, 5)
 shape = SubResource("CircleShape2D_mq2xc")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerSpiritArea"]
+position = Vector2(24.8, -23.2)
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("3_5ojf1")
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_left = 1.0
-offset_right = 649.0
-offset_bottom = 52.0
-max_value = 10.0
-step = 0.05
-value = 1.2
-texture_under = ExtResource("3_uhv2x")
-texture_progress = ExtResource("4_uyd1w")
 
 [connection signal="area_entered" from="DemonSpiritArea" to="." method="_on_demon_spirit_area_area_entered"]
 [connection signal="area_exited" from="DemonSpiritArea" to="." method="_on_demon_spirit_area_area_exited"]

@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dl4puk15m30hq"]
+
+[ext_resource type="Texture2D" uid="uid://bmp4yvrsyyw2l" path="res://fx/textures/star_07.png" id="1_1itud"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6e2j"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.92, 0.87492, 0.7268, 1)
+albedo_texture = ExtResource("1_1itud")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_g3sqs"]
+material = SubResource("StandardMaterial3D_l6e2j")
+
+[sub_resource type="Curve" id="Curve_gc78g"]
+_data = [Vector2(0, 0.833983), 0.0, 0.0, 0, 0, Vector2(1, 0.424644), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ad6ln"]
+offsets = PackedFloat32Array(0.619048, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="CastParticles" type="CPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.674408, 0)
+mesh = SubResource("QuadMesh_g3sqs")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 3.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 1, 0)
+spread = 5.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 2.0
+linear_accel_min = -1.02
+scale_amount_curve = SubResource("Curve_gc78g")
+color_ramp = SubResource("Gradient_ad6ln")
