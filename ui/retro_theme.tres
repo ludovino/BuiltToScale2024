@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=18 format=3 uid="uid://c7islvxpjqnki"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://c7islvxpjqnki"]
 
 [ext_resource type="StyleBox" uid="uid://c5tu08sfktfmq" path="res://ui/button_focus.tres" id="1_8ovcp"]
 [ext_resource type="FontFile" uid="uid://keg4gg372w8v" path="res://ui/fonts/Nicety.ttf" id="1_qsusf"]
@@ -16,6 +16,16 @@ content_margin_right = 1.0
 content_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ey5dg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w4xcp"]
+bg_color = Color(0.466667, 0, 0, 0.94902)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 2
+expand_margin_top = 1.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fy2c2"]
 texture = ExtResource("4_1r4jk")
@@ -69,10 +79,11 @@ content_margin_left = 2.0
 content_margin_right = 1.0
 draw_center = false
 border_width_left = 1
+border_width_top = 1
 border_width_right = 1
+border_width_bottom = 1
 expand_margin_left = 1.0
 expand_margin_top = 1.0
-expand_margin_bottom = 1.0
 
 [resource]
 Button/font_sizes/font_size = 8
@@ -80,6 +91,7 @@ Button/fonts/font = ExtResource("1_qsusf")
 Button/styles/disabled = SubResource("StyleBoxEmpty_21t2i")
 Button/styles/focus = ExtResource("1_8ovcp")
 Button/styles/normal = SubResource("StyleBoxEmpty_ey5dg")
+Button/styles/pressed = SubResource("StyleBoxFlat_w4xcp")
 Label/colors/font_outline_color = Color(0.201527, 0.201527, 0.201527, 1)
 Label/constants/outline_size = 4
 Label/font_sizes/font_size = 8
