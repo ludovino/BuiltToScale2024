@@ -156,9 +156,12 @@ radiance_size = 2
 [sub_resource type="Environment" id="Environment_wxkck"]
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 0.0
 sky = SubResource("Sky_txaos")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.55
+ambient_light_energy = 0.76
 
 [sub_resource type="SphereMesh" id="SphereMesh_cissp"]
 material = ExtResource("34_qdphv")
@@ -387,7 +390,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 5, 0.0644214, 0)
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -5, 0.13463, 0)
 
 [node name="CamPivot" type="Node3D" parent="."]
-transform = Transform3D(0.953717, 0.0262083, 0.299561, 0, 0.996195, -0.0871563, -0.300705, 0.0831224, 0.950088, 4.40983, 8.63699, -0.568514)
+transform = Transform3D(0.66262, 0.743687, 0.0886793, 0, 0.118404, -0.992965, -0.748956, 0.657959, 0.0784568, 5.1462, 9.78564, 4.71565)
 
 [node name="Camera3D" type="Camera3D" parent="CamPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.892436, 0.451174, 0, -0.451174, 0.892436, 0, 9.8859, 16.8582)

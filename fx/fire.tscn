@@ -4,8 +4,10 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_al2t7"]
 transparency = 1
+shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_w6wns")
+texture_filter = 2
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -29,7 +31,7 @@ colors = PackedColorArray(1, 0.692, 0.12, 1, 1, 0.4, 0.1, 1)
 [node name="Fire" type="CPUParticles3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.154837, 4.79372, 0.0463009)
 lifetime = 0.5
-fixed_fps = 15
+fixed_fps = 30
 mesh = SubResource("QuadMesh_jikde")
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://p1tl4yfhc40a"]
+[gd_scene load_steps=4 format=3 uid="uid://p1tl4yfhc40a"]
 
 [ext_resource type="PackedScene" uid="uid://l2cnlhbg1b3b" path="res://battle/models/minotaur/minor_taur3.glb" id="1_li7cp"]
 [ext_resource type="Script" path="res://battle/models/minotaur/minor_taur_3.gd" id="2_0xj2f"]
+[ext_resource type="PackedScene" uid="uid://dvs31f7ljy77i" path="res://fx/fire.tscn" id="3_xcdpf"]
 
 [node name="minor_taur3" instance=ExtResource("1_li7cp")]
 script = ExtResource("2_0xj2f")
@@ -28,3 +29,14 @@ bones/18/rotation = Quaternion(-0.513959, -9.30484e-10, 0.0538124, 0.856125)
 bones/19/rotation = Quaternion(0.00697328, -0.000229876, 0.121977, 0.992508)
 bones/20/rotation = Quaternion(0.389424, 5.6229e-08, -0.0920514, 0.916447)
 bones/21/rotation = Quaternion(-0.513959, 9.30484e-10, -0.0538124, 0.856125)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, -7.10543e-15, -4.76837e-07, -3.00963e-07, 0.775648, -0.631165, 3.69858e-07, 0.631165, 0.775648, -5.76359e-14, -6.94485, 0.683192)
+bone_name = "Spine.003"
+bone_idx = 4
+
+[node name="Fire" parent="Armature/Skeleton3D/BoneAttachment3D" index="0" instance=ExtResource("3_xcdpf")]
+transform = Transform3D(1, -4.70086e-07, -7.99576e-08, 0, -0.167683, 0.985841, -4.76837e-07, -0.985841, -0.167683, -0.154839, -0.468837, -3.77011)
+emission_ring_inner_radius = 5.0
+scale_amount_min = 10.0
+scale_amount_max = 15.0
