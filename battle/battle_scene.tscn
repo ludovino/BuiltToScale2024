@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://yavtuvbed3fv"]
+[gd_scene load_steps=76 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
 [ext_resource type="Script" path="res://rune_book/rune_book.gd" id="2_47ykl"]
@@ -25,6 +25,9 @@
 [ext_resource type="Material" uid="uid://ccmioh5nfsc2n" path="res://rune_book/materials/page_material.tres" id="18_5jxuc"]
 [ext_resource type="AudioStream" uid="uid://be86m1quddh8s" path="res://rune_book/RuneSelect.wav" id="19_e5jm4"]
 [ext_resource type="Script" path="res://hell_gates/hell_gates_minigame.gd" id="20_8xhay"]
+[ext_resource type="Script" path="res://spirit_align/spirit_align_minigame.gd" id="24_lfg1a"]
+[ext_resource type="Texture2D" uid="uid://cyl6icwvdxrjd" path="res://spirit_align/textures/demon_spirit_circle_big.png" id="25_4vxb4"]
+[ext_resource type="Texture2D" uid="uid://bgfui672of06x" path="res://spirit_align/textures/player_spirit_circle_big.png" id="26_jkld7"]
 [ext_resource type="Script" path="res://demon_pov/demon_pov_minigame.gd" id="26_rxpxb"]
 [ext_resource type="Script" path="res://demon_pov/demon_pov_camera.gd" id="27_7euah"]
 [ext_resource type="Texture2D" uid="uid://eeohhk1v51rk" path="res://focus.png" id="28_3lxbx"]
@@ -103,6 +106,17 @@ size = Vector3(1, 0.1, 1.3)
 material = ExtResource("18_5jxuc")
 size = Vector3(0.9, 0.1, 1.2)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i1ket"]
+seed = 20
+frequency = 0.022
+fractal_octaves = 2
+fractal_lacunarity = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_djd2j"]
+radius = 5.13873
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mq2xc"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qfvpl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ke3rd"]
@@ -148,7 +162,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:fov")
+tracks/0/path = NodePath("CamPivot/Camera3D:fov")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -160,7 +174,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D:position")
+tracks/1/path = NodePath("CamPivot/Camera3D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -172,7 +186,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Camera3D:rotation")
+tracks/2/path = NodePath("CamPivot/Camera3D:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -416,7 +430,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Camera3D:position")
+tracks/4/path = NodePath("CamPivot:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -428,7 +442,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Camera3D:rotation")
+tracks/5/path = NodePath("CamPivot:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -462,13 +476,131 @@ tracks/7/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 0.31, 0.31, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_n6voi"]
+resource_name = "rune_win"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RuneBook/DesiredContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RuneBook/DesiredContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.5545, 0.19, 0.682353), Color(1, 1, 1, 0.556863), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xyt78"]
+resource_name = "start_gates"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CamPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.73333, 6.2),
+"transitions": PackedFloat32Array(2, -2, -2),
+"update": 0,
+"values": [Vector3(4.9637, 1.53731, 19.6516), Vector3(6.13969, 8.73968, 0.686574), Vector3(4.40983, 8.63699, -0.568514)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CamPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.9, 6.33333),
+"transitions": PackedFloat32Array(2, -2, -2),
+"update": 0,
+"values": [Vector3(0.14399, 0.239982, 0), Vector3(-0.671951, 0.418878, 0), Vector3(0.087267, 0.305432, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hellmouth:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hellmouth:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 7.9),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hellmouth:mesh:material:albedo_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5.86667, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.218445, 0.0333373, 0.0285276, 1), Color(0.218445, 0.0333373, 0.0285276, 1), Color(0.22, 0.03498, 0.0286, 0)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("minor_taur3")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.266667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"climb"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CamPivot/Camera3D:fov")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.73333, 5.86667, 7.76667),
+"transitions": PackedFloat32Array(1, -2, -2, 1),
+"update": 0,
+"values": [28.6, 41.8, 35.2, 75.0]
+}
+
 [sub_resource type="Animation" id="Animation_bylat"]
 resource_name = "rune_game_intro"
 length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
+tracks/0/path = NodePath("CamPivot:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -480,7 +612,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/path = NodePath("CamPivot:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -567,32 +699,44 @@ tracks/7/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_n6voi"]
-resource_name = "rune_win"
-length = 0.7
+[sub_resource type="Animation" id="Animation_pvrf3"]
+resource_name = "start_game"
+length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RuneBook/DesiredContainer:scale")
+tracks/0/path = NodePath("CamPivot:fov")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+"values": [28.6, 75.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("RuneBook/DesiredContainer:modulate")
+tracks/1/path = NodePath("CamPivot:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 0.5545, 0.19, 0.682353), Color(1, 1, 1, 0.556863), Color(1, 1, 1, 0)]
+"values": [Vector3(0, 9.8859, 16.8582), Vector3(18.0808, 9.8859, -0.362446)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CamPivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(-0.610865, 0, 0), Vector3(-0.46808, 1.9019, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_12edj"]
@@ -601,7 +745,7 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
+tracks/0/path = NodePath("CamPivot:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -613,7 +757,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/path = NodePath("CamPivot:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -637,154 +781,85 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_pvrf3"]
-resource_name = "start_game"
-length = 5.0
+[sub_resource type="Animation" id="Animation_5w12c"]
+resource_name = "rune_play"
+length = 10.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:fov")
+tracks/0/path = NodePath("CamPivot:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(-2, -2, 1),
 "update": 0,
-"values": [28.6, 75.0]
+"values": [Vector3(0.289, 2.282, 4.951), Vector3(0.289107, 2.18189, 4.95071), Vector3(0.289, 2.282, 4.951)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D:position")
+tracks/1/path = NodePath("CamPivot:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 5),
+"times": PackedFloat32Array(0, 10),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 9.8859, 16.8582), Vector3(18.0808, 9.8859, -0.362446)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Camera3D:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [Vector3(-0.610865, 0, 0), Vector3(-0.46808, 1.9019, 0)]
+"values": [Vector3(-1.1301, 3.09359, 0), Vector3(-1.1301, 3.09359, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_xyt78"]
-resource_name = "start_gates"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.73333, 6.2),
-"transitions": PackedFloat32Array(2, -2, -2),
-"update": 0,
-"values": [Vector3(4.9637, 1.53731, 19.6516), Vector3(6.13969, 8.73968, 0.686574), Vector3(4.40983, 8.63699, -0.568514)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.9, 6.33333),
-"transitions": PackedFloat32Array(2, -2, -2),
-"update": 0,
-"values": [Vector3(0.14399, 0.239982, 0), Vector3(-0.671951, 0.418878, 0), Vector3(0.087267, 0.305432, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hellmouth:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Hellmouth:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 7.9),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector3(0, -3.14159, 0), Vector3(0, 0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Hellmouth:mesh:material:albedo_color")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 5.86667, 8),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(0.218445, 0.0333373, 0.0285276, 1), Color(0.218445, 0.0333373, 0.0285276, 1), Color(0.22, 0.03498, 0.0286, 0)]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("minor_taur3")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.266667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"climb"
-}]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Camera3D:fov")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 2.73333, 5.86667, 7.76667),
-"transitions": PackedFloat32Array(1, -2, -2, 1),
-"update": 0,
-"values": [28.6, 41.8, 35.2, 75.0]
-}
+[sub_resource type="Animation" id="Animation_w8icx"]
+resource_name = "gates_play"
+
+[sub_resource type="Animation" id="Animation_iv7mh"]
+resource_name = "gates_win"
+
+[sub_resource type="Animation" id="Animation_mp7kg"]
+resource_name = "spirit_intro"
+
+[sub_resource type="Animation" id="Animation_avta0"]
+resource_name = "spirit_play"
+
+[sub_resource type="Animation" id="Animation_7ymvq"]
+resource_name = "spirit_win"
+
+[sub_resource type="Animation" id="Animation_oye52"]
+resource_name = "demon_intro"
+
+[sub_resource type="Animation" id="Animation_xrxhu"]
+resource_name = "demon_play"
+
+[sub_resource type="Animation" id="Animation_c3i4h"]
+resource_name = "insect_kill"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6mbpe"]
 _data = {
 "RESET": SubResource("Animation_jns1g"),
+"casting": SubResource("Animation_12edj"),
 "darken": SubResource("Animation_man0e"),
-"rune_game_intro": SubResource("Animation_bylat"),
+"demon_intro": SubResource("Animation_oye52"),
+"demon_play": SubResource("Animation_xrxhu"),
+"gates_intro": SubResource("Animation_xyt78"),
+"gates_play": SubResource("Animation_w8icx"),
+"gates_win": SubResource("Animation_iv7mh"),
+"insect_kill": SubResource("Animation_c3i4h"),
+"opening_shot": SubResource("Animation_pvrf3"),
+"rune_intro": SubResource("Animation_bylat"),
+"rune_play": SubResource("Animation_5w12c"),
 "rune_win": SubResource("Animation_n6voi"),
-"start_cast": SubResource("Animation_12edj"),
-"start_game": SubResource("Animation_pvrf3"),
-"start_gates": SubResource("Animation_xyt78")
+"spirit_intro": SubResource("Animation_mp7kg"),
+"spirit_play": SubResource("Animation_avta0"),
+"spirit_win": SubResource("Animation_7ymvq")
 }
 
 [sub_resource type="SphereMesh" id="SphereMesh_cissp"]
 material = ExtResource("34_qdphv")
 radius = 15.0
 
-[node name="Battle" type="Node3D" node_paths=PackedStringArray("minigames", "battle_ui")]
+[node name="Battle" type="Node3D" node_paths=PackedStringArray("battle_ui")]
 script = ExtResource("1_gisox")
-minigames = [NodePath("RuneBook"), NodePath("HellGatesScene"), null, NodePath("DemonPOV")]
 battle_ui = NodePath("BattleUi")
 
 [node name="RuneBook" type="Node3D" parent="." node_paths=PackedStringArray("desired_ui", "game_anim")]
@@ -875,7 +950,7 @@ transform = Transform3D(0.999824, -0.0187441, 0, 0.0187441, 0.999824, 0, 0, 0, 1
 [node name="RuneSelect" type="AudioStreamPlayer" parent="RuneBook"]
 stream = ExtResource("19_e5jm4")
 
-[node name="HellGatesScene" type="Node3D" parent="."]
+[node name="HellGates" type="Node3D" parent="."]
 visible = false
 script = ExtResource("20_8xhay")
 meter_deplete_per_second = 10.0
@@ -883,7 +958,7 @@ button_press_increment = 3.0
 button_meter_goal = 50.0
 time_limit = 30.0
 
-[node name="Label" type="Label" parent="HellGatesScene"]
+[node name="Label" type="Label" parent="HellGates"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -891,6 +966,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "MASH X"
+
+[node name="SpiritAlign" type="Node3D" parent="." node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area", "progress_line")]
+visible = false
+script = ExtResource("24_lfg1a")
+demon_spirit_point_a = Vector2(60, 60)
+demon_spirit_point_b = Vector2(460, 210)
+demon_spirit_area = NodePath("DemonSpiritArea")
+player_spirit_area = NodePath("PlayerSpiritArea")
+demon_spirit_speed = 30.0
+input_sensitivity = 6.0
+noise = SubResource("FastNoiseLite_i1ket")
+goal_time = 10.0
+time_limit = 30.0
+progress_line = NodePath("")
+
+[node name="DemonSpiritArea" type="Area2D" parent="SpiritAlign"]
+position = Vector2(202, 160)
+scale = Vector2(14.045, 14.045)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiritAlign/DemonSpiritArea"]
+shape = SubResource("CircleShape2D_djd2j")
+
+[node name="Sprite2D" type="Sprite2D" parent="SpiritAlign/DemonSpiritArea"]
+scale = Vector2(0.0142213, 0.0142213)
+texture = ExtResource("25_4vxb4")
+
+[node name="PlayerSpiritArea" type="Area2D" parent="SpiritAlign"]
+position = Vector2(213, 315)
+scale = Vector2(5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiritAlign/PlayerSpiritArea"]
+shape = SubResource("CircleShape2D_mq2xc")
+
+[node name="Sprite2D" type="Sprite2D" parent="SpiritAlign/PlayerSpiritArea"]
+position = Vector2(24.8, -23.2)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("26_jkld7")
 
 [node name="DemonPOV" type="Node3D" parent="." node_paths=PackedStringArray("demon_pov_camera", "camera_raycast", "party_member_area_1", "party_member_area_2", "party_member_area_3", "cow_enemy_area")]
 visible = false
@@ -973,7 +1085,10 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 5, 0.0644214, 0)
 [node name="clod" parent="." instance=ExtResource("8_jlyle")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -5, 0.13463, 0)
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="CamPivot" type="Node3D" parent="."]
+transform = Transform3D(0.999962, -0.00280463, 0.00826214, 0, 0.94693, 0.32144, -0.00872519, -0.321428, 0.946894, 0.0341605, 1.32902, 3.91501)
+
+[node name="Camera3D" type="Camera3D" parent="CamPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.892436, 0.451174, 0, -0.451174, 0.892436, 0, 9.8859, 16.8582)
 current = true
 fov = 28.6
@@ -982,10 +1097,8 @@ fov = 28.6
 libraries = {
 "": SubResource("AnimationLibrary_6mbpe")
 }
-autoplay = "start_game"
+autoplay = "opening_shot"
 next/darken = &"rune_game_intro"
-next/start_cast = &"darken"
-next/start_game = &"start_cast"
 
 [node name="Hellmouth" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -16.642)
@@ -1003,6 +1116,15 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.9
 stream = ExtResource("32_flvxb")
 autoplay = true
 
+[connection signal="failed" from="RuneBook" to="." method="game_over"]
+[connection signal="succeeded" from="RuneBook" to="." method="_on_rune_book_succeeded"]
+[connection signal="failed" from="HellGates" to="." method="game_over"]
+[connection signal="succeeded" from="HellGates" to="." method="_on_hell_gates_scene_succeeded"]
+[connection signal="failed" from="SpiritAlign" to="." method="game_over"]
+[connection signal="succeeded" from="SpiritAlign" to="." method="_on_spirit_align_succeeded"]
+[connection signal="area_entered" from="SpiritAlign/DemonSpiritArea" to="SpiritAlign" method="_on_demon_spirit_area_area_entered"]
+[connection signal="area_exited" from="SpiritAlign/DemonSpiritArea" to="SpiritAlign" method="_on_demon_spirit_area_area_exited"]
+[connection signal="succeeded" from="DemonPOV" to="." method="_on_demon_pov_succeeded"]
 [connection signal="input_event" from="DemonPOV/PartyMemberArea" to="DemonPOV" method="_on_party_member_area_input_event"]
 [connection signal="input_event" from="DemonPOV/PartyMemberArea2" to="DemonPOV" method="_on_party_member_area_2_input_event"]
 [connection signal="input_event" from="DemonPOV/PartyMemberArea3" to="DemonPOV" method="_on_party_member_area_3_input_event"]
