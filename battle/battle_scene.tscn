@@ -172,6 +172,7 @@ script = ExtResource("1_gisox")
 battle_ui = NodePath("BattleUi")
 
 [node name="RuneBook" type="Node3D" parent="." node_paths=PackedStringArray("desired_ui", "game_anim")]
+visible = false
 script = ExtResource("2_47ykl")
 runes = Array[ExtResource("3_54ti3")]([ExtResource("4_ve4mc"), ExtResource("5_mnj2b"), ExtResource("6_n04x0"), ExtResource("7_qtv0m"), ExtResource("8_2sbob"), ExtResource("9_opldf"), ExtResource("10_tso1e")])
 page_scene = ExtResource("11_wy318")
@@ -259,6 +260,7 @@ transform = Transform3D(0.999824, -0.0187441, 0, 0.0187441, 0.999824, 0, 0, 0, 1
 stream = ExtResource("19_e5jm4")
 
 [node name="HellGates" type="Node3D" parent="."]
+visible = false
 script = ExtResource("20_8xhay")
 meter_deplete_per_second = 10.0
 button_press_increment = 3.0
@@ -275,6 +277,7 @@ grow_vertical = 2
 text = "MASH X"
 
 [node name="SpiritAlign" type="Node3D" parent="." node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area")]
+visible = false
 script = ExtResource("24_lfg1a")
 demon_spirit_point_a = Vector2(60, 60)
 demon_spirit_point_b = Vector2(460, 210)
@@ -310,6 +313,7 @@ scale = Vector2(0.04, 0.04)
 texture = ExtResource("26_jkld7")
 
 [node name="DemonPOV" type="Node3D" parent="." node_paths=PackedStringArray("demon_pov_camera", "camera_raycast", "party_member_area_1", "party_member_area_2", "party_member_area_3", "cow_enemy_area")]
+visible = false
 script = ExtResource("26_rxpxb")
 demon_pov_camera = NodePath("DemonPOVCamera")
 camera_raycast = NodePath("DemonPOVCamera/RayCast3D")
@@ -390,10 +394,9 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 5, 0.0644214, 0)
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -5, 0.13463, 0)
 
 [node name="CamPivot" type="Node3D" parent="."]
-transform = Transform3D(0.66262, 0.743687, 0.0886793, 0, 0.118404, -0.992965, -0.748956, 0.657959, 0.0784567, 5.1462, 9.78564, 4.71565)
+transform = Transform3D(0.999962, -0.00280463, 0.00826214, 0, 0.94693, 0.32144, -0.00872519, -0.321428, 0.946893, 0.0341605, 1.32902, 3.91501)
 
 [node name="Camera3D" type="Camera3D" parent="CamPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.892436, 0.451174, 0, -0.451174, 0.892436, 0, 9.8859, 16.8582)
 current = true
 fov = 28.6
 
@@ -401,7 +404,6 @@ fov = 28.6
 libraries = {
 "": ExtResource("32_nqc5j")
 }
-autoplay = "opening_shot"
 next/darken = &"rune_game_intro"
 
 [node name="Hellmouth" type="MeshInstance3D" parent="."]

@@ -2,6 +2,9 @@ extends Node3D
 
 @export var battle_ui : CanvasItem
 
+func _ready():
+	start()
+
 func victory() -> void:
 	get_tree().change_scene_to_file("res://ui/victory_screen_ui/victory_screen_ui.tscn")
 
