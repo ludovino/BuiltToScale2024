@@ -277,7 +277,6 @@ grow_vertical = 2
 text = "MASH X"
 
 [node name="SpiritAlign" type="Node3D" parent="." node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area")]
-visible = false
 script = ExtResource("24_lfg1a")
 demon_spirit_point_a = Vector2(60, 60)
 demon_spirit_point_b = Vector2(460, 210)
@@ -372,7 +371,7 @@ scale = Vector2(1.025, 1.025)
 texture = ExtResource("28_3lxbx")
 
 [node name="field" parent="." instance=ExtResource("4_nwrxv")]
-transform = Transform3D(-100, 0, -8.74228e-06, 0, 100, 0, 8.74228e-06, 0, -100, 0, -0.711262, 0)
+transform = Transform3D(-25, 0, -3.7749e-06, 0, 25, 0, 3.7749e-06, 0, -25, 0, -0.711262, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wxkck")

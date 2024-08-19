@@ -17,7 +17,7 @@ radius = 5.13873
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mq2xc"]
 
-[node name="SpiritAlignScene3d" type="Node3D" node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area", "progress_line")]
+[node name="SpiritAlignScene3d" type="Node3D" node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area")]
 script = ExtResource("1_ll5ol")
 demon_spirit_point_a = Vector2(60, 60)
 demon_spirit_point_b = Vector2(460, 210)
@@ -28,7 +28,6 @@ input_sensitivity = 6.0
 noise = SubResource("FastNoiseLite_i1ket")
 goal_time = 10.0
 time_limit = 30.0
-progress_line = NodePath("TextureProgressBar")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 custom_minimum_size = Vector2(0, 30)
@@ -60,7 +59,6 @@ scale = Vector2(0.0142213, 0.0142213)
 texture = ExtResource("2_6c612")
 
 [node name="PlayerSpiritArea" type="Area2D" parent="."]
-visible = false
 position = Vector2(213, 315)
 scale = Vector2(5, 5)
 

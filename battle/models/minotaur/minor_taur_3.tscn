@@ -31,12 +31,12 @@ bones/20/rotation = Quaternion(0.389424, 5.6229e-08, -0.0920514, 0.916447)
 bones/21/rotation = Quaternion(-0.513959, 9.30484e-10, -0.0538124, 0.856125)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, -7.10543e-15, -4.76837e-07, -3.00963e-07, 0.775648, -0.631165, 3.69858e-07, 0.631165, 0.775648, -5.76359e-14, -6.94485, 0.683192)
+transform = Transform3D(1, 1.13687e-13, -4.76837e-07, -3.00963e-07, 0.775649, -0.631164, 3.69858e-07, 0.631164, 0.775649, -1.01474e-14, -6.94484, 0.683183)
 bone_name = "Spine.003"
 bone_idx = 4
 
 [node name="Fire" parent="Armature/Skeleton3D/BoneAttachment3D" index="0" instance=ExtResource("3_xcdpf")]
-transform = Transform3D(1, -4.70086e-07, -7.99576e-08, 0, -0.167683, 0.985841, -4.76837e-07, -0.985841, -0.167683, -0.154839, -0.468837, -3.77011)
+transform = Transform3D(2, -4.71323e-07, -6.52981e-08, -2.93186e-08, -0.167683, 0.985841, -9.51199e-07, -0.985841, -0.167683, -0.154839, -0.468837, -3.77011)
 emission_ring_inner_radius = 5.0
 scale_amount_min = 10.0
 scale_amount_max = 15.0
