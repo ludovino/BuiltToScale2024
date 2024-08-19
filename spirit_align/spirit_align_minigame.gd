@@ -20,18 +20,14 @@ var spirit_align_seconds : float
 
 var spirits_aligned : bool
 
-@export var progress_line : TextureProgressBar
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	progress_line.max_value = goal_time
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	$DemonSpiritArea.visible = false
 	visible = false
 
 func teardown():
-	progress_line.max_value = goal_time
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	$DemonSpiritArea.visible = false
 	visible = false
@@ -48,8 +44,6 @@ func _process(delta: float) -> void:
 	#track align progress
 	if spirits_aligned:
 		spirit_align_seconds += delta
-		
-	progress_line.value = spirit_align_seconds
 		
 	if spirit_align_seconds >= goal_time:
 		succeeded.emit()
