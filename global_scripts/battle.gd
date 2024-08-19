@@ -19,12 +19,10 @@ func _on_rune_book_succeeded() -> void:
 	$AnimationPlayer.queue("gates_intro")
 	$AnimationPlayer.queue("gates_play")
 
-
 func _on_hell_gates_scene_succeeded() -> void:
 	$AnimationPlayer.play("gates_win")
 	$AnimationPlayer.queue("spirit_intro")
 	$AnimationPlayer.queue("spirit_play")
-
 
 func _on_demon_pov_succeeded() -> void:
 	$AnimationPlayer.play("insect_kill")

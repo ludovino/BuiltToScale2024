@@ -17,16 +17,20 @@ uniform vec3 uv1_offset;
 uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 
+varying vec4 vertex_color;
+
+
 void vertex() {
 	UV = UV * uv1_scale.xy + uv1_offset.xy;
+	vertex_color = COLOR;
 }
 
 void fragment() {
 	vec2 base_uv = UV + TIME * time_scale;
 	float noise_tex = texture(texture_noise, base_uv).r;
 	float grad_tex = texture(texture_gradient, UV).r;
-	ALBEDO = albedo.rgb;
-	ALPHA = noise_tex * grad_tex * albedo.a;
+	ALBEDO = albedo.rgb * vertex_color.rgb;
+	ALPHA = noise_tex * grad_tex * albedo.a * vertex_color.a;
 	METALLIC = 0.0;
 	SPECULAR = 0.0;
 
