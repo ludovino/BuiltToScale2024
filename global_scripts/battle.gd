@@ -25,10 +25,15 @@ func next() -> void:
 	_teardown_current()
 	index += 1
 	if index >= minigames.size():
-		print("YOU WIN")
+		victory()
 		return
 	start()
+	
+func victory() -> void:
+	print("YOU WIN")
+	get_tree().change_scene_to_file("res://ui/victory_screen_ui/victory_screen_ui.tscn")
 
 func game_over() -> void:
 	_teardown_current()
 	print("GAME OVER")
+	get_tree().change_scene_to_file("res://ui/game_over_ui/game_over_ui.tscn")

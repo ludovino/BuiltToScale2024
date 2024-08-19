@@ -1,0 +1,116 @@
+[gd_scene load_steps=3 format=3 uid="uid://746v0byhac10"]
+
+[ext_resource type="Theme" uid="uid://c7islvxpjqnki" path="res://ui/retro_theme.tres" id="1_wydlt"]
+[ext_resource type="Script" path="res://ui/credits_ui/credits_ui.gd" id="2_sqjrs"]
+
+[node name="CreditsUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_wydlt")
+script = ExtResource("2_sqjrs")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+offset_left = 186.0
+offset_top = 10.0
+offset_right = 286.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 2.0
+offset_right = 80.0
+offset_bottom = 42.0
+text = "CREDITS"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 49.0
+offset_right = 387.0
+offset_bottom = 215.0
+
+[node name="Panel2" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel2"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 2.0
+offset_right = 347.0
+offset_bottom = 42.0
+text = "Olly: Code, Design, SFX"
+
+[node name="Panel3" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel3"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 2.0
+offset_right = 258.0
+offset_bottom = 42.0
+text = "Vivian: 3D Art, Animation"
+
+[node name="Panel4" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel4"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 2.0
+offset_right = 246.0
+offset_bottom = 42.0
+text = "Joseph: Code"
+
+[node name="Panel5" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel5"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 2.0
+offset_right = 238.0
+offset_bottom = 42.0
+text = "Tina: Additional Design"
+
+[node name="Panel6" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 39.21)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel6"]
+layout_mode = 0
+offset_left = -59.0
+offset_top = 2.0
+offset_right = 566.0
+offset_bottom = 51.0
+scale = Vector2(0.675, 0.675)
+text = "'Battle Theme A' from PixelSphere by The Cynic Project - 
+cynicmusic.com pixelsphere.org"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 0
+offset_left = 99.0
+offset_top = 232.0
+offset_right = 379.0
+offset_bottom = 262.0
+
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 2.0
+offset_right = 266.0
+offset_bottom = 42.0
+text = "Press A To Continue, Press B To Quit"

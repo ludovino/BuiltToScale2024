@@ -1,0 +1,114 @@
+[gd_scene load_steps=8 format=3 uid="uid://ds6n05claw7lt"]
+
+[ext_resource type="Theme" uid="uid://c7islvxpjqnki" path="res://ui/retro_theme.tres" id="1_85vt4"]
+[ext_resource type="Script" path="res://ui/game_over_ui/game_over_ui.gd" id="2_ceet1"]
+[ext_resource type="Texture2D" uid="uid://cnpxvuavorat0" path="res://ui/game_over_ui/textures/minotaur_render.png" id="3_boweh"]
+[ext_resource type="Texture2D" uid="uid://bjne21bcdk32m" path="res://ui/game_over_ui/textures/game_over_lowcol.png" id="3_cnykl"]
+
+[sub_resource type="Animation" id="Animation_1t6km"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/MinotaurRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m6346"]
+resource_name = "game_over_fade"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/MinotaurRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.06667, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"enable_controls"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x4a6w"]
+_data = {
+"RESET": SubResource("Animation_1t6km"),
+"game_over_fade": SubResource("Animation_m6346")
+}
+
+[node name="GameOverUi" type="Control" node_paths=PackedStringArray("animPlayer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_85vt4")
+script = ExtResource("2_ceet1")
+animPlayer = NodePath("AnimationPlayer")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 460.0
+offset_bottom = 270.0
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_cnykl")
+
+[node name="GameOverLabel" type="Label" parent="Panel/TextureRect"]
+visible = false
+layout_mode = 0
+offset_left = 162.0
+offset_top = 73.0
+offset_right = 293.0
+offset_bottom = 106.0
+theme = ExtResource("1_85vt4")
+theme_type_variation = &"HeaderMedium"
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="ContinueLabel" type="Label" parent="Panel/TextureRect"]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 125.0
+offset_right = 318.0
+offset_bottom = 184.0
+theme = ExtResource("1_85vt4")
+theme_type_variation = &"HeaderSmall"
+text = "Press A To Retry
+Press B To Quit"
+horizontal_alignment = 1
+
+[node name="MinotaurRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_right = 460.0
+offset_bottom = 270.0
+texture = ExtResource("3_boweh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x4a6w")
+}
