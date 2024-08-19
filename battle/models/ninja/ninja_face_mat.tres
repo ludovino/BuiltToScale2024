@@ -8,4 +8,5 @@ diffuse_mode = 3
 specular_mode = 2
 albedo_texture = ExtResource("1_56o6n")
 metallic_specular = 0.0
+texture_filter = 0
 texture_repeat = false
