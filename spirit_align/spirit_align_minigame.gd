@@ -12,7 +12,8 @@ var seconds_passed : float
 @export var input_sensitivity : float
 
 @export var noise : Noise
-
+@export var initial_demon_color : Color
+@export var final_demon_color : Color
 var spirit_align_seconds : float
 
 @export var goal_time : float
@@ -26,6 +27,7 @@ func _ready() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	$DemonSpiritArea.visible = false
 	visible = false
+	start()
 
 func teardown():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
@@ -46,7 +48,17 @@ func _process(delta: float) -> void:
 		spirit_align_seconds += delta
 		
 	if spirit_align_seconds >= goal_time:
+		$DemonSpiritArea/DemonShadow.emitting = false
 		succeeded.emit()
+		var tween = get_tree().create_tween()
+		tween.set_parallel()
+		tween.tween_property($DimCam, "modulate", Color.TRANSPARENT, 3.0)
+		tween.tween_property(demon_spirit_area, "position",Vector2(230.0, 100.0), 2.0)
+		tween.tween_property(player_spirit_area, "position", Vector2(230.0, 100.0), 1.0)
+		tween.tween_property(player_spirit_area, "modulate", Color.TRANSPARENT, 1.0)
+		tween.chain()
+		tween.tween_property(demon_spirit_area, "modulate", Color.TRANSPARENT, 1.0)
+		
 		return
 		
 	if seconds_passed >= time_limit:
@@ -67,11 +79,21 @@ func _process(delta: float) -> void:
 	var new_player_pos = Vector2(player_spirit_area.global_position.x + velocity.x,
 	player_spirit_area.global_position.y + velocity.y)
 	
-	new_player_pos.x = clamp(new_player_pos.x, 0.0, 1152.0)
-	new_player_pos.y = clamp(new_player_pos.y, 0.0, 648.0)
+	new_player_pos.x = clamp(new_player_pos.x, demon_spirit_point_a.x, demon_spirit_point_b.x)
+	new_player_pos.y = clamp(new_player_pos.y, demon_spirit_point_a.y, demon_spirit_point_b.y)
 	
+	if not velocity.is_zero_approx():
+		player_spirit_area.look_at(new_player_pos)
+	else:
+		player_spirit_area.look_at(player_spirit_area.global_position + Vector2.UP)
 	player_spirit_area.global_position = new_player_pos
-
+	
+	var color_t = 0.5 + fposmod(Time.get_ticks_msec() * 0.001,0.5) if spirits_aligned \
+	else spirit_align_seconds / goal_time
+	var demon_color : Color = lerp(initial_demon_color, final_demon_color, color_t)
+	
+	$DemonSpiritArea/DemonShadow.color = demon_color
+	$DemonSpiritArea/DemonSprite.modulate = demon_color
 
 func _on_demon_spirit_area_area_entered(area: Area2D) -> void:
 	if(area == player_spirit_area):
