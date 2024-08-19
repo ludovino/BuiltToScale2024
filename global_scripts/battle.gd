@@ -14,6 +14,7 @@ func game_over() -> void:
 func start() -> void:
 	$AnimationPlayer.play("opening_shot")
 	$AnimationPlayer.queue("casting")
+	$AnimationPlayer.queue("darken")
 	$AnimationPlayer.queue("rune_intro")
 	$AnimationPlayer.queue("rune_play")
 

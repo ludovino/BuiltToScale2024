@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://yavtuvbed3fv"]
+[gd_scene load_steps=82 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
 [ext_resource type="Script" path="res://rune_book/rune_book.gd" id="2_47ykl"]
@@ -25,6 +25,7 @@
 [ext_resource type="Material" uid="uid://ccmioh5nfsc2n" path="res://rune_book/materials/page_material.tres" id="18_5jxuc"]
 [ext_resource type="AudioStream" uid="uid://be86m1quddh8s" path="res://rune_book/RuneSelect.wav" id="19_e5jm4"]
 [ext_resource type="Script" path="res://hell_gates/hell_gates_minigame.gd" id="20_8xhay"]
+[ext_resource type="PackedScene" uid="uid://8x775nnkbgdn" path="res://fx/pentagram.tscn" id="21_35dvx"]
 [ext_resource type="Script" path="res://spirit_align/spirit_align_minigame.gd" id="24_lfg1a"]
 [ext_resource type="Texture2D" uid="uid://cyl6icwvdxrjd" path="res://spirit_align/textures/demon_spirit_circle_big.png" id="25_4vxb4"]
 [ext_resource type="Texture2D" uid="uid://bgfui672of06x" path="res://spirit_align/textures/player_spirit_circle_big.png" id="26_jkld7"]
@@ -423,6 +424,7 @@ transform = Transform3D(0.999824, -0.0187441, 0, 0.0187441, 0.999824, 0, 0, 0, 1
 stream = ExtResource("19_e5jm4")
 
 [node name="HellGates" type="Node3D" parent="." node_paths=PackedStringArray("hell_mouth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.4889)
 visible = false
 script = ExtResource("20_8xhay")
 meter_deplete_per_second = 5.0
@@ -440,6 +442,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "MASH X"
+
+[node name="Pentagram" parent="HellGates" instance=ExtResource("21_35dvx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -9.16918)
+lifetime = 9.0
 
 [node name="SpiritAlign" type="Node3D" parent="." node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area")]
 visible = false
@@ -559,7 +565,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 5, 0.0644214, 0)
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -5, 0.13463, 0)
 
 [node name="CamPivot" type="Node3D" parent="."]
-transform = Transform3D(0.999962, -0.00280463, 0.00826213, 0, 0.94693, 0.32144, -0.00872519, -0.321428, 0.946893, 0.0341605, 1.32902, 3.91501)
+transform = Transform3D(0.971343, 0.0341061, 0.235225, 0, 0.989651, -0.143493, -0.237685, 0.139381, 0.96129, 4.9637, 1.53731, 19.6516)
 
 [node name="Camera3D" type="Camera3D" parent="CamPivot"]
 current = true
@@ -599,7 +605,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.13945, 0)
 mesh = SubResource("CylinderMesh_8w7xe")
 
 [node name="minor_taur3" parent="." instance=ExtResource("35_nafy3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.6887)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.689)
 visible = false
 
 [node name="insect" parent="." instance=ExtResource("29_nihqw")]
