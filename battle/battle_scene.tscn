@@ -156,7 +156,7 @@ radiance_size = 2
 [sub_resource type="Environment" id="Environment_wxkck"]
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
-background_energy_multiplier = 0.0
+background_energy_multiplier = 0.1
 sky = SubResource("Sky_txaos")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
@@ -565,7 +565,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 5, 0.0644214, 0)
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -5, 0.13463, 0)
 
 [node name="CamPivot" type="Node3D" parent="."]
-transform = Transform3D(0.971343, 0.0341061, 0.235225, 0, 0.989651, -0.143493, -0.237685, 0.139381, 0.96129, 4.9637, 1.53731, 19.6516)
+transform = Transform3D(0.663984, -0.236002, 0.709527, 0, 0.948887, 0.315617, -0.747747, -0.209565, 0.630046, 13.9898, 6.22302, 12.4226)
 
 [node name="Camera3D" type="Camera3D" parent="CamPivot"]
 current = true
