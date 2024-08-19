@@ -25,7 +25,6 @@ colors = PackedColorArray(1, 1, 1, 0.047619, 1, 1, 1, 1, 1, 1, 1, 0.958015, 1, 1
 [node name="CastGlow" type="CPUParticles3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886929, 0)
 amount = 3
-lifetime = 1.55
 mesh = SubResource("CylinderMesh_drxef")
 particle_flag_rotate_y = true
 particle_flag_disable_z = true

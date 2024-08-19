@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://yavtuvbed3fv"]
+[gd_scene load_steps=81 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
 [ext_resource type="Script" path="res://rune_book/rune_book.gd" id="2_47ykl"]
@@ -35,7 +35,6 @@
 [ext_resource type="PackedScene" uid="uid://07bu00cuhht0" path="res://fx/cast_glow.tscn" id="32_calca"]
 [ext_resource type="AudioStream" uid="uid://cv2wecxunpjit" path="res://battleThemeA.mp3" id="32_flvxb"]
 [ext_resource type="AnimationLibrary" uid="uid://d4gpv172kw3g" path="res://battle/animations/battle_anims.res" id="32_nqc5j"]
-[ext_resource type="Material" uid="uid://cmctcpd7e116r" path="res://fx/materials/tar.tres" id="34_qdphv"]
 [ext_resource type="PackedScene" uid="uid://p1tl4yfhc40a" path="res://battle/models/minotaur/minor_taur_3.tscn" id="35_nafy3"]
 [ext_resource type="PackedScene" uid="uid://dl4puk15m30hq" path="res://fx/cast_particles.tscn" id="37_mxjci"]
 
@@ -163,9 +162,168 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.55
 ambient_light_energy = 0.76
 
+[sub_resource type="Shader" id="Shader_jwi7c"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_disabled, unshaded;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_nearest;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_nearest;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_nearest;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	base_uv.xy = base_uv.xy - TIME * 0.01;
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+
+	// Vertex Color Use as Albedo: Enabled
+	albedo_tex *= COLOR;
+
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_ljfwr"]
+offsets = PackedFloat32Array(0.302083, 0.726563)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j5alx"]
+frequency = 0.043
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_n7a0c"]
+width = 128
+invert = true
+seamless = true
+color_ramp = SubResource("Gradient_ljfwr")
+noise = SubResource("FastNoiseLite_j5alx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dv6ns"]
+render_priority = 0
+shader = SubResource("Shader_jwi7c")
+shader_parameter/albedo = Color(0.85, 0, 0, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.33
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.13
+shader_parameter/metallic = 0.3
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_n7a0c")
+
 [sub_resource type="SphereMesh" id="SphereMesh_cissp"]
-material = ExtResource("34_qdphv")
+material = SubResource("ShaderMaterial_dv6ns")
 radius = 15.0
+
+[sub_resource type="Gradient" id="Gradient_kmfss"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7ukrr"]
+gradient = SubResource("Gradient_kmfss")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2i1ds"]
+frequency = 0.0402
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qe1s5"]
+width = 32
+height = 32
+seamless = true
+seamless_blend_skirt = 0.503
+noise = SubResource("FastNoiseLite_2i1ds")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k1qih"]
+render_priority = 0
+shader = ExtResource("17_agrtu")
+shader_parameter/albedo = Color(0.93, 0.00929999, 0.00929999, 1)
+shader_parameter/point_size = null
+shader_parameter/time_scale = 0.2
+shader_parameter/uv1_scale = Vector3(1, 1, 0)
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+shader_parameter/texture_gradient = SubResource("GradientTexture2D_7ukrr")
+shader_parameter/texture_noise = SubResource("NoiseTexture2D_qe1s5")
+
+[sub_resource type="SphereMesh" id="SphereMesh_n88oo"]
+material = SubResource("ShaderMaterial_k1qih")
+radial_segments = 12
+rings = 6
+
+[sub_resource type="Curve" id="Curve_5af4t"]
+_data = [Vector2(0, 0.836134), 0.0, 0.0, 0, 0, Vector2(1, 0.0987395), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_asxv0"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_m7g61"]
+offsets = PackedFloat32Array(0.214646, 0.44697, 0.840909, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.958199, 0.958199, 0.958199, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_enfk4"]
+gradient = SubResource("Gradient_m7g61")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_6tsvh"]
+offsets = PackedFloat32Array(0.29798, 0.585859)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ehrc3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e0vrd"]
+width = 256
+height = 128
+seamless = true
+color_ramp = SubResource("Gradient_6tsvh")
+noise = SubResource("FastNoiseLite_ehrc3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_smiyl"]
+render_priority = 0
+shader = ExtResource("17_agrtu")
+shader_parameter/albedo = Color(0.4, 0, 0, 0.654902)
+shader_parameter/point_size = 27.8
+shader_parameter/time_scale = 0.3
+shader_parameter/uv1_scale = Vector3(1, 1, 0)
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+shader_parameter/texture_gradient = SubResource("GradientTexture2D_enfk4")
+shader_parameter/texture_noise = SubResource("NoiseTexture2D_e0vrd")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8w7xe"]
+material = SubResource("ShaderMaterial_smiyl")
+top_radius = 14.0
+bottom_radius = 14.0
+height = 8.0
+cap_top = false
+cap_bottom = false
 
 [node name="Battle" type="Node3D" node_paths=PackedStringArray("battle_ui")]
 script = ExtResource("1_gisox")
@@ -199,30 +357,35 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("12_kldem")
 expand_mode = 2
+flip_h = true
 
 [node name="TextureRect2" type="TextureRect" parent="RuneBook/DesiredContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("13_5sbo1")
 expand_mode = 2
+flip_h = true
 
 [node name="TextureRect3" type="TextureRect" parent="RuneBook/DesiredContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("14_sxn06")
 expand_mode = 2
+flip_h = true
 
 [node name="TextureRect4" type="TextureRect" parent="RuneBook/DesiredContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("15_8ey5g")
 expand_mode = 2
+flip_h = true
 
 [node name="TextureRect5" type="TextureRect" parent="RuneBook/DesiredContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("16_0ih7o")
 expand_mode = 2
+flip_h = true
 
 [node name="Glow" type="MeshInstance3D" parent="RuneBook"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.443444, 0.814446, 5.79807)
@@ -259,13 +422,15 @@ transform = Transform3D(0.999824, -0.0187441, 0, 0.0187441, 0.999824, 0, 0, 0, 1
 [node name="RuneSelect" type="AudioStreamPlayer" parent="RuneBook"]
 stream = ExtResource("19_e5jm4")
 
-[node name="HellGates" type="Node3D" parent="."]
+[node name="HellGates" type="Node3D" parent="." node_paths=PackedStringArray("hell_mouth")]
 visible = false
 script = ExtResource("20_8xhay")
-meter_deplete_per_second = 10.0
-button_press_increment = 3.0
+meter_deplete_per_second = 5.0
+button_press_increment = 1.45
 button_meter_goal = 50.0
 time_limit = 30.0
+hell_mouth = NodePath("../Hellmouth")
+hell_mouth_max_size = 1.0
 
 [node name="Label" type="Label" parent="HellGates"]
 visible = false
@@ -277,6 +442,7 @@ grow_vertical = 2
 text = "MASH X"
 
 [node name="SpiritAlign" type="Node3D" parent="." node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area")]
+visible = false
 script = ExtResource("24_lfg1a")
 demon_spirit_point_a = Vector2(60, 60)
 demon_spirit_point_b = Vector2(460, 210)
@@ -393,7 +559,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 5, 0.0644214, 0)
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -5, 0.13463, 0)
 
 [node name="CamPivot" type="Node3D" parent="."]
-transform = Transform3D(0.999962, -0.00280463, 0.00826214, 0, 0.94693, 0.32144, -0.00872519, -0.321428, 0.946893, 0.0341605, 1.32902, 3.91501)
+transform = Transform3D(0.999962, -0.00280463, 0.00826213, 0, 0.94693, 0.32144, -0.00872519, -0.321428, 0.946893, 0.0341605, 1.32902, 3.91501)
 
 [node name="Camera3D" type="Camera3D" parent="CamPivot"]
 current = true
@@ -409,6 +575,28 @@ next/darken = &"rune_game_intro"
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -16.642)
 mesh = SubResource("SphereMesh_cissp")
 skeleton = NodePath("../insect")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Hellmouth"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.353261, 0)
+mesh = SubResource("SphereMesh_n88oo")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 15.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 2.1, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+scale_amount_min = 0.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_5af4t")
+color_ramp = SubResource("Gradient_asxv0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hellmouth"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.13945, 0)
+mesh = SubResource("CylinderMesh_8w7xe")
 
 [node name="minor_taur3" parent="." instance=ExtResource("35_nafy3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.6887)

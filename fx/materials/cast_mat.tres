@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://4ms3vw4h60fq"]
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://4ms3vw4h60fq"]
 
 [ext_resource type="Shader" uid="uid://c2d0sajhsiy0r" path="res://rune_book/resources/flame_shader.tres" id="1_oj4oy"]
 
@@ -9,6 +9,9 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_d8jc3"]
 gradient = SubResource("Gradient_ffwbk")
 fill_to = Vector2(0, 0.489474)
+
+[sub_resource type="Gradient" id="Gradient_5hs4w"]
+offsets = PackedFloat32Array(0.0631068, 0.864078)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_a4vn5"]
 noise_type = 0
@@ -21,6 +24,7 @@ width = 32
 height = 32
 generate_mipmaps = false
 seamless = true
+color_ramp = SubResource("Gradient_5hs4w")
 noise = SubResource("FastNoiseLite_a4vn5")
 
 [resource]

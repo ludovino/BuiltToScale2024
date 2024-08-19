@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://8x775nnkbgdn"]
+
+[ext_resource type="Texture2D" uid="uid://61e7lx1x4vto" path="res://fx/textures/pentagram_glow.png" id="1_c5os8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8ofm"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.960784)
+albedo_texture = ExtResource("1_c5os8")
+texture_filter = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_1le2e"]
+material = SubResource("StandardMaterial3D_o8ofm")
+size = Vector2(30, 30)
+orientation = 1
+
+[sub_resource type="Curve" id="Curve_pja1r"]
+min_value = 1.0
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, -14.9882, 0, 0, Vector2(0.122768, 1), -0.0156835, 0.0, 0, 0, Vector2(0.832589, 1), 0.0, 0.0, 0, 0, Vector2(1, 1.48655), 8.70063, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_5cmwj"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.154762, 0.72619, 0.842857, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 0.1, 0, 1, 1, 0.103657, 0.00406293, 1.01782, 1, 1, 1, 0.992157, 1, 1, 1, 0)
+
+[node name="Pentagram" type="CPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -16.642)
+emitting = false
+amount = 1
+lifetime = 3.0
+one_shot = true
+fixed_fps = 20
+mesh = SubResource("QuadMesh_1le2e")
+particle_flag_rotate_y = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+angular_velocity_min = 3.0
+angular_velocity_max = 3.0
+radial_accel_max = 28.21
+scale_amount_curve = SubResource("Curve_pja1r")
+color_ramp = SubResource("Gradient_5cmwj")
