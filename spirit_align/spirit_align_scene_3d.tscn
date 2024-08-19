@@ -126,7 +126,7 @@ texture_repeat = 1
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_5081r")
 autoplay = "default"
-frame_progress = 0.287107
+frame_progress = 0.69806
 
 [connection signal="area_entered" from="DemonSpiritArea" to="." method="_on_demon_spirit_area_area_entered"]
 [connection signal="area_exited" from="DemonSpiritArea" to="." method="_on_demon_spirit_area_area_exited"]

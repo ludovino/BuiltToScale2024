@@ -39,6 +39,7 @@ func _process(delta: float) -> void:
 		hell_mouth.visible = true
 		hell_mouth.scale = Vector3.ONE * current_size * hell_mouth_max_size
 	else:
+		hell_mouth.scale = Vector3.ONE * 0.01
 		hell_mouth.visible = false
 	
 	if seconds_passed >= time_limit:

@@ -26,18 +26,19 @@ var spirits_aligned : bool
 func _ready() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	$DemonSpiritArea.visible = false
+	$PlayerSpiritArea.visible = false
 	visible = false
-	start()
 
 func teardown():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
-	$DemonSpiritArea.visible = false
 	visible = false
 
 func start() -> void:
 	visible = true
+	$DimCam.visible = true
 	$DemonSpiritArea.visible = true
-	process_mode = PROCESS_MODE_PAUSABLE
+	$PlayerSpiritArea.visible = true
+	process_mode = PROCESS_MODE_ALWAYS
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -58,7 +59,6 @@ func _process(delta: float) -> void:
 		tween.tween_property(player_spirit_area, "modulate", Color.TRANSPARENT, 1.0)
 		tween.chain()
 		tween.tween_property(demon_spirit_area, "modulate", Color.TRANSPARENT, 1.0)
-		
 		return
 		
 	if seconds_passed >= time_limit:

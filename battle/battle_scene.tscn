@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://yavtuvbed3fv"]
+[gd_scene load_steps=91 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
 [ext_resource type="Script" path="res://rune_book/rune_book.gd" id="2_47ykl"]
@@ -26,9 +26,11 @@
 [ext_resource type="AudioStream" uid="uid://be86m1quddh8s" path="res://rune_book/RuneSelect.wav" id="19_e5jm4"]
 [ext_resource type="Script" path="res://hell_gates/hell_gates_minigame.gd" id="20_8xhay"]
 [ext_resource type="PackedScene" uid="uid://8x775nnkbgdn" path="res://fx/pentagram.tscn" id="21_35dvx"]
+[ext_resource type="Texture2D" uid="uid://61e7lx1x4vto" path="res://fx/textures/pentagram_glow.png" id="23_h5vdi"]
+[ext_resource type="Texture2D" uid="uid://cllxbc6hdbt26" path="res://fx/textures/demon_spirit.png" id="23_vtces"]
 [ext_resource type="Script" path="res://spirit_align/spirit_align_minigame.gd" id="24_lfg1a"]
-[ext_resource type="Texture2D" uid="uid://cyl6icwvdxrjd" path="res://spirit_align/textures/demon_spirit_circle_big.png" id="25_4vxb4"]
-[ext_resource type="Texture2D" uid="uid://bgfui672of06x" path="res://spirit_align/textures/player_spirit_circle_big.png" id="26_jkld7"]
+[ext_resource type="Texture2D" uid="uid://bmp4yvrsyyw2l" path="res://fx/textures/star_07.png" id="25_mj3pe"]
+[ext_resource type="Texture2D" uid="uid://dt8p3kq576i87" path="res://fx/textures/pure_butterfly.png" id="26_6u6vg"]
 [ext_resource type="Script" path="res://demon_pov/demon_pov_minigame.gd" id="26_rxpxb"]
 [ext_resource type="Script" path="res://demon_pov/demon_pov_camera.gd" id="27_7euah"]
 [ext_resource type="Texture2D" uid="uid://eeohhk1v51rk" path="res://focus.png" id="28_3lxbx"]
@@ -116,9 +118,54 @@ fractal_octaves = 2
 fractal_lacunarity = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_djd2j"]
-radius = 5.13873
+radius = 70.0
+
+[sub_resource type="Gradient" id="Gradient_tldst"]
+offsets = PackedFloat32Array(0.390476, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mq2xc"]
+radius = 36.03
+
+[sub_resource type="Curve" id="Curve_7vm7t"]
+_data = [Vector2(0, 0.732353), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq5j6"]
+atlas = ExtResource("26_6u6vg")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwi4k"]
+atlas = ExtResource("26_6u6vg")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ne1hh"]
+atlas = ExtResource("26_6u6vg")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2x268"]
+atlas = ExtResource("26_6u6vg")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5081r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kq5j6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwi4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ne1hh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2x268")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qfvpl"]
 
@@ -454,38 +501,72 @@ lifetime = 9.0
 [node name="SpiritAlign" type="Node3D" parent="." node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area")]
 visible = false
 script = ExtResource("24_lfg1a")
-demon_spirit_point_a = Vector2(60, 60)
-demon_spirit_point_b = Vector2(460, 210)
+demon_spirit_point_a = Vector2(30, 30)
+demon_spirit_point_b = Vector2(430, 180)
 demon_spirit_area = NodePath("DemonSpiritArea")
 player_spirit_area = NodePath("PlayerSpiritArea")
 demon_spirit_speed = 30.0
 input_sensitivity = 6.0
 noise = SubResource("FastNoiseLite_i1ket")
+initial_demon_color = Color(0.79, 0.07979, 0.0553, 1)
+final_demon_color = Color(1, 1, 1, 1)
 goal_time = 10.0
 time_limit = 30.0
 
+[node name="DimCam" type="ColorRect" parent="SpiritAlign"]
+visible = false
+z_index = -1000
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.490196)
+
 [node name="DemonSpiritArea" type="Area2D" parent="SpiritAlign"]
-position = Vector2(202, 160)
-scale = Vector2(14.045, 14.045)
+visible = false
+position = Vector2(230, 100)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpiritAlign/DemonSpiritArea"]
 shape = SubResource("CircleShape2D_djd2j")
 
-[node name="Sprite2D" type="Sprite2D" parent="SpiritAlign/DemonSpiritArea"]
-scale = Vector2(0.0142213, 0.0142213)
-texture = ExtResource("25_4vxb4")
+[node name="DemonShadow" type="CPUParticles2D" parent="SpiritAlign/DemonSpiritArea"]
+amount = 2
+lifetime = 0.3
+texture = ExtResource("23_h5vdi")
+gravity = Vector2(0, 0)
+color_ramp = SubResource("Gradient_tldst")
+
+[node name="DemonSprite" type="Sprite2D" parent="SpiritAlign/DemonSpiritArea"]
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("23_vtces")
 
 [node name="PlayerSpiritArea" type="Area2D" parent="SpiritAlign"]
-position = Vector2(213, 315)
-scale = Vector2(5, 5)
+visible = false
+position = Vector2(355, 164)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpiritAlign/PlayerSpiritArea"]
 shape = SubResource("CircleShape2D_mq2xc")
 
-[node name="Sprite2D" type="Sprite2D" parent="SpiritAlign/PlayerSpiritArea"]
-position = Vector2(24.8, -23.2)
-scale = Vector2(0.04, 0.04)
-texture = ExtResource("26_jkld7")
+[node name="ButterflyShadow" type="CPUParticles2D" parent="SpiritAlign/PlayerSpiritArea"]
+amount = 5
+lifetime = 0.3
+texture = ExtResource("25_mj3pe")
+emission_shape = 1
+emission_sphere_radius = 30.0
+gravity = Vector2(0, 100)
+scale_amount_min = 0.3
+scale_amount_curve = SubResource("Curve_7vm7t")
+color_ramp = SubResource("Gradient_tldst")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="SpiritAlign/PlayerSpiritArea"]
+texture_filter = 1
+texture_repeat = 1
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_5081r")
+autoplay = "default"
+frame_progress = 0.287107
 
 [node name="DemonPOV" type="Node3D" parent="." node_paths=PackedStringArray("demon_pov_camera", "camera_raycast", "party_member_area_1", "party_member_area_2", "party_member_area_3", "cow_enemy_area")]
 visible = false
@@ -583,6 +664,7 @@ next/darken = &"rune_game_intro"
 
 [node name="Hellmouth" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -16.642)
+visible = false
 mesh = SubResource("SphereMesh_cissp")
 skeleton = NodePath("../insect")
 

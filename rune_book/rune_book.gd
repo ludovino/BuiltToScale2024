@@ -116,9 +116,8 @@ func activate() -> void:
 		$RuneSelect.pitch_scale = 1 + desired_index * 0.2
 		$RuneSelect.play()
 	if desired_index == desired.size() - 1:
+		process_mode = ProcessMode.PROCESS_MODE_DISABLED
 		succeeded.emit()
-		game_anim.play("start_gates")
-		teardown()
 	desired_index += 1
 
 func reset_desired():
