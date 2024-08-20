@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://yavtuvbed3fv"]
+[gd_scene load_steps=108 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
 [ext_resource type="Script" path="res://rune_book/rune_book.gd" id="2_47ykl"]
@@ -44,6 +44,9 @@
 [ext_resource type="Script" path="res://battle/shaker.gd" id="35_kw1hu"]
 [ext_resource type="PackedScene" uid="uid://p1tl4yfhc40a" path="res://battle/models/minotaur/minor_taur_3.tscn" id="35_nafy3"]
 [ext_resource type="PackedScene" uid="uid://dl4puk15m30hq" path="res://fx/cast_particles.tscn" id="37_mxjci"]
+[ext_resource type="Shader" uid="uid://jnlnt0lvdmk7" path="res://rune_book/resources/laser_shader.tres" id="45_b0odj"]
+[ext_resource type="PackedScene" uid="uid://dvs31f7ljy77i" path="res://fx/fire.tscn" id="46_fpex1"]
+[ext_resource type="Texture2D" uid="uid://bcaq0e7wbsluy" path="res://glow.png" id="47_plw08"]
 
 [sub_resource type="Gradient" id="Gradient_wk4u6"]
 offsets = PackedFloat32Array(0.107143, 0.761905, 1)
@@ -388,6 +391,60 @@ height = 8.0
 cap_top = false
 cap_bottom = false
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbio2"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("47_plw08")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_71hl7"]
+material = SubResource("StandardMaterial3D_lbio2")
+size = Vector2(30, 30)
+
+[sub_resource type="Gradient" id="Gradient_1ml3a"]
+offsets = PackedFloat32Array(0, 0.330808, 0.681818, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.963801, 0.963801, 0.963801, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_54juy"]
+gradient = SubResource("Gradient_1ml3a")
+fill_from = Vector2(0.576923, 0)
+fill_to = Vector2(0.615385, 1)
+repeat = 1
+
+[sub_resource type="Gradient" id="Gradient_4rbjw"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0681818, 0.20202, 0.295455, 0.44697)
+colors = PackedColorArray(1, 1, 1, 0, 1, 0, 0, 1, 1, 0.14, 0.14, 1, 1, 0.888167, 0.39, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_usd4q"]
+noise_type = 0
+frequency = 0.022
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6d4p5"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 0.335
+color_ramp = SubResource("Gradient_4rbjw")
+noise = SubResource("FastNoiseLite_usd4q")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5i48w"]
+render_priority = 0
+shader = ExtResource("45_b0odj")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = null
+shader_parameter/time_scale = 3.8
+shader_parameter/uv1_scale = Vector3(1, 1, 0)
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+shader_parameter/texture_gradient = SubResource("GradientTexture2D_54juy")
+shader_parameter/texture_noise = SubResource("NoiseTexture2D_6d4p5")
+
+[sub_resource type="QuadMesh" id="QuadMesh_n5ncy"]
+material = SubResource("ShaderMaterial_5i48w")
+size = Vector2(70, 10)
+orientation = 0
+
 [node name="Battle" type="Node3D" node_paths=PackedStringArray("battle_ui")]
 script = ExtResource("1_gisox")
 battle_ui = NodePath("BattleUi")
@@ -690,8 +747,6 @@ light_volumetric_fog_energy = 0.0
 light_cull_mask = 4293918720
 
 [node name="BattleUi" parent="." instance=ExtResource("5_4u33l")]
-process_mode = 4
-modulate = Color(1, 1, 1, 0)
 
 [node name="ninja" parent="." instance=ExtResource("6_7k3qa")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 5, 0.0644214, 0)
@@ -767,6 +822,27 @@ emitting = false
 
 [node name="CastParticles" parent="CastGlow" instance=ExtResource("37_mxjci")]
 emitting = false
+
+[node name="LaserEffect" type="Node3D" parent="."]
+visible = false
+
+[node name="Fire" parent="LaserEffect" instance=ExtResource("46_fpex1")]
+transform = Transform3D(1, 0, 0, 0, 0.954776, -0.297325, 0, 0.297325, 0.954776, 2.59803, 5.64988, 15.5668)
+
+[node name="Glow" type="MeshInstance3D" parent="LaserEffect"]
+transform = Transform3D(1, 0, 0, 0, 0.998572, 0.053434, 0, -0.053434, 0.998572, 3.78051, 0.916327, 19.9693)
+mesh = SubResource("PlaneMesh_71hl7")
+skeleton = NodePath("../Laser")
+
+[node name="Glow2" type="MeshInstance3D" parent="LaserEffect"]
+transform = Transform3D(0.0334342, 0.786451, 0.616749, -0.998534, -4.36473e-08, 0.0541312, 0.0425714, -0.617654, 0.785298, 3.78051, 0.916326, 19.9693)
+mesh = SubResource("PlaneMesh_71hl7")
+skeleton = NodePath("../Laser")
+
+[node name="Laser" type="MeshInstance3D" parent="LaserEffect"]
+transform = Transform3D(1, 0, 0, 0, 0.954776, -0.297325, 0, 0.297325, 0.954776, 2.59803, 5.64988, 4.39448)
+mesh = SubResource("QuadMesh_n5ncy")
+skeleton = NodePath("../..")
 
 [connection signal="failed" from="RuneBook" to="." method="game_over"]
 [connection signal="succeeded" from="RuneBook" to="." method="_on_rune_book_succeeded"]

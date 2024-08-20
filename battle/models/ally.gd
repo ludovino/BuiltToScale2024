@@ -1,5 +1,4 @@
 class_name Ally
-
 extends Node3D
 
 @export var materials: Array[StandardMaterial3D]
