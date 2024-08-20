@@ -27,10 +27,12 @@ func _ready() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	$DemonSpiritArea.visible = false
 	$PlayerSpiritArea.visible = false
+	$ControlHint.visible = false
 	visible = false
 
 func teardown():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
+	$ControlHint.visible = false
 	visible = false
 
 func start() -> void:
@@ -38,6 +40,7 @@ func start() -> void:
 	$DimCam.visible = true
 	$DemonSpiritArea.visible = true
 	$PlayerSpiritArea.visible = true
+	$ControlHint.visible = true
 	process_mode = PROCESS_MODE_ALWAYS
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

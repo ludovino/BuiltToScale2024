@@ -31,6 +31,10 @@ func _ready() -> void:
 	initial_focus.grab_focus()
 	timer.start(damage_interval)
 
+func wipe() -> void:
+	for hb in health_bars:
+		hb.value = 0.0
+	
 
 func _on_wht_mg_button_up() -> void:
 	white_magic_menu.visible = not white_magic_menu.visible

@@ -15,10 +15,8 @@ script = ExtResource("1_fxm42")
 
 [node name="Title" type="Sprite2D" parent="."]
 position = Vector2(230, 96)
-scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_u6y6s")
 
 [node name="PressStart" type="Sprite2D" parent="."]
-position = Vector2(230, 213)
-scale = Vector2(0.2, 0.2)
+position = Vector2(237, 200)
 texture = ExtResource("3_lltll")
