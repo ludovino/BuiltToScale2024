@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cadvhn12umb3m" path="res://battle/models/ninja/ninja_ninja face.png" id="1_56o6n"]
 
 [resource]
+transparency = 4
 shading_mode = 2
 diffuse_mode = 3
 specular_mode = 2

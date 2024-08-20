@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://64ehif3kvq8v"]
+[gd_scene load_steps=6 format=3 uid="uid://64ehif3kvq8v"]
 
 [ext_resource type="PackedScene" uid="uid://dkk6dlb0dunmn" path="res://battle/models/summoner/summner.glb" id="1_6kxdk"]
 [ext_resource type="Texture2D" uid="uid://df75wjwnrpuig" path="res://battle/models/shadow.png" id="2_o3jyj"]
 [ext_resource type="Script" path="res://battle/models/summoner/summner.gd" id="2_vqf3l"]
+[ext_resource type="Material" uid="uid://bom22qh2bgkwd" path="res://battle/models/summoner/sum_face_mat.tres" id="3_lr81q"]
+[ext_resource type="Material" uid="uid://c21aqg4v7flir" path="res://battle/models/summoner/summoner_mat.tres" id="4_srngc"]
 
 [node name="summner" instance=ExtResource("1_6kxdk")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 script = ExtResource("2_vqf3l")
+materials = Array[StandardMaterial3D]([ExtResource("3_lr81q"), ExtResource("4_srngc")])
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/1/position = Vector3(2.34357e-17, 2.95398, -0.0276259)
