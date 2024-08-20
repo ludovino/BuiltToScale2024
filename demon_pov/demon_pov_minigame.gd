@@ -45,8 +45,8 @@ func _update_input(delta) -> void:
 				_on_teammate_clicked()
 
 func _on_teammate_clicked() -> void:
-	teardown()
 	failed.emit()
+	teardown()
 	
 func _on_enemy_clicked() -> void:
 	succeeded.emit()
