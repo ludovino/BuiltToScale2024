@@ -128,7 +128,6 @@ text = "Clod: Yeah, you just get the monster to fight for you!"
 autowrap_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel2/VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
@@ -138,7 +137,7 @@ texture = ExtResource("3_cnu14")
 [node name="Label" type="Label" parent="VBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-text = "Mina: Sure..."
+text = "Mina: ..."
 
 [node name="Panel5" type="Panel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(23.72, 35)
