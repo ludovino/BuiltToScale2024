@@ -15,10 +15,12 @@ func _ready() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	visible = false
 	$Node2D.visible = false
+	$ControlHint.visible = false
 
 func start() -> void:
 	visible = true
 	$Node2D.visible = true
+	$ControlHint.visible = true
 	process_mode = PROCESS_MODE_ALWAYS
 	demon_pov_camera.make_current()
 
@@ -26,6 +28,7 @@ func teardown():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	visible = false
 	$Node2D.visible = false
+	$ControlHint.visible = false
 
 func _process(delta):
 	_update_input(delta)

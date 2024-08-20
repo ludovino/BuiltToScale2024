@@ -16,6 +16,7 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 196.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_1ed7y")
@@ -56,7 +57,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 7.0
-offset_top = 7.0
+offset_top = 20.0
 offset_right = -7.0
 offset_bottom = -7.0
 grow_horizontal = 2
@@ -299,17 +300,18 @@ stream = ExtResource("7_p5yc7")
 
 [node name="Node2D" type="Node2D" parent="."]
 modulate = Color(0.87451, 0.87451, 0.87451, 1)
+position = Vector2(32, 15)
 
 [node name="ButtonIndicator" type="AnimatedSprite2D" parent="Node2D"]
 z_index = 11
-position = Vector2(53, 187)
+position = Vector2(39, 0)
 sprite_frames = ExtResource("8_6d2ha")
 animation = &"ui_button"
 script = ExtResource("9_6qbjc")
 
 [node name="DirectionIndicator" type="AnimatedSprite2D" parent="Node2D"]
 z_index = 11
-position = Vector2(35, 187)
+position = Vector2(20, 0)
 sprite_frames = ExtResource("8_6d2ha")
 animation = &"ui_directions"
 script = ExtResource("9_6qbjc")

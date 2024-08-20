@@ -16,18 +16,19 @@ var current_size : float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$ControlHint.visible = false
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	visible = false
 
 func start() -> void:
+	$ControlHint.visible = true
 	visible = true
 	process_mode = PROCESS_MODE_PAUSABLE
-	$Label.visible = true
 
 func teardown():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	visible = false
-	$Label.visible = false
+	$ControlHint.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -17,6 +17,7 @@ var desired_index = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$ControlHint.visible = false
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	visible = false
 	current_page = 0
@@ -45,11 +46,13 @@ func start() -> void:
 
 func enable_input() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
+	$ControlHint.visible = true
 
 func teardown() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 	visible = false
 	$DesiredContainer.visible = false
+	$ControlHint.visible = false
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("minigame_left"):
