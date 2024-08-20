@@ -170,7 +170,7 @@ anchor_bottom = 1.0
 offset_left = 6.0
 offset_top = 7.0
 offset_right = -7.0
-offset_bottom = -3.0
+offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../../Panel/VBoxContainer/Summon")
@@ -194,6 +194,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.7
 text = "Mina"
+horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button/Mina"]
 layout_mode = 2
@@ -227,6 +228,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.7
 text = "Xinx"
+horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button2/Wilkins"]
 layout_mode = 2
@@ -261,6 +263,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.7
 text = "Clod"
+horizontal_alignment = 1
 
 [node name="ProgressBar2" type="ProgressBar" parent="HBoxContainer/Panel2/VBoxContainer/Button3/Grob"]
 layout_mode = 2
