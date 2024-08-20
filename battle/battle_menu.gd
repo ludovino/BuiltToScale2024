@@ -10,6 +10,8 @@ extends Control
 @export var damage_interval : float
 @export var health_bars : Array[ProgressBar]
 @export var summoner_health_bar : ProgressBar
+@export var clod_hb : ProgressBar
+@export var ninja_hb: ProgressBar
 @export var summoner_mana_bar : ProgressBar
 
 @export var cure_button: Button
@@ -34,6 +36,14 @@ func _ready() -> void:
 func wipe() -> void:
 	for hb in health_bars:
 		hb.value = 0.0
+		if hb == summoner_health_bar:
+			summoner_died.emit()
+		if hb == clod_hb:
+			grob_died.emit()
+		if hb == ninja_hb:
+			wilkins_died.emit()
+		hb.modulate = Color.RED
+		timer.stop()
 	
 
 func _on_wht_mg_button_up() -> void:
@@ -49,6 +59,10 @@ func damage() -> void:
 		if hb == summoner_health_bar:
 			summoner_died.emit()
 			timer.stop()
+		if hb == clod_hb:
+			grob_died.emit()
+		if hb == ninja_hb:
+			wilkins_died.emit()
 		hb.modulate = Color.RED
 		return
 	flash(hb, Color.RED)

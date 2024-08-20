@@ -44,7 +44,7 @@
 [ext_resource type="Script" path="res://battle/shaker.gd" id="35_kw1hu"]
 [ext_resource type="PackedScene" uid="uid://p1tl4yfhc40a" path="res://battle/models/minotaur/minor_taur_3.tscn" id="35_nafy3"]
 [ext_resource type="PackedScene" uid="uid://dl4puk15m30hq" path="res://fx/cast_particles.tscn" id="37_mxjci"]
-[ext_resource type="Shader" path="res://rune_book/resources/laser_shader.tres" id="45_b0odj"]
+[ext_resource type="Shader" uid="uid://jnlnt0lvdmk7" path="res://rune_book/resources/laser_shader.tres" id="45_b0odj"]
 [ext_resource type="PackedScene" uid="uid://dvs31f7ljy77i" path="res://fx/fire.tscn" id="46_fpex1"]
 [ext_resource type="Texture2D" uid="uid://bcaq0e7wbsluy" path="res://glow.png" id="47_plw08"]
 
