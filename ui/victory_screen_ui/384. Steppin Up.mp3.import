@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://raehlkveh8a6"
+path="res://.godot/imported/384. Steppin Up.mp3-839bff6eea0b4054a74db8f27ade68a1.mp3str"
+
+[deps]
+
+source_file="res://ui/victory_screen_ui/384. Steppin Up.mp3"
+dest_files=["res://.godot/imported/384. Steppin Up.mp3-839bff6eea0b4054a74db8f27ade68a1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

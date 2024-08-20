@@ -35,9 +35,12 @@ func _process(delta: float) -> void:
 
 	_updateInput(delta)
 	current_size = lerpf(current_hell_meter / button_meter_goal, current_size ,exp(-1.0 * delta))
+	var rumble_volume = lerpf(-20.0, 0.0, current_size)
 	if current_size > 0:
 		hell_mouth.visible = true
-		hell_mouth.scale = Vector3.ONE * current_size * hell_mouth_max_size
+		var scale = max(current_size * hell_mouth_max_size, 0.01)
+		hell_mouth.scale = Vector3.ONE * scale
+		$Rumble.volume_db = rumble_volume
 	else:
 		hell_mouth.scale = Vector3.ONE * 0.01
 		hell_mouth.visible = false

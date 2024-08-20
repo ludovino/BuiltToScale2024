@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dab2lfghhbjlc"]
+[gd_scene load_steps=5 format=3 uid="uid://dab2lfghhbjlc"]
 
 [ext_resource type="PackedScene" uid="uid://baxb2prbrivw6" path="res://battle/models/insect/insect.glb" id="1_2b5q6"]
+[ext_resource type="Script" path="res://battle/models/ally.gd" id="2_7u2vw"]
 [ext_resource type="Texture2D" uid="uid://df75wjwnrpuig" path="res://battle/models/shadow.png" id="2_scxju"]
+[ext_resource type="Material" uid="uid://b5lboo05rgks6" path="res://battle/models/insect/insect_mat.tres" id="3_m87ho"]
 
 [node name="insect" instance=ExtResource("1_2b5q6")]
+script = ExtResource("2_7u2vw")
+materials = Array[StandardMaterial3D]([ExtResource("3_m87ho")])
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/3/rotation = Quaternion(-0.0899649, 1.08444e-06, -1.52138e-07, 0.995945)

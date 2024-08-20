@@ -22,12 +22,21 @@ offset_right = 286.0
 offset_bottom = 40.0
 
 [node name="Label" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 2.0
-offset_right = 80.0
-offset_bottom = 42.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -3.5
+offset_right = 28.0
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -41,11 +50,18 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Panel2"]
-layout_mode = 0
-offset_left = 69.0
-offset_top = 2.0
-offset_right = 347.0
-offset_bottom = 42.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -3.5
+offset_right = 92.0
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "Olly: Code, Design, SFX"
 
 [node name="Panel3" type="Panel" parent="VBoxContainer"]
@@ -53,11 +69,18 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Panel3"]
-layout_mode = 0
-offset_left = 62.0
-offset_top = 2.0
-offset_right = 258.0
-offset_bottom = 42.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -3.5
+offset_right = 100.0
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "Vivian: 3D Art, Animation"
 
 [node name="Panel4" type="Panel" parent="VBoxContainer"]
@@ -65,11 +88,18 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Panel4"]
-layout_mode = 0
-offset_left = 106.0
-offset_top = 2.0
-offset_right = 246.0
-offset_bottom = 42.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -3.5
+offset_right = 48.0
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "Joseph: Code"
 
 [node name="Panel5" type="Panel" parent="VBoxContainer"]
@@ -77,11 +107,18 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Panel5"]
-layout_mode = 0
-offset_left = 74.0
-offset_top = 2.0
-offset_right = 238.0
-offset_bottom = 42.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -3.5
+offset_right = 92.0
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "Tina: Additional Design"
 
 [node name="Panel6" type="Panel" parent="VBoxContainer"]
@@ -89,15 +126,19 @@ custom_minimum_size = Vector2(0, 39.21)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Panel6"]
-layout_mode = 0
-offset_left = -59.0
-offset_top = 2.0
-offset_right = 566.0
-offset_bottom = 51.0
-scale = Vector2(0.675, 0.675)
-text = "'Battle Theme A' from PixelSphere by The Cynic Project - 
-cynicmusic.com pixelsphere.org"
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 6.0
+offset_right = -1.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "'Battle Theme A' from PixelSphere by The Cynic Project - cynicmusic.com pixelsphere.org"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Panel2" type="Panel" parent="."]
 custom_minimum_size = Vector2(0, 30)
@@ -108,9 +149,18 @@ offset_right = 379.0
 offset_bottom = 262.0
 
 [node name="Label" type="Label" parent="Panel2"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 2.0
-offset_right = 266.0
-offset_bottom = 42.0
-text = "Press A To Continue, Press B To Quit"
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -8.5
+offset_right = 76.0
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press A To Continue
+Press B To Quit"
+horizontal_alignment = 1
