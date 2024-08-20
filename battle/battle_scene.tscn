@@ -635,6 +635,7 @@ texture_filter = 0
 texture = ExtResource("23_h5vdi")
 
 [node name="SpiritAlign" type="Node3D" parent="." node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area")]
+visible = false
 script = ExtResource("24_lfg1a")
 demon_spirit_point_a = Vector2(30, 30)
 demon_spirit_point_b = Vector2(430, 180)
@@ -738,6 +739,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DemonPOV" type="Node3D" parent="." node_paths=PackedStringArray("demon_pov_camera", "camera_raycast", "party_member_area_1", "party_member_area_2", "party_member_area_3", "cow_enemy_area")]
+visible = false
 script = ExtResource("26_rxpxb")
 demon_pov_camera = NodePath("Node3D/DemonPOVCamera")
 camera_raycast = NodePath("Node3D/DemonPOVCamera/RayCast3D")
@@ -965,5 +967,6 @@ skeleton = NodePath("../..")
 [connection signal="input_event" from="DemonPOV/PartyMemberArea3" to="DemonPOV" method="_on_party_member_area_3_input_event"]
 [connection signal="input_event" from="DemonPOV/CowEnemyArea" to="DemonPOV" method="_on_cow_enemy_area_input_event"]
 [connection signal="grob_died" from="BattleUi" to="clod" method="die"]
-[connection signal="summoner_died" from="BattleUi" to="." method="game_over"]
+[connection signal="lost" from="BattleUi" to="." method="game_over"]
+[connection signal="summoner_died" from="BattleUi" to="summner" method="die"]
 [connection signal="wilkins_died" from="BattleUi" to="ninja" method="die"]

@@ -25,6 +25,8 @@ signal summoner_died
 signal wilkins_died
 signal grob_died
 
+signal lost
+
 signal summoner_damaged
 signal wilkins_damaged
 signal grob_damaged
@@ -44,8 +46,13 @@ func wipe() -> void:
 			wilkins_died.emit()
 		hb.modulate = Color.RED
 		timer.stop()
-	
 
+func kill_summoner():
+	var hb = summoner_health_bar
+	hb.value = 0.0
+	hb.modulate = Color.RED
+	timer.stop()
+	
 func _on_wht_mg_button_up() -> void:
 	white_magic_menu.visible = not white_magic_menu.visible
 	if white_magic_menu.visible: 
@@ -57,7 +64,7 @@ func damage() -> void:
 	if is_zero_approx(hb.value):
 		damage_interval = damage_interval * 0.6
 		if hb == summoner_health_bar:
-			summoner_died.emit()
+			lost.emit()
 			timer.stop()
 		if hb == clod_hb:
 			grob_died.emit()

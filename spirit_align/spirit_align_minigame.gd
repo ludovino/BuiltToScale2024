@@ -66,6 +66,7 @@ func _process(delta: float) -> void:
 		
 	if seconds_passed >= time_limit:
 		failed.emit()
+		teardown()
 		return
 	#demon spirit movement
 	

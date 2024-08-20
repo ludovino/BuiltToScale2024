@@ -9,7 +9,10 @@ func victory() -> void:
 	get_tree().change_scene_to_file("res://ui/victory_screen_ui/victory_screen_ui.tscn")
 
 func game_over() -> void:
-	end_game()
+	if summoned:
+		$AnimationPlayer.play("party_lasered")
+	else:
+		$AnimationPlayer.play("summoner_dies")
 	
 func end_game() -> void:
 	if summoned:
