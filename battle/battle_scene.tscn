@@ -853,7 +853,7 @@ light_volumetric_fog_energy = 0.0
 light_cull_mask = 4293918720
 
 [node name="BattleUi" parent="." instance=ExtResource("5_4u33l")]
-offset_top = 183.0
+offset_top = 197.0
 
 [node name="ninja" parent="." instance=ExtResource("6_7k3qa")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 5, 0.0644214, 0)
