@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://yavtuvbed3fv"]
+[gd_scene load_steps=96 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
 [ext_resource type="Script" path="res://rune_book/rune_book.gd" id="2_47ykl"]
@@ -25,8 +25,11 @@
 [ext_resource type="Material" uid="uid://ccmioh5nfsc2n" path="res://rune_book/materials/page_material.tres" id="18_5jxuc"]
 [ext_resource type="AudioStream" uid="uid://be86m1quddh8s" path="res://rune_book/RuneSelect.wav" id="19_e5jm4"]
 [ext_resource type="Script" path="res://hell_gates/hell_gates_minigame.gd" id="20_8xhay"]
+[ext_resource type="Theme" uid="uid://c7islvxpjqnki" path="res://ui/retro_theme.tres" id="21_ytdxr"]
 [ext_resource type="AudioStream" uid="uid://51ymt3wh3mvt" path="res://rumble.wav" id="22_bvepw"]
+[ext_resource type="SpriteFrames" uid="uid://dp0tns1acyg8p" path="res://ui/button_prompts/ui_frames.tres" id="22_kh6p8"]
 [ext_resource type="Texture2D" uid="uid://61e7lx1x4vto" path="res://fx/textures/pentagram_glow.png" id="23_h5vdi"]
+[ext_resource type="Script" path="res://ui/autoplay_animated_sprite_2d.gd" id="23_sgspk"]
 [ext_resource type="Texture2D" uid="uid://cllxbc6hdbt26" path="res://fx/textures/demon_spirit.png" id="23_vtces"]
 [ext_resource type="Script" path="res://spirit_align/spirit_align_minigame.gd" id="24_lfg1a"]
 [ext_resource type="Texture2D" uid="uid://bmp4yvrsyyw2l" path="res://fx/textures/star_07.png" id="25_mj3pe"]
@@ -385,47 +388,6 @@ height = 8.0
 cap_top = false
 cap_bottom = false
 
-[sub_resource type="Gradient" id="Gradient_ad6ln"]
-offsets = PackedFloat32Array(0.619048, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_e8unu"]
-gradient = SubResource("Gradient_ad6ln")
-
-[sub_resource type="Curve" id="Curve_gc78g"]
-_data = [Vector2(0, 0.833983), 0.0, 0.0, 0, 0, Vector2(1, 0.424644), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_of4bt"]
-curve = SubResource("Curve_gc78g")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i3ok0"]
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 1.0
-emission_ring_radius = 1.0
-emission_ring_inner_radius = 0.0
-direction = Vector3(0, 1, 0)
-spread = 5.0
-initial_velocity_max = 2.0
-gravity = Vector3(0, 0, 0)
-linear_accel_min = -1.02
-scale_curve = SubResource("CurveTexture_of4bt")
-color_ramp = SubResource("GradientTexture1D_e8unu")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6e2j"]
-transparency = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.92, 0.87492, 0.7268, 1)
-albedo_texture = ExtResource("25_mj3pe")
-texture_filter = 0
-billboard_mode = 1
-billboard_keep_scale = true
-
-[sub_resource type="QuadMesh" id="QuadMesh_g3sqs"]
-material = SubResource("StandardMaterial3D_l6e2j")
-
 [node name="Battle" type="Node3D" node_paths=PackedStringArray("battle_ui")]
 script = ExtResource("1_gisox")
 battle_ui = NodePath("BattleUi")
@@ -441,7 +403,6 @@ activated_color = Color(0.76, 0.182527, 0.0228, 1)
 game_anim = NodePath("../AnimationPlayer")
 
 [node name="DesiredContainer" type="HBoxContainer" parent="RuneBook"]
-visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 10
 anchor_right = 1.0
@@ -487,6 +448,18 @@ layout_mode = 2
 texture = ExtResource("16_0ih7o")
 expand_mode = 2
 flip_h = true
+
+[node name="AutoSprite2D" type="AnimatedSprite2D" parent="RuneBook/DesiredContainer"]
+position = Vector2(160, 50)
+sprite_frames = ExtResource("22_kh6p8")
+animation = &"left_right"
+script = ExtResource("23_sgspk")
+
+[node name="AutoSprite2D2" type="AnimatedSprite2D" parent="RuneBook/DesiredContainer"]
+position = Vector2(180, 50)
+sprite_frames = ExtResource("22_kh6p8")
+animation = &"minigame_button"
+script = ExtResource("23_sgspk")
 
 [node name="Glow" type="MeshInstance3D" parent="RuneBook"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.443444, 0.814446, 5.79807)
@@ -536,12 +509,25 @@ hell_mouth_max_size = 1.0
 
 [node name="Label" type="Label" parent="HellGates"]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -85.0
+offset_right = 20.0
+offset_bottom = -78.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "MASH X"
+theme = ExtResource("21_ytdxr")
+text = "MASH!"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HellGates/Label"]
+position = Vector2(18, 18)
+sprite_frames = ExtResource("22_kh6p8")
+animation = &"mash"
+script = ExtResource("23_sgspk")
 
 [node name="Rumble" type="AudioStreamPlayer" parent="HellGates"]
 stream = ExtResource("22_bvepw")
@@ -553,7 +539,6 @@ texture_filter = 0
 texture = ExtResource("23_h5vdi")
 
 [node name="SpiritAlign" type="Node3D" parent="." node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area")]
-visible = false
 script = ExtResource("24_lfg1a")
 demon_spirit_point_a = Vector2(30, 30)
 demon_spirit_point_b = Vector2(430, 180)
@@ -576,6 +561,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.490196)
+
+[node name="AutoSprite2D" type="AnimatedSprite2D" parent="SpiritAlign/DimCam"]
+position = Vector2(232, 180)
+sprite_frames = ExtResource("22_kh6p8")
+animation = &"spin_joy"
+script = ExtResource("23_sgspk")
 
 [node name="DemonSpiritArea" type="Area2D" parent="SpiritAlign"]
 visible = false
@@ -663,18 +654,19 @@ shape = SubResource("CapsuleShape3D_ke3rd")
 [node name="Timer" type="Timer" parent="DemonPOV"]
 
 [node name="Node2D" type="Node2D" parent="DemonPOV"]
-modulate = Color(1, 1, 1, 0.509804)
+visible = false
 z_index = -10
 
 [node name="Sprite2D" type="Sprite2D" parent="DemonPOV/Node2D"]
+texture_filter = 1
 texture = ExtResource("28_3lxbx")
 centered = false
 
 [node name="Node3D" type="Node3D" parent="DemonPOV"]
-transform = Transform3D(-1, 6.64768e-08, -5.67765e-08, 0, 0.649448, 0.760406, 8.74228e-08, 0.760406, -0.649448, 0.467406, 17.9195, -15.2976)
+transform = Transform3D(-1, -5.61943e-08, 6.69697e-08, 0, 0.766044, 0.642788, -8.74228e-08, 0.642788, -0.766044, 0.467406, 17.9195, -15.2976)
 
 [node name="DemonPOVCamera" type="Camera3D" parent="DemonPOV/Node3D"]
-fov = 35.1
+fov = 47.7
 script = ExtResource("27_7euah")
 joystickSensitivity = 0.75
 horizontalBounds = 25.0
@@ -708,7 +700,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 5, 0.0644214, 0)
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -5, 0.13463, 0)
 
 [node name="CamPivot" type="Node3D" parent="."]
-transform = Transform3D(0.915662, -0.0503774, 0.398778, 0, 0.992115, 0.125333, -0.401948, -0.114763, 0.908443, 7.85508, 13.7038, 10.7397)
+transform = Transform3D(0.915662, -0.0503774, 0.398778, 0, 0.992115, 0.125333, -0.401948, -0.114763, 0.908442, 7.85508, 13.7038, 10.7397)
 script = ExtResource("35_kw1hu")
 noise = SubResource("FastNoiseLite_1bmvt")
 shake_frequency = 1000.0
@@ -771,12 +763,8 @@ volume_db = -4.227
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.154837, 0.886929, 0.0463009)
 emitting = false
 
-[node name="CastParticles" type="GPUParticles3D" parent="CastGlow" instance=ExtResource("37_mxjci")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.674408, 0)
+[node name="CastParticles" parent="CastGlow" instance=ExtResource("37_mxjci")]
 emitting = false
-fixed_fps = 0
-process_material = SubResource("ParticleProcessMaterial_i3ok0")
-draw_pass_1 = SubResource("QuadMesh_g3sqs")
 
 [connection signal="failed" from="RuneBook" to="." method="game_over"]
 [connection signal="succeeded" from="RuneBook" to="." method="_on_rune_book_succeeded"]

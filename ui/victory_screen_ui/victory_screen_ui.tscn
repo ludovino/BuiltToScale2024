@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwju5wcfjh4rb"]
+[gd_scene load_steps=7 format=3 uid="uid://dwju5wcfjh4rb"]
 
 [ext_resource type="Theme" uid="uid://c7islvxpjqnki" path="res://ui/retro_theme.tres" id="1_apcj7"]
 [ext_resource type="Script" path="res://ui/victory_screen_ui/victory_screen_ui.gd" id="2_7ig32"]
 [ext_resource type="Texture2D" uid="uid://fbplhn3gcx0r" path="res://ui/victory_screen_ui/textures/mina_portrait.png" id="3_cnu14"]
 [ext_resource type="Texture2D" uid="uid://b6af40xpwojhu" path="res://ui/victory_screen_ui/textures/ninja_portrait.png" id="4_0og3x"]
 [ext_resource type="Texture2D" uid="uid://cismxfii80xf" path="res://ui/victory_screen_ui/textures/clod_portrait.png" id="5_oimba"]
+[ext_resource type="AudioStream" uid="uid://raehlkveh8a6" path="res://ui/victory_screen_ui/384. Steppin Up.mp3" id="6_g5bhg"]
 
-[node name="VictoryScreenUi" type="Control"]
+[node name="VictoryScreenUi" type="Control" node_paths=PackedStringArray("skit")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_apcj7")
 script = ExtResource("2_7ig32")
+skit = [NodePath("VBoxContainer/Panel2/VBoxContainer/HBoxContainer2"), NodePath("VBoxContainer/Panel2/VBoxContainer/HBoxContainer3"), NodePath("VBoxContainer/Panel2/VBoxContainer/HBoxContainer")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -28,12 +30,15 @@ custom_minimum_size = Vector2(23.72, 35)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Panel"]
-layout_mode = 0
-offset_left = 192.0
-offset_top = 4.0
-offset_right = 259.0
-offset_bottom = 44.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "VICTORY!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 26.095)
@@ -44,53 +49,86 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Panel"]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 3.0
-offset_right = 298.0
-offset_bottom = 43.0
-scale = Vector2(0.835, 0.835)
-text = "XP: +2/3"
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "XP: +67
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Panel2" type="Panel" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Panel2"]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 2.0
-offset_right = 87.0
-offset_bottom = 42.0
-scale = Vector2(0.835, 0.835)
-text = "Gold: +99p"
 
 [node name="Panel3" type="Panel" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Panel3"]
-layout_mode = 0
-offset_left = 17.0
-offset_top = 2.0
-offset_right = 160.0
-offset_bottom = 42.0
-scale = Vector2(0.835, 0.835)
-text = "Morale: +a little bit?"
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Gold: +99p"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Panel2" type="Panel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(23.72, 150.3)
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel2"]
-layout_mode = 0
-offset_left = 37.08
-offset_top = 12.0
-offset_right = 407.08
-offset_bottom = 131.565
-alignment = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -12.0
+offset_bottom = -8.3
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Panel2/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Panel2/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("4_0og3x")
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Xinx: Wow, being a summoner looks so easy!"
+autowrap_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Panel2/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Panel2/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("5_oimba")
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel2/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Clod: Yeah, you just get the monster to fight for you!"
+autowrap_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel2/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
@@ -100,40 +138,24 @@ texture = ExtResource("3_cnu14")
 [node name="Label" type="Label" parent="VBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-text = "Mina: LEVEL UP - Unlocked Brick"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Panel2/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Panel2/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("4_0og3x")
-
-[node name="Label" type="Label" parent="VBoxContainer/Panel2/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 6
-text = "Xinx: LEVEL DOWN - Forgot How To Play Kazoo"
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Panel2/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Panel2/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-texture = ExtResource("5_oimba")
-
-[node name="Label" type="Label" parent="VBoxContainer/Panel2/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-size_flags_vertical = 6
-text = "Clod: +5% Hair Spikes"
+text = "Mina: Sure..."
 
 [node name="Panel5" type="Panel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(23.72, 35)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Panel5"]
-layout_mode = 0
-offset_left = 151.0
-offset_top = 4.0
-offset_right = 377.0
-offset_bottom = 44.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Press A To Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_g5bhg")
+volume_db = -2.0
+autoplay = true

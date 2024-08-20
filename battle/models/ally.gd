@@ -8,4 +8,3 @@ func die() -> void:
 		var tween = get_tree().create_tween()
 		mat.albedo_color = Color.RED
 		tween.tween_property(mat, "albedo_color", Color.TRANSPARENT, 0.7)
-		
