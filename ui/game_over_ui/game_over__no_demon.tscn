@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ds6n05claw7lt"]
+[gd_scene load_steps=9 format=3 uid="uid://dry1men4cf7d6"]
 
-[ext_resource type="Theme" uid="uid://c7islvxpjqnki" path="res://ui/retro_theme.tres" id="1_85vt4"]
-[ext_resource type="Script" path="res://ui/game_over_ui/game_over_ui.gd" id="2_ceet1"]
-[ext_resource type="Texture2D" uid="uid://cnpxvuavorat0" path="res://ui/game_over_ui/textures/minotaur_render.png" id="3_boweh"]
-[ext_resource type="Texture2D" uid="uid://bjne21bcdk32m" path="res://ui/game_over_ui/textures/game_over_lowcol.png" id="3_cnykl"]
-[ext_resource type="AudioStream" uid="uid://de7qcooplni5r" path="res://game_over.wav" id="5_rfn23"]
+[ext_resource type="Theme" uid="uid://c7islvxpjqnki" path="res://ui/retro_theme.tres" id="1_60uvt"]
+[ext_resource type="Script" path="res://ui/game_over_ui/game_over_ui.gd" id="2_mqov3"]
+[ext_resource type="Texture2D" uid="uid://bjne21bcdk32m" path="res://ui/game_over_ui/textures/game_over_lowcol.png" id="3_g6afx"]
+[ext_resource type="Texture2D" uid="uid://cnpxvuavorat0" path="res://ui/game_over_ui/textures/minotaur_render.png" id="4_kw3go"]
+[ext_resource type="AudioStream" uid="uid://de7qcooplni5r" path="res://game_over.wav" id="5_cky6g"]
 
 [sub_resource type="Animation" id="Animation_1t6km"]
 length = 0.001
@@ -64,8 +64,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_85vt4")
-script = ExtResource("2_ceet1")
+theme = ExtResource("1_60uvt")
+script = ExtResource("2_mqov3")
 animPlayer = NodePath("AnimationPlayer")
 
 [node name="Panel" type="Panel" parent="."]
@@ -77,7 +77,7 @@ offset_bottom = 270.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("3_cnykl")
+texture = ExtResource("3_g6afx")
 
 [node name="GameOverLabel" type="Label" parent="Panel/TextureRect"]
 visible = false
@@ -86,7 +86,7 @@ offset_left = 162.0
 offset_top = 73.0
 offset_right = 293.0
 offset_bottom = 106.0
-theme = ExtResource("1_85vt4")
+theme = ExtResource("1_60uvt")
 theme_type_variation = &"HeaderMedium"
 text = "GAME OVER"
 horizontal_alignment = 1
@@ -97,17 +97,18 @@ offset_left = 142.0
 offset_top = 125.0
 offset_right = 318.0
 offset_bottom = 184.0
-theme = ExtResource("1_85vt4")
+theme = ExtResource("1_60uvt")
 theme_type_variation = &"HeaderSmall"
 text = "Press A To Retry
 Press B To Quit"
 horizontal_alignment = 1
 
 [node name="MinotaurRect" type="TextureRect" parent="Panel"]
+self_modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_right = 460.0
 offset_bottom = 270.0
-texture = ExtResource("3_boweh")
+texture = ExtResource("4_kw3go")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -115,4 +116,5 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_rfn23")
+stream = ExtResource("5_cky6g")
+autoplay = true

@@ -857,4 +857,6 @@ skeleton = NodePath("../..")
 [connection signal="input_event" from="DemonPOV/PartyMemberArea2" to="DemonPOV" method="_on_party_member_area_2_input_event"]
 [connection signal="input_event" from="DemonPOV/PartyMemberArea3" to="DemonPOV" method="_on_party_member_area_3_input_event"]
 [connection signal="input_event" from="DemonPOV/CowEnemyArea" to="DemonPOV" method="_on_cow_enemy_area_input_event"]
+[connection signal="grob_died" from="BattleUi" to="clod" method="die"]
 [connection signal="summoner_died" from="BattleUi" to="." method="game_over"]
+[connection signal="wilkins_died" from="BattleUi" to="ninja" method="die"]
