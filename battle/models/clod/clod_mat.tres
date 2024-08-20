@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cor8gox5wnqki" path="res://battle/models/clod/clod colors.png" id="1_josuo"]
 
 [resource]
+transparency = 4
 shading_mode = 2
 diffuse_mode = 3
 specular_mode = 2

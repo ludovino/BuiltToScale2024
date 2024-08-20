@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dnu5gmy2bp2t6" path="res://battle/models/summoner/summner_summner face.png" id="1_afoxc"]
 
 [resource]
+transparency = 4
 shading_mode = 2
 diffuse_mode = 3
 specular_mode = 2

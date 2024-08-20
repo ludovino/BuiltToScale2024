@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://yavtuvbed3fv"]
+[gd_scene load_steps=100 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
 [ext_resource type="Script" path="res://rune_book/rune_book.gd" id="2_47ykl"]
@@ -25,7 +25,7 @@
 [ext_resource type="Material" uid="uid://ccmioh5nfsc2n" path="res://rune_book/materials/page_material.tres" id="18_5jxuc"]
 [ext_resource type="AudioStream" uid="uid://be86m1quddh8s" path="res://rune_book/RuneSelect.wav" id="19_e5jm4"]
 [ext_resource type="Script" path="res://hell_gates/hell_gates_minigame.gd" id="20_8xhay"]
-[ext_resource type="PackedScene" uid="uid://8x775nnkbgdn" path="res://fx/pentagram.tscn" id="21_35dvx"]
+[ext_resource type="AudioStream" uid="uid://51ymt3wh3mvt" path="res://rumble.wav" id="22_bvepw"]
 [ext_resource type="Texture2D" uid="uid://61e7lx1x4vto" path="res://fx/textures/pentagram_glow.png" id="23_h5vdi"]
 [ext_resource type="Texture2D" uid="uid://cllxbc6hdbt26" path="res://fx/textures/demon_spirit.png" id="23_vtces"]
 [ext_resource type="Script" path="res://spirit_align/spirit_align_minigame.gd" id="24_lfg1a"]
@@ -38,6 +38,7 @@
 [ext_resource type="PackedScene" uid="uid://07bu00cuhht0" path="res://fx/cast_glow.tscn" id="32_calca"]
 [ext_resource type="AudioStream" uid="uid://cv2wecxunpjit" path="res://battleThemeA.mp3" id="32_flvxb"]
 [ext_resource type="AnimationLibrary" uid="uid://d4gpv172kw3g" path="res://battle/animations/battle_anims.res" id="32_nqc5j"]
+[ext_resource type="Script" path="res://battle/shaker.gd" id="35_kw1hu"]
 [ext_resource type="PackedScene" uid="uid://p1tl4yfhc40a" path="res://battle/models/minotaur/minor_taur_3.tscn" id="35_nafy3"]
 [ext_resource type="PackedScene" uid="uid://dl4puk15m30hq" path="res://fx/cast_particles.tscn" id="37_mxjci"]
 
@@ -168,8 +169,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qfvpl"]
+radius = 1.0
+height = 4.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ke3rd"]
+radius = 5.0
+height = 10.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_yejbq"]
 noise_type = 4
@@ -203,12 +208,15 @@ radiance_size = 2
 [sub_resource type="Environment" id="Environment_wxkck"]
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
-background_energy_multiplier = 0.1
 sky = SubResource("Sky_txaos")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.55
 ambient_light_energy = 0.76
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1bmvt"]
+noise_type = 2
+frequency = 0.1
 
 [sub_resource type="Shader" id="Shader_jwi7c"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's StandardMaterial3D.
@@ -377,6 +385,47 @@ height = 8.0
 cap_top = false
 cap_bottom = false
 
+[sub_resource type="Gradient" id="Gradient_ad6ln"]
+offsets = PackedFloat32Array(0.619048, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e8unu"]
+gradient = SubResource("Gradient_ad6ln")
+
+[sub_resource type="Curve" id="Curve_gc78g"]
+_data = [Vector2(0, 0.833983), 0.0, 0.0, 0, 0, Vector2(1, 0.424644), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_of4bt"]
+curve = SubResource("Curve_gc78g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i3ok0"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -1.02
+scale_curve = SubResource("CurveTexture_of4bt")
+color_ramp = SubResource("GradientTexture1D_e8unu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6e2j"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.92, 0.87492, 0.7268, 1)
+albedo_texture = ExtResource("25_mj3pe")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_g3sqs"]
+material = SubResource("StandardMaterial3D_l6e2j")
+
 [node name="Battle" type="Node3D" node_paths=PackedStringArray("battle_ui")]
 script = ExtResource("1_gisox")
 battle_ui = NodePath("BattleUi")
@@ -494,9 +543,14 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "MASH X"
 
-[node name="Pentagram" parent="HellGates" instance=ExtResource("21_35dvx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2.87258)
-lifetime = 9.0
+[node name="Rumble" type="AudioStreamPlayer" parent="HellGates"]
+stream = ExtResource("22_bvepw")
+
+[node name="PentaSprite" type="Sprite3D" parent="HellGates"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 5, -4.647)
+axis = 1
+texture_filter = 0
+texture = ExtResource("23_h5vdi")
 
 [node name="SpiritAlign" type="Node3D" parent="." node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area")]
 visible = false
@@ -569,10 +623,9 @@ autoplay = "default"
 frame_progress = 0.287107
 
 [node name="DemonPOV" type="Node3D" parent="." node_paths=PackedStringArray("demon_pov_camera", "camera_raycast", "party_member_area_1", "party_member_area_2", "party_member_area_3", "cow_enemy_area")]
-visible = false
 script = ExtResource("26_rxpxb")
-demon_pov_camera = NodePath("DemonPOVCamera")
-camera_raycast = NodePath("DemonPOVCamera/RayCast3D")
+demon_pov_camera = NodePath("Node3D/DemonPOVCamera")
+camera_raycast = NodePath("Node3D/DemonPOVCamera/RayCast3D")
 party_member_area_1 = NodePath("PartyMemberArea")
 party_member_area_2 = NodePath("PartyMemberArea2")
 party_member_area_3 = NodePath("PartyMemberArea3")
@@ -580,52 +633,57 @@ cow_enemy_area = NodePath("CowEnemyArea")
 battle_ui_disabled = true
 
 [node name="PartyMemberArea" type="Area3D" parent="DemonPOV" groups=["party"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.648, 1, 4.208)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.648, 1, 0.175002)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DemonPOV/PartyMemberArea" groups=["party"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.367355, 0, 0)
 shape = SubResource("CapsuleShape3D_qfvpl")
 
 [node name="PartyMemberArea2" type="Area3D" parent="DemonPOV" groups=["party"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41729, 1, 4.0943)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41729, 1, 0.0613012)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DemonPOV/PartyMemberArea2" groups=["party"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42529, 0, 0)
 shape = SubResource("CapsuleShape3D_qfvpl")
 
 [node name="PartyMemberArea3" type="Area3D" parent="DemonPOV" groups=["party"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4789, 1, 4.14506)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4789, 1, 0.112062)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DemonPOV/PartyMemberArea3" groups=["party"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.63477, 0, 0)
 shape = SubResource("CapsuleShape3D_qfvpl")
 
 [node name="CowEnemyArea" type="Area3D" parent="DemonPOV" groups=["enemy"]]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.387, 3.85156, -8.366)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.387, 2.24796, 14.2262)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DemonPOV/CowEnemyArea" groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.730064)
 shape = SubResource("CapsuleShape3D_ke3rd")
 
 [node name="Timer" type="Timer" parent="DemonPOV"]
 
-[node name="DemonPOVCamera" type="Camera3D" parent="DemonPOV"]
-transform = Transform3D(0.914254, -0.278881, 0.293879, 0, 0.725374, 0.688355, -0.405142, -0.629331, 0.663176, 8.067, 22.91, 18.299)
+[node name="Node2D" type="Node2D" parent="DemonPOV"]
+modulate = Color(1, 1, 1, 0.509804)
+z_index = -10
+
+[node name="Sprite2D" type="Sprite2D" parent="DemonPOV/Node2D"]
+texture = ExtResource("28_3lxbx")
+centered = false
+
+[node name="Node3D" type="Node3D" parent="DemonPOV"]
+transform = Transform3D(-1, 6.64768e-08, -5.67765e-08, 0, 0.649448, 0.760406, 8.74228e-08, 0.760406, -0.649448, 0.467406, 17.9195, -15.2976)
+
+[node name="DemonPOVCamera" type="Camera3D" parent="DemonPOV/Node3D"]
 fov = 35.1
 script = ExtResource("27_7euah")
 joystickSensitivity = 0.75
 horizontalBounds = 25.0
 verticalBounds = 25.0
 
-[node name="RayCast3D" type="RayCast3D" parent="DemonPOV/DemonPOVCamera"]
+[node name="RayCast3D" type="RayCast3D" parent="DemonPOV/Node3D/DemonPOVCamera"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 2.98023e-08, 0, 0, 1, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collide_with_areas = true
-
-[node name="Node2D" type="Node2D" parent="DemonPOV"]
-visible = false
-position = Vector2(576, 322)
-
-[node name="Sprite2D" type="Sprite2D" parent="DemonPOV/Node2D"]
-position = Vector2(0, 5)
-scale = Vector2(1.025, 1.025)
-texture = ExtResource("28_3lxbx")
 
 [node name="field" parent="." instance=ExtResource("4_nwrxv")]
 transform = Transform3D(-25, 0, -3.7749e-06, 0, 25, 0, 3.7749e-06, 0, -25, 0, -0.711262, 0)
@@ -650,7 +708,10 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 5, 0.0644214, 0)
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -5, 0.13463, 0)
 
 [node name="CamPivot" type="Node3D" parent="."]
-transform = Transform3D(0.915663, -0.0503774, 0.398778, 0, 0.992115, 0.125333, -0.401948, -0.114763, 0.908443, 7.85508, 13.7038, 10.7397)
+transform = Transform3D(0.915662, -0.0503774, 0.398778, 0, 0.992115, 0.125333, -0.401948, -0.114763, 0.908443, 7.85508, 13.7038, 10.7397)
+script = ExtResource("35_kw1hu")
+noise = SubResource("FastNoiseLite_1bmvt")
+shake_frequency = 1000.0
 
 [node name="Camera3D" type="Camera3D" parent="CamPivot"]
 current = true
@@ -692,21 +753,30 @@ mesh = SubResource("CylinderMesh_8w7xe")
 
 [node name="minor_taur3" parent="." instance=ExtResource("35_nafy3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.689)
-visible = false
 
 [node name="insect" parent="." instance=ExtResource("29_nihqw")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.92156, 15)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BattleMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("32_flvxb")
 autoplay = true
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+
+[node name="Rumble" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_bvepw")
+volume_db = -4.227
 
 [node name="CastGlow" parent="." instance=ExtResource("32_calca")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.154837, 0.886929, 0.0463009)
 emitting = false
 
-[node name="CastParticles" parent="CastGlow" instance=ExtResource("37_mxjci")]
+[node name="CastParticles" type="GPUParticles3D" parent="CastGlow" instance=ExtResource("37_mxjci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.674408, 0)
 emitting = false
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_i3ok0")
+draw_pass_1 = SubResource("QuadMesh_g3sqs")
 
 [connection signal="failed" from="RuneBook" to="." method="game_over"]
 [connection signal="succeeded" from="RuneBook" to="." method="_on_rune_book_succeeded"]

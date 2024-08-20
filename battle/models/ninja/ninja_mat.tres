@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d4gjudfhyx4dm" path="res://battle/models/ninja/ninja_ninja colors.png" id="1_vj7c2"]
 
 [resource]
+transparency = 4
 shading_mode = 2
 diffuse_mode = 3
 specular_mode = 2

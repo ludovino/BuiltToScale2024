@@ -17,11 +17,10 @@ func _ready() -> void:
 	$Node2D.visible = false
 
 func start() -> void:
-	if !initialised:
-		initialised = true
 	visible = true
 	$Node2D.visible = true
-	process_mode = PROCESS_MODE_PAUSABLE
+	process_mode = PROCESS_MODE_ALWAYS
+	demon_pov_camera.make_current()
 
 func teardown():
 	process_mode = ProcessMode.PROCESS_MODE_DISABLED
@@ -33,7 +32,9 @@ func _process(delta):
 	
 func _update_input(delta) -> void:
 	if(Input.is_action_just_pressed("minigame_button_1")):
+		print("pressed")
 		var object_hit = camera_raycast.get_collider() as Node3D
+		print(object_hit)
 		if object_hit and object_hit.is_in_group("enemy"):
 			_on_enemy_clicked()
 		else :

@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://drhm5pk7b518o"]
+[gd_scene load_steps=6 format=3 uid="uid://drhm5pk7b518o"]
 
 [ext_resource type="PackedScene" uid="uid://clytebctc2qnk" path="res://battle/models/ninja/ninja.glb" id="1_qqgu6"]
 [ext_resource type="Texture2D" uid="uid://df75wjwnrpuig" path="res://battle/models/shadow.png" id="2_d688k"]
+[ext_resource type="Script" path="res://battle/models/ally.gd" id="2_qj7q7"]
+[ext_resource type="Material" uid="uid://bjih0altobl5f" path="res://battle/models/ninja/ninja_face_mat.tres" id="3_c62qg"]
+[ext_resource type="Material" uid="uid://d04jjcjegcdsw" path="res://battle/models/ninja/ninja_mat.tres" id="4_0q4d6"]
 
 [node name="ninja" instance=ExtResource("1_qqgu6")]
+script = ExtResource("2_qj7q7")
+materials = Array[StandardMaterial3D]([ExtResource("3_c62qg"), ExtResource("4_0q4d6")])
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/1/position = Vector3(-1.07693e-16, 2.36344, -0.28851)

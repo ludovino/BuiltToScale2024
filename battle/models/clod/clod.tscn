@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://djt7so8dirf7e"]
+[gd_scene load_steps=6 format=3 uid="uid://djt7so8dirf7e"]
 
 [ext_resource type="PackedScene" uid="uid://cqx4cs42yf20" path="res://battle/models/clod/clod.glb" id="1_qbt7t"]
 [ext_resource type="Texture2D" uid="uid://df75wjwnrpuig" path="res://battle/models/shadow.png" id="2_a0fxt"]
+[ext_resource type="Script" path="res://battle/models/ally.gd" id="2_p5khw"]
+[ext_resource type="Material" uid="uid://cwbw5ikut1mwg" path="res://battle/models/clod/clod_mat.tres" id="3_filsv"]
+[ext_resource type="Material" uid="uid://ccayovkqwu5a5" path="res://battle/models/clod/face_mat.tres" id="4_megl8"]
 
 [node name="clod" instance=ExtResource("1_qbt7t")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("2_p5khw")
+materials = Array[StandardMaterial3D]([ExtResource("3_filsv"), ExtResource("4_megl8")])
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/1/position = Vector3(-0.00646958, 2.43614, 0.0863386)

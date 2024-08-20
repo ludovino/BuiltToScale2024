@@ -1,4 +1,4 @@
-extends Node3D
+extends Ally
 
 func cast() -> void:
 	$AnimationPlayer.play("cast2")
