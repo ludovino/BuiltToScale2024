@@ -72,6 +72,7 @@ func damage() -> void:
 			wilkins_died.emit()
 		hb.modulate = Color.RED
 		return
+	_check_alerts()
 	flash(hb, Color.RED)
 	$Damage.play()
 
@@ -98,7 +99,15 @@ func cure(idx: int, amount: float) -> void:
 		return
 	hb.value += amount
 	flash(hb, Color.GREEN)
+	_check_alerts()
 	$Heal.play()
+
+func _check_alerts():
+	var playing = false
+	for hb in health_bars:
+		if hb.value < hb.max_value * 0.2 and hb.value > 0.0:
+			playing = true
+	$Alert.playing = playing
 
 func flash(bar: ProgressBar, color: Color) -> void:
 	var tween = get_tree().create_tween()
@@ -114,6 +123,7 @@ func cure_all() -> void:
 		healed = true
 		hb.value += heal_all_amount
 		flash(hb, Color.GREEN)
+	_check_alerts()
 	if healed:
 		$HealAll.play()
 

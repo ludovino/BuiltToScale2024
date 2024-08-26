@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dgruh7xfsq6pw" path="res://ui/Damage.wav" id="4_x53rb"]
 [ext_resource type="AudioStream" uid="uid://baw4rnld215mh" path="res://ui/Heal.wav" id="5_kbkgl"]
 [ext_resource type="AudioStream" uid="uid://brpkjv4dkpbre" path="res://ui/HealAll.wav" id="6_somok"]
-[ext_resource type="AudioStream" uid="uid://b66t7g4jcd2oc" path="res://ui/Alert.wav" id="7_p5yc7"]
+[ext_resource type="AudioStream" uid="uid://b5nv8inmq8mko" path="res://ui/warning.wav" id="7_gybox"]
 [ext_resource type="SpriteFrames" uid="uid://dp0tns1acyg8p" path="res://ui/button_prompts/ui_frames.tres" id="8_6d2ha"]
 [ext_resource type="Script" path="res://ui/autoplay_animated_sprite_2d.gd" id="9_6qbjc"]
 
@@ -247,7 +247,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_type_variation = &"MpBar"
-value = 100.0
+max_value = 250.0
+value = 250.0
 script = ExtResource("3_83q0m")
 
 [node name="Button2" type="Button" parent="HBoxContainer/Panel2/VBoxContainer"]
@@ -297,7 +298,7 @@ stream = ExtResource("5_kbkgl")
 stream = ExtResource("6_somok")
 
 [node name="Alert" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_p5yc7")
+stream = ExtResource("7_gybox")
 
 [node name="Press" type="AudioStreamPlayer" parent="."]
 

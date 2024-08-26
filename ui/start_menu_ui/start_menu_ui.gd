@@ -15,6 +15,6 @@ func _startPressed() -> void:
 	get_tree().change_scene_to_file("res://battle/battle_scene.tscn")
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey or event is InputEventJoypadButton:
-		if event.is_pressed():
+	if event is InputEventMouseButton:
+		if event.is_pressed() and not event.is_echo():
 			_startPressed()

@@ -13,12 +13,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if(inputDisabled):
 		return
-	if(Input.is_action_just_pressed("ui_accept")):
-		get_tree().change_scene_to_file("res://battle/battle_scene.tscn")
-	if(Input.is_action_just_pressed("ui_cancel")):
-		if OS.has_feature("web"):
-			get_tree().change_scene_to_file("res://ui/start_menu_ui/start_menu_ui.tscn")
-			return
-		get_tree().quit()
+	
+	if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+		get_tree().change_scene_to_file("res://ui/start_menu_ui/start_menu_ui.tscn")
+
 func enable_controls() -> void:
 	inputDisabled = false

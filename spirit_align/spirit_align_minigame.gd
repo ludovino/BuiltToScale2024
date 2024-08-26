@@ -5,7 +5,7 @@ extends Minigame
 
 @export var demon_spirit_area : Area2D
 @export var player_spirit_area : Area2D
-
+@export var demon_spirit_shadow : CPUParticles2D
 var seconds_passed : float
 
 @export var demon_spirit_speed : float
@@ -66,11 +66,13 @@ func _process(delta: float) -> void:
 		
 	if seconds_passed >= time_limit:
 		failed.emit()
+		$DemonSpiritArea.visible = false
+		$PlayerSpiritArea.visible = false
+		$ControlHint.visible = false
 		teardown()
 		return
 	#demon spirit movement
 	
-	var lerp_point = (sin(seconds_passed * demon_spirit_speed) / 2) + 0.5
 	var lerp_x = noise.get_noise_2d(seconds_passed * demon_spirit_speed, 0) + 0.5
 	var lerp_y = noise.get_noise_2d(0, seconds_passed * demon_spirit_speed)	 + 0.5
 	
@@ -78,8 +80,8 @@ func _process(delta: float) -> void:
 	demon_spirit_area.position.y = lerp(demon_spirit_point_a.y, demon_spirit_point_b.y, lerp_y)
 	
 	#player spirit control
-	var velocity = Input.get_vector("minigame_left", "minigame_right", "minigame_up", "minigame_down") * input_sensitivity
-	
+	var velocity = get_viewport().get_mouse_position() - player_spirit_area.global_position
+	velocity = velocity.normalized() * input_sensitivity
 	var new_player_pos = Vector2(player_spirit_area.global_position.x + velocity.x,
 	player_spirit_area.global_position.y + velocity.y)
 	
@@ -92,10 +94,14 @@ func _process(delta: float) -> void:
 		player_spirit_area.look_at(player_spirit_area.global_position + Vector2.UP)
 	player_spirit_area.global_position = new_player_pos
 	
-	var color_t = 0.5 + fposmod(Time.get_ticks_msec() * 0.001,0.5) if spirits_aligned \
+	var t = 0.5 + fposmod(Time.get_ticks_msec() * 0.001,0.5) if spirits_aligned \
 	else spirit_align_seconds / goal_time
-	var demon_color : Color = lerp(initial_demon_color, final_demon_color, color_t)
+	var demon_color : Color = lerp(initial_demon_color, final_demon_color, t)
+	var scale : float = lerp(1.0, 0.5, spirit_align_seconds / goal_time)
 	
+	$DemonSpiritArea.scale = Vector2.ONE * scale
+	$DemonSpiritArea/DemonShadow.scale_amount_max = scale
+	$DemonSpiritArea/DemonShadow.scale_amount_min = scale
 	$DemonSpiritArea/DemonShadow.color = demon_color
 	$DemonSpiritArea/DemonSprite.modulate = demon_color
 

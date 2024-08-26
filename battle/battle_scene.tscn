@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://yavtuvbed3fv"]
+[gd_scene load_steps=146 format=3 uid="uid://yavtuvbed3fv"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_gisox"]
 [ext_resource type="Script" path="res://rune_book/rune_book.gd" id="2_47ykl"]
@@ -25,9 +25,15 @@
 [ext_resource type="Material" uid="uid://ccmioh5nfsc2n" path="res://rune_book/materials/page_material.tres" id="18_5jxuc"]
 [ext_resource type="AudioStream" uid="uid://be86m1quddh8s" path="res://rune_book/RuneSelect.wav" id="19_e5jm4"]
 [ext_resource type="Script" path="res://hell_gates/hell_gates_minigame.gd" id="20_8xhay"]
+[ext_resource type="Texture2D" uid="uid://sf2ic7rl0hwd" path="res://ui/button_prompts/mouse_l1.png" id="20_vto2w"]
+[ext_resource type="Texture2D" uid="uid://dbev8npy6cvfr" path="res://fx/textures/spark_05.png" id="21_crkbb"]
+[ext_resource type="Texture2D" uid="uid://df1k1r4mutcui" path="res://ui/button_prompts/mouse_l.png" id="21_ies2t"]
 [ext_resource type="Theme" uid="uid://c7islvxpjqnki" path="res://ui/retro_theme.tres" id="21_ytdxr"]
+[ext_resource type="Texture2D" uid="uid://cq8i5hbhqqjiw" path="res://ui/button_prompts/mouse_r1.png" id="22_1j2bc"]
 [ext_resource type="AudioStream" uid="uid://51ymt3wh3mvt" path="res://rumble.wav" id="22_bvepw"]
 [ext_resource type="SpriteFrames" uid="uid://dp0tns1acyg8p" path="res://ui/button_prompts/ui_frames.tres" id="22_kh6p8"]
+[ext_resource type="Texture2D" uid="uid://btfo87pcse2o3" path="res://fx/textures/fire_01.png" id="22_v7smr"]
+[ext_resource type="Texture2D" uid="uid://cjrceosqvy32s" path="res://ui/button_prompts/mouse_r.png" id="23_aubp6"]
 [ext_resource type="Texture2D" uid="uid://61e7lx1x4vto" path="res://fx/textures/pentagram_glow.png" id="23_h5vdi"]
 [ext_resource type="Script" path="res://ui/autoplay_animated_sprite_2d.gd" id="23_sgspk"]
 [ext_resource type="Texture2D" uid="uid://cllxbc6hdbt26" path="res://fx/textures/demon_spirit.png" id="23_vtces"]
@@ -72,9 +78,9 @@ noise = SubResource("FastNoiseLite_8jjip")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5rw0q"]
 render_priority = 0
 shader = ExtResource("17_agrtu")
-shader_parameter/albedo = Color(0.4, 0, 0.0666668, 0)
+shader_parameter/albedo = Color(0.81, 0.2025, 0, 1)
 shader_parameter/point_size = 1.0
-shader_parameter/time_scale = 0.1
+shader_parameter/time_scale = 0.3
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
@@ -90,6 +96,197 @@ height = 1.0
 radial_segments = 16
 cap_top = false
 cap_bottom = false
+
+[sub_resource type="Curve" id="Curve_3iw81"]
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.504464, 0.688655), 0.0, 0.0, 0, 0, Vector2(1, 1.41008), 2.97143, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_qlua4"]
+offsets = PackedFloat32Array(0, 0.164286, 0.5, 0.742857, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.29, 0.29, 0.29, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_sk5vi"]
+colors = PackedColorArray(0.57, 0.942667, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7qphc"]
+gradient = SubResource("Gradient_sk5vi")
+
+[sub_resource type="Gradient" id="Gradient_7y043"]
+offsets = PackedFloat32Array(0, 0.0342105, 0.110526, 0.676316)
+colors = PackedColorArray(0, 0, 0, 0, 0.976316, 0.976316, 0.976316, 0.976316, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_seyoy"]
+gradient = SubResource("Gradient_7y043")
+
+[sub_resource type="Curve" id="Curve_iy1uh"]
+_data = [Vector2(0, 1), 0.0, 0.95327, 0, 0, Vector2(1, 0), -1.95276, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cehmj"]
+curve = SubResource("Curve_iy1uh")
+
+[sub_resource type="Curve" id="Curve_e2met"]
+_data = [Vector2(0, 0.890654), 0.0, 0.109346, 0, 1, Vector2(1, 1), 0.109346, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wikls"]
+width = 32
+curve = SubResource("Curve_e2met")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_epbcj"]
+lifetime_randomness = 0.66
+emission_shape = 3
+emission_box_extents = Vector3(2, 0.01, 2)
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_wikls")
+color_ramp = SubResource("GradientTexture1D_seyoy")
+color_initial_ramp = SubResource("GradientTexture1D_7qphc")
+emission_curve = SubResource("CurveTexture_cehmj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_carxl"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("21_crkbb")
+uv1_scale = Vector3(1, 10, 1)
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_rdtp4"]
+material = SubResource("StandardMaterial3D_carxl")
+size = Vector2(1, 10)
+
+[sub_resource type="Gradient" id="Gradient_573as"]
+colors = PackedColorArray(1, 0.692, 0.12, 1, 1, 0.4, 0.1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m1eyr"]
+gradient = SubResource("Gradient_573as")
+
+[sub_resource type="Gradient" id="Gradient_j0csn"]
+offsets = PackedFloat32Array(0.00714286, 0.0404762, 0.52381, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0.68, 0.5134, 0.3944, 0.913725, 0.4, 0.197, 0.052, 0.294118)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t16jy"]
+gradient = SubResource("Gradient_j0csn")
+
+[sub_resource type="Curve" id="Curve_w2q3w"]
+_data = [Vector2(0, 0), 0.0, 19.2941, 0, 0, Vector2(0.0647321, 0.868907), 0.0, 0.0, 0, 0, Vector2(1, 0.268067), -1.02619, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lg30e"]
+curve = SubResource("Curve_w2q3w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d78xq"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+angle_max = 360.0
+direction = Vector3(0, 0, 1)
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_lg30e")
+color_ramp = SubResource("GradientTexture1D_t16jy")
+color_initial_ramp = SubResource("GradientTexture1D_m1eyr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_al2t7"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("22_v7smr")
+texture_filter = 2
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_jikde"]
+material = SubResource("StandardMaterial3D_al2t7")
+
+[sub_resource type="Gradient" id="Gradient_77wuj"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.291667, 0.479167, 0.697917, 0.825521, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a6em4"]
+gradient = SubResource("Gradient_77wuj")
+fill_to = Vector2(0, 0.74359)
+repeat = 1
+
+[sub_resource type="Gradient" id="Gradient_xbr3y"]
+offsets = PackedFloat32Array(0.575521, 0.635417)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_odrck"]
+noise_type = 0
+frequency = 0.0271
+fractal_octaves = 3
+fractal_lacunarity = 5.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2yydm"]
+width = 128
+height = 32
+generate_mipmaps = false
+seamless = true
+color_ramp = SubResource("Gradient_xbr3y")
+noise = SubResource("FastNoiseLite_odrck")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ty4qj"]
+render_priority = 0
+shader = ExtResource("17_agrtu")
+shader_parameter/albedo = Color(0.86, 0.501667, 0, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/time_scale = 0.9
+shader_parameter/uv1_scale = Vector3(4, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_gradient = SubResource("GradientTexture2D_a6em4")
+shader_parameter/texture_noise = SubResource("NoiseTexture2D_2yydm")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yhrvf"]
+material = SubResource("ShaderMaterial_ty4qj")
+top_radius = 3.0
+bottom_radius = 1.0
+height = 1.0
+radial_segments = 16
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ubt2o"]
+load_path = "res://.godot/imported/spark_05.png-91cf1c812db517f55f5d3b4c9044926e.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71cqq"]
+transparency = 1
+blend_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("CompressedTexture2D_ubt2o")
+uv1_scale = Vector3(1, 10, 1)
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_s2y6u"]
+material = SubResource("StandardMaterial3D_71cqq")
+size = Vector2(1, 10)
 
 [sub_resource type="Gradient" id="Gradient_ol145"]
 offsets = PackedFloat32Array(0, 0.595238, 1)
@@ -449,62 +646,135 @@ orientation = 0
 script = ExtResource("1_gisox")
 battle_ui = NodePath("BattleUi")
 
-[node name="RuneBook" type="Node3D" parent="." node_paths=PackedStringArray("desired_ui", "game_anim")]
+[node name="RuneBook" type="Node3D" parent="." node_paths=PackedStringArray("desired_ui", "effects", "game_anim")]
 visible = false
 script = ExtResource("2_47ykl")
 runes = Array[ExtResource("3_54ti3")]([ExtResource("4_ve4mc"), ExtResource("5_mnj2b"), ExtResource("6_n04x0"), ExtResource("7_qtv0m"), ExtResource("8_2sbob"), ExtResource("9_opldf"), ExtResource("10_tso1e")])
 page_scene = ExtResource("11_wy318")
-desired_ui = [NodePath("DesiredContainer/TextureRect"), NodePath("DesiredContainer/TextureRect2"), NodePath("DesiredContainer/TextureRect3"), NodePath("DesiredContainer/TextureRect4"), NodePath("DesiredContainer/TextureRect5")]
+desired_ui = [NodePath("DesiredContainer/TextureRect"), NodePath("DesiredContainer/TextureRect2"), NodePath("DesiredContainer/TextureRect3"), NodePath("DesiredContainer/TextureRect4"), NodePath("DesiredContainer/TextureRect5"), NodePath("DesiredContainer/TextureRect6"), NodePath("DesiredContainer/TextureRect7"), NodePath("DesiredContainer/TextureRect8"), NodePath("DesiredContainer/TextureRect9")]
+effects = [NodePath("Glow1"), NodePath("Glow2"), NodePath("Lightning"), NodePath("Fire"), NodePath("LightningDark")]
 deactivated_color = Color(0.27, 0.0162, 0.0162, 1)
 activated_color = Color(0.76, 0.182527, 0.0228, 1)
 game_anim = NodePath("../AnimationPlayer")
 
-[node name="ControlHint" type="Panel" parent="RuneBook"]
+[node name="MouseControls" type="Control" parent="RuneBook"]
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("21_ytdxr")
+
+[node name="ControlHint2" type="Panel" parent="RuneBook/MouseControls"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -32.0
-offset_top = -132.0
+offset_top = -89.0
 offset_right = 32.0
-offset_bottom = -100.0
+offset_bottom = -57.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("21_ytdxr")
 
-[node name="AutoSprite2D" type="AnimatedSprite2D" parent="RuneBook/ControlHint"]
-position = Vector2(18, 15)
-sprite_frames = ExtResource("22_kh6p8")
-animation = &"left_right"
-script = ExtResource("23_sgspk")
-
-[node name="AutoSprite2D2" type="AnimatedSprite2D" parent="RuneBook/ControlHint"]
-position = Vector2(46, 15)
-sprite_frames = ExtResource("22_kh6p8")
-animation = &"minigame_button"
-script = ExtResource("23_sgspk")
-
-[node name="Label" type="Label" parent="RuneBook/ControlHint"]
+[node name="Label" type="Label" parent="RuneBook/MouseControls/ControlHint2"]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 25.0
-offset_bottom = 32.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -3.5
+offset_right = 24.0
+offset_bottom = 3.5
 grow_horizontal = 2
+grow_vertical = 2
 text = "Search
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="RuneBook/MouseControls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -7.0
+offset_right = -75.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left" type="TextureButton" parent="RuneBook/MouseControls/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("20_vto2w")
+texture_hover = ExtResource("21_ies2t")
+stretch_mode = 3
+
+[node name="Center" type="TextureButton" parent="RuneBook/MouseControls"]
+custom_minimum_size = Vector2(110, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -27.0
+offset_right = 55.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+stretch_mode = 3
+
+[node name="Panel2" type="Panel" parent="RuneBook/MouseControls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 76.0
+offset_top = -7.0
+offset_right = 116.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Right" type="TextureButton" parent="RuneBook/MouseControls/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("22_1j2bc")
+texture_hover = ExtResource("23_aubp6")
+stretch_mode = 3
 
 [node name="DesiredContainer" type="HBoxContainer" parent="RuneBook"]
 visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 66.0
-offset_bottom = 98.0
+offset_top = 41.0
+offset_bottom = 73.0
 grow_horizontal = 2
 scale = Vector2(1.1, 1.1)
 pivot_offset = Vector2(230, 16)
@@ -512,6 +782,7 @@ size_flags_vertical = 3
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="RuneBook/DesiredContainer"]
+visible = false
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("12_kldem")
@@ -519,6 +790,7 @@ expand_mode = 2
 flip_h = true
 
 [node name="TextureRect2" type="TextureRect" parent="RuneBook/DesiredContainer"]
+visible = false
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("13_5sbo1")
@@ -526,6 +798,7 @@ expand_mode = 2
 flip_h = true
 
 [node name="TextureRect3" type="TextureRect" parent="RuneBook/DesiredContainer"]
+visible = false
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("14_sxn06")
@@ -533,6 +806,7 @@ expand_mode = 2
 flip_h = true
 
 [node name="TextureRect4" type="TextureRect" parent="RuneBook/DesiredContainer"]
+visible = false
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("15_8ey5g")
@@ -540,15 +814,87 @@ expand_mode = 2
 flip_h = true
 
 [node name="TextureRect5" type="TextureRect" parent="RuneBook/DesiredContainer"]
+visible = false
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("16_0ih7o")
 expand_mode = 2
 flip_h = true
 
-[node name="Glow" type="MeshInstance3D" parent="RuneBook"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.443444, 0.814446, 5.79807)
+[node name="TextureRect6" type="TextureRect" parent="RuneBook/DesiredContainer"]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("16_0ih7o")
+expand_mode = 2
+flip_h = true
+
+[node name="TextureRect7" type="TextureRect" parent="RuneBook/DesiredContainer"]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("16_0ih7o")
+expand_mode = 2
+flip_h = true
+
+[node name="TextureRect8" type="TextureRect" parent="RuneBook/DesiredContainer"]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("16_0ih7o")
+expand_mode = 2
+flip_h = true
+
+[node name="TextureRect9" type="TextureRect" parent="RuneBook/DesiredContainer"]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("16_0ih7o")
+expand_mode = 2
+flip_h = true
+
+[node name="Glow1" type="CPUParticles3D" parent="RuneBook"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.443444, 0.301736, 5.79807)
+visible = false
+amount = 1
+lifetime = 5.0
 mesh = SubResource("CylinderMesh_qg6dg")
+gravity = Vector3(0, 0, 0)
+scale_amount_curve = SubResource("Curve_3iw81")
+color_ramp = SubResource("Gradient_qlua4")
+
+[node name="Lightning" type="GPUParticles3D" parent="RuneBook"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.443444, -0.148152, 5.79807)
+visible = false
+amount = 3
+randomness = 0.77
+process_material = SubResource("ParticleProcessMaterial_epbcj")
+draw_pass_1 = SubResource("QuadMesh_rdtp4")
+
+[node name="Fire" type="GPUParticles3D" parent="RuneBook"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288607, -0.174685, 5.84437)
+visible = false
+amount = 30
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_d78xq")
+draw_pass_1 = SubResource("QuadMesh_jikde")
+
+[node name="Glow2" type="CPUParticles3D" parent="RuneBook"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.443444, 0.301736, 5.79807)
+visible = false
+amount = 3
+mesh = SubResource("CylinderMesh_yhrvf")
+gravity = Vector3(0, 0, 0)
+scale_amount_curve = SubResource("Curve_3iw81")
+color_ramp = SubResource("Gradient_qlua4")
+
+[node name="LightningDark" type="GPUParticles3D" parent="RuneBook"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.443444, -0.148152, 5.79807)
+visible = false
+amount = 3
+randomness = 0.77
+process_material = SubResource("ParticleProcessMaterial_epbcj")
+draw_pass_1 = SubResource("QuadMesh_s2y6u")
 
 [node name="Book" type="Node3D" parent="RuneBook"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.28746)
@@ -593,7 +939,6 @@ hell_mouth = NodePath("../Hellmouth")
 hell_mouth_max_size = 1.0
 
 [node name="ControlHint" type="Panel" parent="HellGates"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -634,20 +979,21 @@ axis = 1
 texture_filter = 0
 texture = ExtResource("23_h5vdi")
 
-[node name="SpiritAlign" type="Node3D" parent="." node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area")]
+[node name="SpiritAlign" type="Node3D" parent="." node_paths=PackedStringArray("demon_spirit_area", "player_spirit_area", "demon_spirit_shadow")]
 visible = false
 script = ExtResource("24_lfg1a")
 demon_spirit_point_a = Vector2(30, 30)
 demon_spirit_point_b = Vector2(430, 180)
 demon_spirit_area = NodePath("DemonSpiritArea")
 player_spirit_area = NodePath("PlayerSpiritArea")
+demon_spirit_shadow = NodePath("DemonSpiritArea/DemonShadow")
 demon_spirit_speed = 30.0
 input_sensitivity = 6.0
 noise = SubResource("FastNoiseLite_i1ket")
 initial_demon_color = Color(0.79, 0.07979, 0.0553, 1)
 final_demon_color = Color(1, 1, 1, 1)
-goal_time = 10.0
-time_limit = 30.0
+goal_time = 20.0
+time_limit = 50.0
 
 [node name="DimCam" type="ColorRect" parent="SpiritAlign"]
 visible = false
@@ -681,6 +1027,7 @@ texture = ExtResource("23_vtces")
 [node name="PlayerSpiritArea" type="Area2D" parent="SpiritAlign"]
 visible = false
 position = Vector2(355, 164)
+scale = Vector2(0.5, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpiritAlign/PlayerSpiritArea"]
 shape = SubResource("CircleShape2D_mq2xc")
@@ -719,21 +1066,19 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("21_ytdxr")
 
-[node name="AutoSprite2D" type="AnimatedSprite2D" parent="SpiritAlign/ControlHint"]
-position = Vector2(32, 16)
-sprite_frames = ExtResource("22_kh6p8")
-animation = &"spin_joy"
-script = ExtResource("23_sgspk")
-
 [node name="Label" type="Label" parent="SpiritAlign/ControlHint"]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 1.0
-offset_top = 25.0
-offset_right = 1.0
-offset_bottom = 32.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -3.5
+offset_right = 28.0
+offset_bottom = 3.5
 grow_horizontal = 2
+grow_vertical = 2
 text = "Purify!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -784,6 +1129,7 @@ visible = false
 z_index = -10
 
 [node name="Sprite2D" type="Sprite2D" parent="DemonPOV/Node2D"]
+modulate = Color(1, 1, 1, 0.513726)
 texture_filter = 1
 texture = ExtResource("28_3lxbx")
 centered = false
@@ -794,7 +1140,7 @@ transform = Transform3D(-1, -5.61943e-08, 6.69697e-08, 0, 0.766044, 0.642788, -8
 [node name="DemonPOVCamera" type="Camera3D" parent="DemonPOV/Node3D"]
 fov = 47.7
 script = ExtResource("27_7euah")
-joystickSensitivity = 0.75
+joystickSensitivity = 0.1
 horizontalBounds = 25.0
 verticalBounds = 25.0
 
@@ -820,27 +1166,21 @@ theme = ExtResource("21_ytdxr")
 
 [node name="Label" type="Label" parent="DemonPOV/ControlHint"]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 25.0
-offset_bottom = 32.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -3.5
+offset_right = 28.0
+offset_bottom = 3.5
 grow_horizontal = 2
+grow_vertical = 2
 text = "DESTROY
 "
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DemonPOV/ControlHint"]
-position = Vector2(17, 16)
-sprite_frames = ExtResource("22_kh6p8")
-animation = &"spin_joy"
-script = ExtResource("23_sgspk")
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="DemonPOV/ControlHint"]
-position = Vector2(45, 16)
-sprite_frames = ExtResource("22_kh6p8")
-animation = &"minigame_button"
-script = ExtResource("23_sgspk")
 
 [node name="field" parent="." instance=ExtResource("4_nwrxv")]
 transform = Transform3D(-25, 0, -3.7749e-06, 0, 25, 0, 3.7749e-06, 0, -25, 0, -0.711262, 0)
@@ -855,6 +1195,7 @@ light_volumetric_fog_energy = 0.0
 light_cull_mask = 4293918720
 
 [node name="BattleUi" parent="." instance=ExtResource("5_4u33l")]
+process_mode = 1
 offset_top = 197.0
 
 [node name="ninja" parent="." instance=ExtResource("6_7k3qa")]
@@ -882,7 +1223,7 @@ libraries = {
 next/darken = &"rune_game_intro"
 
 [node name="Hellmouth" type="MeshInstance3D" parent="."]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -16.642)
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, -16.642)
 visible = false
 mesh = SubResource("SphereMesh_cissp")
 skeleton = NodePath("../insect")
@@ -911,6 +1252,7 @@ mesh = SubResource("CylinderMesh_8w7xe")
 
 [node name="minor_taur3" parent="." instance=ExtResource("35_nafy3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.689)
+visible = false
 
 [node name="insect" parent="." instance=ExtResource("29_nihqw")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.92156, 15)
@@ -955,6 +1297,11 @@ skeleton = NodePath("../..")
 
 [connection signal="failed" from="RuneBook" to="." method="game_over"]
 [connection signal="succeeded" from="RuneBook" to="." method="_on_rune_book_succeeded"]
+[connection signal="button_down" from="RuneBook/MouseControls/Panel/Left" to="RuneBook" method="prev_page"]
+[connection signal="button_down" from="RuneBook/MouseControls/Center" to="RuneBook" method="activate"]
+[connection signal="mouse_entered" from="RuneBook/MouseControls/Center" to="RuneBook" method="begin_hover"]
+[connection signal="mouse_exited" from="RuneBook/MouseControls/Center" to="RuneBook" method="end_hover"]
+[connection signal="button_down" from="RuneBook/MouseControls/Panel2/Right" to="RuneBook" method="next_page"]
 [connection signal="failed" from="HellGates" to="." method="game_over"]
 [connection signal="succeeded" from="HellGates" to="." method="_on_hell_gates_scene_succeeded"]
 [connection signal="failed" from="SpiritAlign" to="." method="game_over"]

@@ -99,8 +99,7 @@ offset_right = 318.0
 offset_bottom = 184.0
 theme = ExtResource("1_60uvt")
 theme_type_variation = &"HeaderSmall"
-text = "Press A To Retry
-Press B To Quit"
+text = "Click to restart"
 horizontal_alignment = 1
 
 [node name="MinotaurRect" type="TextureRect" parent="Panel"]

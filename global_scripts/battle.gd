@@ -37,7 +37,7 @@ func _on_hell_gates_scene_succeeded() -> void:
 	summoned = true
 	$AnimationPlayer.play("gates_win")
 	$AnimationPlayer.queue("spirit_intro")
-	$AnimationPlayer.queue("spirit_play")
+	$AnimationPlayer.queue ("spirit_play")
 
 func _on_demon_pov_succeeded() -> void:
 	$AnimationPlayer.play("insect_kill")
