@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dtvrdtgfjjltm"]
+[gd_scene load_steps=8 format=3 uid="uid://dtvrdtgfjjltm"]
 
 [ext_resource type="Theme" uid="uid://c7islvxpjqnki" path="res://ui/retro_theme.tres" id="1_1ed7y"]
 [ext_resource type="Script" path="res://battle/battle_menu.gd" id="2_c3ii8"]
@@ -7,8 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://baw4rnld215mh" path="res://ui/Heal.wav" id="5_kbkgl"]
 [ext_resource type="AudioStream" uid="uid://brpkjv4dkpbre" path="res://ui/HealAll.wav" id="6_somok"]
 [ext_resource type="AudioStream" uid="uid://b5nv8inmq8mko" path="res://ui/warning.wav" id="7_gybox"]
-[ext_resource type="SpriteFrames" uid="uid://dp0tns1acyg8p" path="res://ui/button_prompts/ui_frames.tres" id="8_6d2ha"]
-[ext_resource type="Script" path="res://ui/autoplay_animated_sprite_2d.gd" id="9_6qbjc"]
 
 [node name="BattleUi" type="Control" node_paths=PackedStringArray("white_magic_menu", "wm_menu_focus", "initial_focus", "summoner_focus", "health_bars", "summoner_health_bar", "clod_hb", "ninja_hb", "summoner_mana_bar", "cure_button", "cure_all_button")]
 texture_filter = 1
@@ -58,10 +56,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = 20.0
-offset_right = -7.0
-offset_bottom = -7.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -301,24 +296,6 @@ stream = ExtResource("6_somok")
 stream = ExtResource("7_gybox")
 
 [node name="Press" type="AudioStreamPlayer" parent="."]
-
-[node name="Node2D" type="Node2D" parent="."]
-modulate = Color(0.87451, 0.87451, 0.87451, 1)
-position = Vector2(32, 15)
-
-[node name="ButtonIndicator" type="AnimatedSprite2D" parent="Node2D"]
-z_index = 11
-position = Vector2(39, 0)
-sprite_frames = ExtResource("8_6d2ha")
-animation = &"ui_button"
-script = ExtResource("9_6qbjc")
-
-[node name="DirectionIndicator" type="AnimatedSprite2D" parent="Node2D"]
-z_index = 11
-position = Vector2(20, 0)
-sprite_frames = ExtResource("8_6d2ha")
-animation = &"ui_directions"
-script = ExtResource("9_6qbjc")
 
 [connection signal="button_up" from="HBoxContainer/Panel/VBoxContainer/WhtMg" to="." method="_on_wht_mg_button_up"]
 [connection signal="button_up" from="HBoxContainer/WhiteMagicList/ScrollContainer/VBoxContainer/Cure" to="." method="_on_cure_button_up"]

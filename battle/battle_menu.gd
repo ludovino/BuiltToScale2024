@@ -32,7 +32,6 @@ signal wilkins_damaged
 signal grob_damaged
 
 func _ready() -> void:
-	initial_focus.grab_focus()
 	timer.start(damage_interval)
 
 func wipe() -> void:
@@ -55,8 +54,6 @@ func kill_summoner():
 	
 func _on_wht_mg_button_up() -> void:
 	white_magic_menu.visible = not white_magic_menu.visible
-	if white_magic_menu.visible: 
-		wm_menu_focus.grab_focus()
 
 func damage() -> void:
 	var hb := health_bars.pick_random() as ProgressBar
@@ -90,7 +87,6 @@ func click_health_bar(idx: int) -> void:
 	selected_spell = Spell.NONE
 	check_mana()
 	white_magic_menu.visible = false
-	initial_focus.grab_focus()
 
 func cure(idx: int, amount: float) -> void:
 	summoner_mana_bar.value -= 7.0
@@ -134,9 +130,7 @@ func _on_timer_timeout() -> void:
 func _on_cure_button_up() -> void:
 	selected_spell = Spell.CURE
 	white_magic_menu.visible = false
-	summoner_focus.grab_focus()
 
 func _on_cure_all_button_up() -> void:
 	selected_spell = Spell.CURE_ALL
 	white_magic_menu.visible = false
-	summoner_focus.grab_focus()
