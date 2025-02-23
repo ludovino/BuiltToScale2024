@@ -16,7 +16,7 @@ var desired: Array[int] = []
 var target_count := 0
 var effects_idx := 0
 var start_level := 3
-var max_level := 7
+var max_level := 5
 var current_page := 0
 var desired_index := 0
 

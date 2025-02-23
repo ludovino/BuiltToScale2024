@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl5wugfcxrh4"
-path.s3tc="res://.godot/imported/fire_02.png-d0d4817e4a39db8cf5599cd2ed6133b3.s3tc.ctex"
+uid="uid://d3ouc8b02yuj0"
+path.s3tc="res://.godot/imported/CustomUVChecker_byValle_1K.png-83411d62dbe498702f024dc4bd9c822a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://fx/textures/fire_02.png"
-dest_files=["res://.godot/imported/fire_02.png-d0d4817e4a39db8cf5599cd2ed6133b3.s3tc.ctex"]
+source_file="res://fx/textures/CustomUVChecker_byValle_1K.png"
+dest_files=["res://.godot/imported/CustomUVChecker_byValle_1K.png-83411d62dbe498702f024dc4bd9c822a.s3tc.ctex"]
 
 [params]
 
