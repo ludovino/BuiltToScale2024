@@ -1116,10 +1116,11 @@ radiance_size = 2
 [sub_resource type="Environment" id="Environment_wxkck"]
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 0.09
 sky = SubResource("Sky_txaos")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_sky_contribution = 0.37
+ambient_light_energy = 0.0
 
 [node name="Battle" type="Node3D"]
 script = ExtResource("1_51i7m")
@@ -1493,7 +1494,6 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -5, 0.13463, 0)
 
 [node name="minor_taur3" parent="Characters" instance=ExtResource("46_nidd5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.2886, -15.3047)
-visible = false
 
 [node name="insect" parent="Characters" instance=ExtResource("47_vudbc")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.92156, 15)
