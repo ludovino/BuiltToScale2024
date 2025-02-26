@@ -1,4 +1,4 @@
-[gd_scene load_steps=178 format=3 uid="uid://cwj8pi2q80m84"]
+[gd_scene load_steps=177 format=3 uid="uid://cwj8pi2q80m84"]
 
 [ext_resource type="Script" path="res://global_scripts/battle.gd" id="1_51i7m"]
 [ext_resource type="Script" path="res://rune_book/rune_book.gd" id="2_ptk1l"]
@@ -559,8 +559,8 @@ radius = 5.0
 height = 10.0
 
 [sub_resource type="Gradient" id="Gradient_tp4lk"]
-offsets = PackedFloat32Array(0, 0.202479, 0.367769, 0.657025, 0.900826)
-colors = PackedColorArray(1, 1, 1, 1, 1, 0.839833, 0.69, 0.945098, 0.7, 0.441, 0.441, 0.501961, 0.3, 0.3, 0.3, 0.239216, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.136364, 0.165289, 0.657025, 0.900826)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.683333, 0, 0.945098, 1, 0, 0, 0.784314, 0.3, 0.3, 0.3, 0.239216, 1, 1, 1, 0)
 
 [sub_resource type="Gradient" id="Gradient_4iavs"]
 offsets = PackedFloat32Array(0, 0.300971, 0.834951, 1)
@@ -588,7 +588,7 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_jmkhm"]
 material = SubResource("StandardMaterial3D_mrogb")
-size = Vector2(30, 30)
+size = Vector2(5, 5)
 
 [sub_resource type="Gradient" id="Gradient_mpf0n"]
 offsets = PackedFloat32Array(0, 0.214876, 0.643564, 1)
@@ -993,17 +993,9 @@ shader_type spatial;
 render_mode blend_mix, cull_back, depth_draw_never, diffuse_burley, specular_schlick_ggx, depth_prepass_alpha;
 
 uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform sampler2D texture_albedo : source_color, filter_linear, repeat_enable;
 uniform float proximity_fade_distance : hint_range(0.0, 4096.0, 0.01);
-uniform float point_size : hint_range(0.1, 128.0, 0.1);
 
-uniform float roughness : hint_range(0.0, 1.0);
-uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
-
-uniform float specular : hint_range(0.0, 1.0, 0.01);
-uniform float metallic : hint_range(0.0, 1.0, 0.01);
 uniform sampler2D depth_texture : hint_depth_texture, repeat_disable, filter_nearest;
 
 uniform vec2 uv_scroll = vec2(0.1, 0.1);
@@ -1023,15 +1015,8 @@ void fragment() {
 	vec4 albedo_tex = texture(texture_albedo, base_uv);
 	ALBEDO = albedo.rgb * albedo_tex.rgb;
 
-	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	SPECULAR = specular;
-
-	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
-	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
 	ALPHA *= albedo.a * albedo_tex.a;
-	EMISSION = ALBEDO * 3.0;
+	EMISSION = ALBEDO * 3.0 * (sin(TIME) + 1.4);
 	// Proximity Fade: Enabled
 	float depth_tex = textureLod(depth_texture, SCREEN_UV, 0.0).r;
 	vec4 world_pos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, depth_tex, 1.0);
@@ -1040,40 +1025,30 @@ void fragment() {
 }
 "
 
-[sub_resource type="Gradient" id="Gradient_6jkkx"]
-offsets = PackedFloat32Array(0.344037, 0.389908, 0.5, 0.536697)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+[sub_resource type="Gradient" id="Gradient_g1lbb"]
+offsets = PackedFloat32Array(0.802752, 1)
+colors = PackedColorArray(0.53, 0.53, 0.53, 0, 1, 1, 1, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_nkok4"]
-noise_type = 2
-frequency = 0.045
-fractal_type = 2
-fractal_octaves = 3
-fractal_lacunarity = 3.0
-fractal_weighted_strength = 0.28
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gxkv4"]
-seamless = true
-seamless_blend_skirt = 0.3
-color_ramp = SubResource("Gradient_6jkkx")
-noise = SubResource("FastNoiseLite_nkok4")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_igugj"]
+gradient = SubResource("Gradient_g1lbb")
+width = 128
+height = 128
+fill_from = Vector2(0.1, 0.7)
+fill_to = Vector2(0.5, 0.5)
+repeat = 2
+metadata/_snap_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjrcu"]
 render_priority = 0
 shader = SubResource("Shader_3isha")
-shader_parameter/albedo = Color(0.43, 1, 1, 0.262745)
+shader_parameter/albedo = Color(0.43, 1, 1, 1)
 shader_parameter/proximity_fade_distance = 5.0
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv_scroll = Vector2(0.04, 0.2)
+shader_parameter/uv_scroll = Vector2(0.1, 0)
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_gxkv4")
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_igugj")
 
 [sub_resource type="SphereMesh" id="SphereMesh_ym2gl"]
 material = SubResource("ShaderMaterial_qjrcu")
@@ -1141,17 +1116,16 @@ radiance_size = 2
 [sub_resource type="Environment" id="Environment_wxkck"]
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
-background_energy_multiplier = 0.1
 sky = SubResource("Sky_txaos")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.0
+ambient_light_sky_contribution = 0.37
 
 [node name="Battle" type="Node3D"]
 script = ExtResource("1_51i7m")
 
 [node name="Primitives" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.3932, 1, 35.489)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.3932, 1.64745, 35.489)
 
 [node name="Box" type="MeshInstance3D" parent="Primitives"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69489, 0, -2.14491)
@@ -1193,7 +1167,7 @@ transform = Transform3D(-1, 5.48983e-08, -6.80362e-08, 1.16756e-08, 0.855138, 0.
 fov = 22.6
 
 [node name="CastParticles" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999976, 0.00691145, 0, -0.00691145, 0.999976, 40.0293, 1.54833, 59.6338)
+transform = Transform3D(1, 0, 0, 0, 0.999976, 0.00691145, 0, -0.00691145, 0.999976, 40.0293, 2.19578, 59.6338)
 mesh = SubResource("QuadMesh_g3sqs")
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
@@ -1208,28 +1182,28 @@ scale_amount_curve = SubResource("Curve_gc78g")
 color_ramp = SubResource("Gradient_ad6ln")
 
 [node name="Lightning" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.4517, -0.148164, 50.7242)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.4517, 0.499289, 50.7242)
 amount = 3
 randomness = 0.77
 process_material = SubResource("ParticleProcessMaterial_epbcj")
 draw_pass_1 = SubResource("QuadMesh_rdtp4")
 
 [node name="LightningDark" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.4517, -0.148164, 50.7242)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.4517, 0.499289, 50.7242)
 amount = 3
 randomness = 0.77
 process_material = SubResource("ParticleProcessMaterial_epbcj")
 draw_pass_1 = SubResource("QuadMesh_s2y6u")
 
 [node name="Fire" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.5428, 3.8147e-06, 60.2873)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.5428, 0.647457, 60.2873)
 amount = 30
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_d78xq")
 draw_pass_1 = SubResource("QuadMesh_jikde")
 
 [node name="Explosion" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8151, 0.22621, 35.6283)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8151, 0.873663, 35.6283)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Explosion"]
 libraries = {
@@ -1364,7 +1338,7 @@ draw_pass_1 = SubResource("PrismMesh_j78qs")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Explosion"]
 
 [node name="Glow1" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4489, 0, 53.636)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4489, 0.647453, 53.636)
 amount = 1
 lifetime = 5.0
 mesh = SubResource("CylinderMesh_qg6dg")
@@ -1373,7 +1347,7 @@ scale_amount_curve = SubResource("Curve_3iw81")
 color_ramp = SubResource("Gradient_qlua4")
 
 [node name="Glow2" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.782, 0, 50.1954)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.782, 0.647453, 50.1954)
 amount = 3
 mesh = SubResource("CylinderMesh_yhrvf")
 gravity = Vector3(0, 0, 0)
@@ -1381,7 +1355,7 @@ scale_amount_curve = SubResource("Curve_3iw81")
 color_ramp = SubResource("Gradient_qlua4")
 
 [node name="CastGlow" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999976, 0.00691145, 0, -0.00691145, 0.999976, 15.753, 0.972579, 45.7396)
+transform = Transform3D(1, 0, 0, 0, 0.999976, 0.00691145, 0, -0.00691145, 0.999976, 15.753, 2.27167, 45.7396)
 amount = 6
 lifetime = 2.0
 local_coords = true
@@ -1404,7 +1378,7 @@ hue_variation_min = -0.15
 hue_variation_max = 0.08
 
 [node name="Hellmouth" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.1887, -0.936605, -0.413347)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.1887, -0.289152, -0.413347)
 mesh = SubResource("SphereMesh_cissp")
 skeleton = NodePath("../Characters/insect")
 
@@ -1437,7 +1411,7 @@ texture_filter = 0
 texture = ExtResource("31_s3nhe")
 
 [node name="LaserEffect" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.976, 0.51404, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.976, 1.16149, 0)
 
 [node name="Fire" parent="LaserEffect" instance=ExtResource("51_lc8qp")]
 transform = Transform3D(1, 0, 0, 0, 0.954776, -0.297325, 0, 0.297325, 0.954776, 0, 0, 0)
@@ -1462,11 +1436,11 @@ mesh = SubResource("QuadMesh_n5ncy")
 skeleton = NodePath("../..")
 
 [node name="Bubble" type="MeshInstance3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -31.3935, -2.73833, -23.1318)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -31.3935, -2.09088, -23.1318)
 mesh = SubResource("SphereMesh_ym2gl")
 
 [node name="Characters" type="Node3D" parent="."]
-transform = Transform3D(-0.596057, 0, -0.802942, 0, 1, 0, 0.802942, 0, -0.596057, 114.785, -0.651932, 80.197)
+transform = Transform3D(-0.596057, 0, -0.802942, 0, 1, 0, 0.802942, 0, -0.596057, 114.785, -0.0780332, 80.197)
 
 [node name="RuneBook" type="Node3D" parent="Characters" node_paths=PackedStringArray("desired_ui", "effects")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.38869, 0, 2.51616)
@@ -1519,6 +1493,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -5, 0.13463, 0)
 
 [node name="minor_taur3" parent="Characters" instance=ExtResource("46_nidd5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.2886, -15.3047)
+visible = false
 
 [node name="insect" parent="Characters" instance=ExtResource("47_vudbc")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.92156, 15)
@@ -1545,7 +1520,7 @@ light_cull_mask = 4293918720
 environment = SubResource("Environment_wxkck")
 
 [node name="field" parent="Environment" instance=ExtResource("39_k0raj")]
-transform = Transform3D(-25, 0, -3.7749e-06, 0, 25, 0, 3.7749e-06, 0, -25, 48.5951, -0.711262, 0)
+transform = Transform3D(-25, 0, -3.7749e-06, 0, 25, 0, 3.7749e-06, 0, -25, 48.595, -0.1, 0)
 
 [connection signal="failed" from="Characters/RuneBook" to="." method="game_over"]
 [connection signal="succeeded" from="Characters/RuneBook" to="." method="_on_rune_book_succeeded"]
